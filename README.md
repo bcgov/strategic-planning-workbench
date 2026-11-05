@@ -15,26 +15,26 @@ Government divisions, branches, and teams translating leadership direction into 
 ```mermaid
 flowchart TD
     subgraph H["5-Tier Public-Sector Mandate Hierarchy"]
-        T1["Tier 1: Province of BC (Mandate Letters, Digital Plan, DRIPA)"]
-        T2["Tier 2: Ministry of Attorney General (Service Plan, Access to Justice)"]
-        T3["Tier 3: Court Services Branch — CSB (Branch Strategy & Modernization)"]
-        T4["Tier 4: Division / Directorate (Executive Leadership Direction)"]
+        T1["Tier 1: Province<br>of BC Mandates &<br>Digital Plan"]
+        T2["Tier 2: Ministry<br>of Attorney<br>General (AG)"]
+        T3["Tier 3: Court<br>Services Branch<br>(CSB Strategy)"]
+        T4["Tier 4: Division<br>& Executive<br>Direction"]
         T1 --> T2 --> T3 --> T4
     end
 
     subgraph W["Team Strategic Planning & Portfolio Workbench (Tier 5)"]
-        A["1. Strategic Context, Business Drivers, Current State & Stakeholders ('The Players')"]
-        B["2. Target Future-State Vision, Operating Principles, Outcome Objectives & Expected Benefits"]
-        C["3. Required Business Capabilities & 5-Pillar Maturity Gaps"]
-        D["4. Idea Inventory ('What Might We Do?' — raw to candidate/deferred/rejected)"]
-        E["5. Committed Work Inventory ('What Are We Doing?' — Initiatives, Experiments, Ops)"]
-        F["6. Alignment Matrix, Risk Register, Horizon Roadmap & Success Measures"]
-        G["7. Living Register Updates & Visual Outputs (Mermaid Roadmaps, Gantt Charts, Slide Decks)"]
+        A["1. Strategic<br>Context, Drivers<br>& Stakeholders"]
+        B["2. Target Vision,<br>Objectives &<br>Public Value"]
+        C["3. Business<br>Capabilities &<br>Maturity Gaps"]
+        D["4. Idea Inventory<br>(Raw to<br>Candidate)"]
+        E["5. Committed<br>Work Inventory<br>& Team Load"]
+        F["6. Alignment,<br>Risks, Roadmap<br>& Measures"]
+        G["7. Living Updates<br>& Visual Decks<br>(BC Gov Style)"]
 
         A --> B --> C --> D
-        D -->|"Promotion Gate (Sponsor + Owner + Capacity)"| E
+        D -->|"Promotion Gate<br>(Sponsor +<br>Owner +<br>Capacity)"| E
         E --> F --> G
-        G -.->|"Continuous Evolution"| A
+        G -.->|"Continuous<br>Evolution"| A
     end
 
     T4 --> A

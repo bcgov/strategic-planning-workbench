@@ -25,6 +25,7 @@ How would you like to visualize and share your strategy?
 ## 3. Mermaid syntax safety rules
 
 1. **Always quote node labels** containing parentheses, colons, slashes, or brackets:
-   - Correct: `CAP1["CAP-001: Authoritative knowledge management (Current: L1 -> Target: L3)"]`
-2. **Use dashed borders (`stroke-dasharray`)** to distinguish unapproved ideas (`IDEA-X`) or unaddressed gaps from committed work (`WORK-X`).
-3. **In Mermaid `gantt` charts**, represent unapproved candidate ideas (`IDEA-X`) and assumption validations (`ASM-X`) using `:milestone,` rather than multi-month task bars.
+   - Correct: `CAP1["CAP-001:<br>Knowledge mgmt<br>(L1 -> L3)"]`
+2. **Wrap box and edge labels with `<br>` tags**: Insert `<br>` line breaks every 15–18 characters inside flowchart node and edge labels so GitHub and Markdown viewers wrap text vertically instead of clipping boxes horizontally.
+3. **Use dashed borders (`stroke-dasharray`)** to distinguish unapproved ideas (`IDEA-X`) or unaddressed gaps from committed work (`WORK-X`).
+4. **In Mermaid `gantt` charts**, represent unapproved candidate ideas (`IDEA-X`) and assumption validations (`ASM-X`) using `:milestone,` rather than multi-month task bars.

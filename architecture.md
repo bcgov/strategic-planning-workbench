@@ -23,11 +23,11 @@ Teams and units in government do not invent strategy in a vacuum; their strategi
 
 ```mermaid
 flowchart TD
-    T1["Tier 1: Province-Wide (BC Government)<br/>Mandate Letters • Provincial Strategic Plan • Digital Plan • DRIPA • Accessibility"]
-    T2["Tier 2: Ministry Level (Ministry of Attorney General)<br/>Ministry Service Plan • Justice Sector Vision • Access to Justice • Judicial Independence"]
-    T3["Tier 3: Branch Level (Court Services Branch — CSB)<br/>CSB Strategic Direction • Court Operations • Registry Modernization • Sheriff & Security Services"]
-    T4["Tier 4: Division / Directorate Level<br/>Executive Director & Leadership Direction • Divisional Priorities & Resource Envelopes"]
-    T5["Tier 5: Team / Unit Level (Our Scope of Control)<br/>Team Strategic Vision • Outcome Objectives • Business Capabilities • Idea & Work Inventories • Measures"]
+    T1["Tier 1: Province<br>of BC<br>Mandate Letters,<br>Digital Plan &<br>DRIPA"]
+    T2["Tier 2: Ministry<br>of Attorney<br>General<br>Service Plan &<br>Access to Justice"]
+    T3["Tier 3: Court<br>Services Branch<br>(CSB)<br>Court Ops &<br>Modernization"]
+    T4["Tier 4: Division<br>& Directorate<br>Executive<br>Direction &<br>Priorities"]
+    T5["Tier 5: Team /<br>Unit Scope<br>Vision, Caps,<br>Inventories &<br>Measures"]
 
     T1 --> T2 --> T3 --> T4 --> T5
 ```
@@ -48,26 +48,26 @@ To prevent teams from confusing a casual suggestion or an exploratory prototype 
 
 ```mermaid
 flowchart LR
-    subgraph L1["Layer 1: Strategic Vision & Capabilities"]
-        A["Multi-Tier Context, Drivers & Stakeholders"] --> B["Target Vision & Outcome Objectives"]
-        B --> C["Required Business Capabilities"]
+    subgraph L1["Layer 1: Vision & Capabilities"]
+        A["Multi-Tier<br>Context, Drivers<br>& Stakeholders"] --> B["Target Vision<br>& Outcome<br>Objectives"]
+        B --> C["Required<br>Business<br>Capabilities"]
     end
 
-    subgraph L2["Layer 2: Idea Inventory (What Might We Do?)"]
-        D["Capture (raw)"] --> E["Clarify & Align (explored)"]
-        E --> F["Validate Assumptions (validated)"]
-        F --> G["Compare & Decide (candidate / deferred / rejected)"]
+    subgraph L2["Layer 2: Idea Inventory"]
+        D["Capture<br>(raw)"] --> E["Clarify & Align<br>(explored)"]
+        E --> F["Validate<br>Assumptions<br>(validated)"]
+        F --> G["Compare &<br>Decide<br>(candidate)"]
     end
 
-    subgraph L3["Layer 3: Work Inventory (Committed Work)"]
-        H["Approved Initiatives & Projects"]
-        I["Time-Boxed Active Experiments"]
-        J["Ongoing Operational Responsibilities"]
+    subgraph L3["Layer 3: Work Inventory"]
+        H["Approved<br>Initiatives &<br>Projects"]
+        I["Time-Boxed<br>Active<br>Experiments"]
+        J["Ongoing<br>Operational<br>Work"]
     end
 
     C --> D
-    G -->|"Promotion Gate<br/>(Sponsor + Owner + Capacity)"| H
-    H --> K["Strategic Roadmap, Visuals & Success Measures"]
+    G -->|"Promotion Gate<br>(Sponsor +<br>Owner +<br>Capacity)"| H
+    H --> K["Strategic<br>Roadmap, Visuals<br>& Measures"]
 ```
 
 ---

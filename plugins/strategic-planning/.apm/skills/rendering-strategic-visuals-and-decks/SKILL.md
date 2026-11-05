@@ -20,7 +20,7 @@ Guides users interactively to choose the right audience and format, then transfo
 1. **Interactive format negotiation**: Open with a numbered format menu (`1. Mermaid roadmap, Gantt & alignment diagrams`, `2. B.C. Gov HTML Strategy on a Page dashboard`, `3. Executive slide deck (Markdown / PowerPoint)`, `4. Complete visual package`) and ask who the audience is.
 2. **B.C. Government Design System compliance**: Follow [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md) (BC Sans typography, primary navy `#013366`, gold accent `#FBD389`, off-white surface `#FAF9F8`, focus ring `#2E5DD7`, WCAG 2.1 AA contrast, sentence-case headings, zero emoji, zero gradients, and the mandatory Indigenous acknowledgment footer on full-page HTML and slide decks).
 3. **Visually separate committed work from ideas**: Committed initiatives (`WORK-X`) render as solid bars/cards; unapproved ideas (`IDEA-X`) render strictly as dashed nodes or `milestone` decision gates.
-4. **Safe Mermaid syntax**: Quote node labels containing parentheses, colons, or brackets.
+4. **Safe Mermaid syntax and `<br>` box wrapping**: Quote node labels containing parentheses, colons, or brackets, and insert `<br>` tags every 15–18 characters inside node and edge labels so boxes wrap vertically without horizontal clipping on GitHub.
 
 ## Quick start
 

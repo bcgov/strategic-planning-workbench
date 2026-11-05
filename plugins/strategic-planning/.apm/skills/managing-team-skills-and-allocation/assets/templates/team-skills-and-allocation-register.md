@@ -32,9 +32,9 @@
 
 ```mermaid
 flowchart LR
-    MEM1["MEM-001: [Name / Role]"] -->|"Lead-Owner (30%)"| WORK1["WORK-001: [Initiative name]"]
-    MEM2["MEM-002: [Name / Role]"] -.->|"Backup / Growth interest"| WORK1
-    WORK1 --> CAP1["CAP-001: [Capability name]"]
+    MEM1["MEM-001:<br>[Name / Role]"] -->|"Lead-Owner<br>(30%)"| WORK1["WORK-001:<br>[Initiative<br>name]"]
+    MEM2["MEM-002:<br>[Name / Role]"] -.->|"Backup /<br>Growth interest"| WORK1
+    WORK1 --> CAP1["CAP-001:<br>[Capability<br>name]"]
 ```
 
 ### 4.2 Team capacity split (Operational baseline % vs. Strategic project %)

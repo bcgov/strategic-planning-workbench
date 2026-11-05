@@ -6,12 +6,12 @@
 
 ```mermaid
 flowchart TD
-    T1["Tier 1 (BC Gov): [Provincial Mandate]"]
-    T2["Tier 2 (Ministry of AG): [Ministry Goal]"]
-    T3["Tier 3 (Court Services Branch): [CSB Strategic Pillar]"]
-    T4["Tier 4 (Division): [Divisional Priority]"]
-    OBJ1["Tier 5 (Team OBJ-1): [Outcome Objective 1]"]
-    OBJ2["Tier 5 (Team OBJ-2): [Outcome Objective 2]"]
+    T1["Tier 1 (BC Gov):<br>[Provincial<br>Mandate]"]
+    T2["Tier 2 (AG):<br>[Ministry<br>Goal]"]
+    T3["Tier 3 (CSB):<br>[Branch<br>Pillar]"]
+    T4["Tier 4 (Div):<br>[Divisional<br>Priority]"]
+    OBJ1["Tier 5 (OBJ-1):<br>[Outcome<br>Objective 1]"]
+    OBJ2["Tier 5 (OBJ-2):<br>[Outcome<br>Objective 2]"]
 
     T1 --> T2 --> T3 --> T4
     T4 --> OBJ1
@@ -22,9 +22,9 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    OBJ1["OBJ-1: [Outcome Objective]"] --> CAP1["CAP-001: [Capability Name] (L1 -> L3)"]
-    CAP1 --> WORK1["WORK-001: [Committed Initiative] (Active)"]
-    CAP1 -.-> IDEA1["IDEA-002: [Candidate Opportunity] (Gate Pending)"]
+    OBJ1["OBJ-1:<br>[Outcome<br>Objective]"] --> CAP1["CAP-001:<br>[Capability]<br>(L1 -> L3)"]
+    CAP1 --> WORK1["WORK-001:<br>[Committed<br>Initiative]"]
+    CAP1 -.-> IDEA1["IDEA-002:<br>[Candidate<br>Opportunity]"]
 
     style IDEA1 stroke-dasharray: 5 5
 ```
