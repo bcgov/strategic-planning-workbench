@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Organize our committed initiatives into a Now/Next/Later strategic roadmap showing dependencies and decision gates.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define outcome measures, leading indicators, and guardrail measures for our strategic objectives with baseline and review cadence.",
+    "should_trigger": true
+  },
+  {
+    "query": "Sequence our branch capability-building initiatives across Three Horizons without turning the roadmap into a detailed project schedule.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture a raw idea from a stakeholder interview into the idea inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write Gherkin acceptance criteria for a mobile app user story.",
+    "should_trigger": false
+  },
+  {
+    "query": "Provision a SharePoint top navigation menu from an Excel file.",
+    "should_trigger": false
+  }
+]

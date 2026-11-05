@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Catalog our team's active projects, committed initiatives, and ongoing operational responsibilities in a structured Work Inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Promote Idea IDEA-004 into our committed Work Inventory now that Chris has approved sponsorship and assigned an owner.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this list of things our team is working on and separate true committed work from unapproved ideas or prototypes that quietly became operational.",
+    "should_trigger": true
+  },
+  {
+    "query": "Brainstorm 5 new ideas for how we might use generative AI in the future.",
+    "should_trigger": false
+  },
+  {
+    "query": "Define our branch's 5-year vision statement and operating principles.",
+    "should_trigger": false
+  },
+  {
+    "query": "Check broken markdown links across the repository.",
+    "should_trigger": false
+  }
+]

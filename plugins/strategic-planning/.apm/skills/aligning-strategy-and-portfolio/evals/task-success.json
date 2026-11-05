@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Compare our Strategic Vision Brief, Capability Map, Idea Inventory, and Work Inventory to surface misalignments and gaps.",
+    "expected_behavior": [
+      "Builds the End-to-End Traceability Matrix connecting Leadership Direction, Objectives, Capabilities, Ideas, Work, and Measures",
+      "Runs all 8 diagnostic checks (orphaned work, unsupported objectives, unaddressed capabilities, unevaluated ideas, duplicate ideas, duplicate work, shadow ops, and ideas treated as commitments)",
+      "Provides concrete stop, pause, combine, or promote recommendations for leadership"
+    ]
+  },
+  {
+    "query": "Assess the strategic and public-sector risks for our branch strategy and active portfolio.",
+    "expected_behavior": [
+      "Evaluates risks across Strategic, Policy/Legislative, Privacy/Security, Judicial/Operational Independence, Workforce, Dependency, and Delivery categories",
+      "Separates fixed constraints and unvalidated assumptions from probabilistic risks",
+      "Assigns likelihood, severity, mitigation guardrails, and risk owners in the Strategic Risk Register"
+    ]
+  },
+  {
+    "query": "Two sub-teams have active projects building similar intake trackers while Objective OBJ-3 has zero supporting work. Document this in an alignment audit.",
+    "expected_behavior": [
+      "Flags the two intake tracker projects under Diagnostic Check #6 (Duplicate Active Work Across Teams)",
+      "Flags OBJ-3 under Diagnostic Check #2 (Unsupported Strategic Objective)",
+      "Recommends consolidating the duplicate work and commissioning discovery or idea promotion for OBJ-3"
+    ]
+  }
+]

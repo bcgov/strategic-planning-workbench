@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Import these new meeting notes from Chris and Jessica to update our evolving divisional priorities, add two new business drivers, and log a new idea.",
+    "should_trigger": true
+  },
+  {
+    "query": "Record our monthly progress updates and new blockers across the active initiatives in our Work Inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Map how our team objectives align upward to our Division, Court Services Branch (CSB), Ministry of Attorney General, and BC Government mandates.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draw a Mermaid Gantt chart and slide deck presentation for our quarterly town hall.",
+    "should_trigger": false
+  },
+  {
+    "query": "Scaffold a new Python CLI script.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run pytest on the repository.",
+    "should_trigger": false
+  }
+]

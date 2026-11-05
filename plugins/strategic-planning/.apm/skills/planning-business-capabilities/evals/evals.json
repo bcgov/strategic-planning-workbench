@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Translate our strategic objectives into the business capabilities our branch must possess or strengthen, and assess maturity gaps.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a capability map showing which capabilities already exist, which must be created net-new, and which can be shared across the ministry.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us identify what organizational capabilities are missing between our target vision and our current project list.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture this new brainstormed idea for an AI intake assistant in our idea inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draft a weekly status update email for the engineering sprint.",
+    "should_trigger": false
+  },
+  {
+    "query": "Format a SharePoint list column with JSON.",
+    "should_trigger": false
+  }
+]

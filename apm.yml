@@ -1,0 +1,8 @@
+name: strategic-planning-workbench
+version: 0.1.0
+description: "APM workspace meta-package for organizational and public-sector branch strategic planning, capability mapping, idea funnel management, and portfolio alignment."
+author: richfrem
+license: Apache-2.0
+dependencies:
+  apm:
+    - ./plugins/strategic-planning

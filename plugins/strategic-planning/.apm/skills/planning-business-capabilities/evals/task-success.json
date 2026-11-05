@@ -1,0 +1,26 @@
+[
+  {
+    "query": "We have 4 strategic objectives for our branch. Help us define the required business capabilities and avoid turning them into a software shopping list.",
+    "expected_behavior": [
+      "Defines solution-agnostic business capabilities (what the organization must be able to do) linked to each strategic objective",
+      "Reframes any tool-specific suggestions into enduring capabilities",
+      "Evaluates current vs. target maturity (0-5) across People, Process, Information, Technology, and Governance"
+    ]
+  },
+  {
+    "query": "Assess our capability gaps for 'Evidence-Based Service Design' and 'Cross-Agency Information Sharing' and determine how we should source them.",
+    "expected_behavior": [
+      "Breaks down each capability gap across the five capability dimensions (People, Process, Information, Technology, Policy/Governance)",
+      "Classifies disposition as Strengthen Existing, Create Net-New, Leverage Shared/Cross-Ministry, or Obtain Externally",
+      "Flags where capabilities have no supporting ideas or active work items"
+    ]
+  },
+  {
+    "query": "Review our draft capability list: '1. SharePoint Team, 2. PowerBI Dashboards, 3. Intake Triage'. Fix any naming anti-patterns.",
+    "expected_behavior": [
+      "Identifies 'SharePoint Team' (org unit/tool) and 'PowerBI Dashboards' (software tool) as capability naming anti-patterns",
+      "Rewrites them into stable noun-phrase business capabilities",
+      "Populates the Capability Map & Gap Assessment template"
+    ]
+  }
+]

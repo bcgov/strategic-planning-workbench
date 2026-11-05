@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Help us map our team members, their current skills and capabilities, what they are interested in learning, and which projects from our work inventory they are assigned to.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a work tracker linking our staff to active initiatives and operational duties, and generate an Excel CSV plus Mermaid visuals of everyone's workload.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check our team's project assignments for single-point-of-failure bottlenecks and see whose growth interests match our branch capability gaps.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft a high-level 5-year vision statement and operating principles for the branch.",
+    "should_trigger": false
+  },
+  {
+    "query": "Capture a raw unapproved idea from a stakeholder workshop into the idea inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Configure an Azure AI Foundry agent deployment.",
+    "should_trigger": false
+  }
+]

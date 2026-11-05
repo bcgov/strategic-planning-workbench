@@ -1,0 +1,24 @@
+[
+  {
+    "query": "We just had a quarterly strategy check-in. Leadership shifted priority toward digital registry self-service, Kyron raised a new concern from court clerks, we have 2 new automation ideas, and Initiative WORK-003 hit a privacy review blocker. Update our registers.",
+    "expected_behavior": [
+      "Routes the leadership priority shift to the Org Hierarchy & Context register (tagging Confirmed vs. Interpreted)",
+      "Updates the Stakeholder Map with the court clerks' concern, appends the 2 new ideas to the Idea Inventory as 'raw', and updates WORK-003 status/blocker in the Work Inventory",
+      "Preserves existing record IDs, logs the changes in the Register Update Changelog, and flags ripple impacts on risks and roadmap gates"
+    ]
+  },
+  {
+    "query": "Document our upward alignment from our Team level through Division, Court Services Branch (CSB), Ministry of Attorney General, and BC Government.",
+    "expected_behavior": [
+      "Populates the 5-tier organizational hierarchy register (Tier 1 Province of BC, Tier 2 Ministry of AG, Tier 3 CSB, Tier 4 Division, Tier 5 Team)",
+      "Links team strategic objectives (OBJ-X) upward through each tier without inventing undocumented mandates"
+    ]
+  },
+  {
+    "query": "Assumption ASM-002 (that central IT would fund the license) was just invalidated. Update our registers.",
+    "expected_behavior": [
+      "Updates ASM-002 status to 'Invalidated' in the Constraints, Assumptions & Risks register",
+      "Identifies which candidate ideas (IDEA-X), active work items (WORK-X), or roadmap gates depend on ASM-002 and flags them for leadership decision"
+    ]
+  }
+]

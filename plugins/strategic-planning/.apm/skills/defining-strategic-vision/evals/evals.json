@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Draft a Strategic Vision Brief and a Strategy on a Page for our branch based on our context analysis.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us turn our vision into 4 outcome-oriented strategic objectives and flag any objectives that are actually disguised technology projects.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define our future-state operating principles and map the expected public and operational benefits for our strategy.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add this raw idea for an automated scheduling experiment to our idea backlog.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write Python unit tests for our FastAPI endpoint.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit which active projects in our work inventory have no owner.",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "strategic-planning-workbench",
+  "owner": {
+    "name": "richfrem"
+  },
+  "plugins": [
+    {
+      "name": "strategic-planning",
+      "source": "./plugins/strategic-planning",
+      "strict": true,
+      "category": "strategy",
+      "tags": [
+        "strategic-planning",
+        "capability-based-planning",
+        "public-sector",
+        "portfolio-alignment",
+        "idea-inventory",
+        "work-inventory"
+      ]
+    }
+  ]
+}

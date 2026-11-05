@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Generate a Mermaid roadmap, Gantt chart, and alignment diagram from our strategic registers.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create an executive presentation slide deck for Chris, Jessica, and CSB leadership summarizing our strategic vision, capabilities, idea vs work inventories, and roadmap.",
+    "should_trigger": true
+  },
+  {
+    "query": "Visualize our 5-tier alignment from BC Government and Ministry of Attorney General down to Court Services Branch and our team objectives in Mermaid.",
+    "should_trigger": true
+  },
+  {
+    "query": "Log a new unapproved idea into our idea inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run a security audit on our Python dependencies.",
+    "should_trigger": false
+  },
+  {
+    "query": "Export SharePoint navigation links to Excel.",
+    "should_trigger": false
+  }
+]

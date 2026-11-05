@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Someone in our meeting suggested building an AI transcription summary tool. Log it in our Idea Inventory and stress-test the idea.",
+    "expected_behavior": [
+      "Records the proposal in the Idea Inventory with maturity status 'raw' or 'explored' rather than treating it as committed work",
+      "Separates the underlying operational problem from the proposed AI solution",
+      "Identifies unproven assumptions, privacy/policy constraints, and the cheapest validation step"
+    ]
+  },
+  {
+    "query": "We have 3 validated ideas supporting Capability CAP-002. Compare them and check if any pass the promotion gate.",
+    "expected_behavior": [
+      "Evaluates the candidates across strategic alignment, public/service value, operational impact, policy/privacy feasibility, and overlap with existing work",
+      "Enforces the Promotion Gate Checklist (requiring confirmed sponsor, owner, and capacity commitment before entering the Work Inventory)",
+      "Preserves decision rationale for deferred, combined, or rejected ideas"
+    ]
+  },
+  {
+    "query": "Add two early, incomplete ideas from our brainstorming session without forcing RICE scores we don't have evidence for.",
+    "expected_behavior": [
+      "Captures the early ideas in the Idea Inventory with 'raw' maturity status",
+      "Allows incomplete fields and avoids fabricating numerical priority scores",
+      "Suggests a concrete next step (Clarify, Research, or Consultation)"
+    ]
+  }
+]

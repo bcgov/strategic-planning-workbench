@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Capture these 5 workshop ideas for AI and service modernization in our idea inventory without treating them as approved projects.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us stress-test the assumptions behind our idea for automated court form triage and decide if it is ready to become a candidate.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compare our validated candidate ideas against our strategic objectives and recommend which ones to promote, defer, or combine.",
+    "should_trigger": true
+  },
+  {
+    "query": "Update the target completion date and owner for our active SharePoint migration project in the work inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draft a high-level Strategy on a Page for our branch vision.",
+    "should_trigger": false
+  },
+  {
+    "query": "Configure an MCP stdio server in .mcp.json.",
+    "should_trigger": false
+  }
+]

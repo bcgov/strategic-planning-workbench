@@ -1,0 +1,25 @@
+[
+  {
+    "query": "Here are our draft objectives: 1) Build an AI search bot, 2) Migrate files to SharePoint Online, 3) Improve access to court scheduling information. Refine these and build a Strategy on a Page.",
+    "expected_behavior": [
+      "Detects that 'Build an AI search bot' and 'Migrate files to SharePoint Online' are activities/solutions rather than strategic objectives",
+      "Reframes them into outcome-oriented strategic objectives while suggesting the specific solutions be logged in the Idea or Work Inventory",
+      "Produces a Strategy on a Page with vision, operating principles, outcome objectives, and expected public/operational value"
+    ]
+  },
+  {
+    "query": "Draft a working Strategic Vision Brief for leadership discussion with Chris and Jessica.",
+    "expected_behavior": [
+      "Includes current-to-future state shifts, operating principles (Statement, Rationale, Implications), and outcome objectives",
+      "Preserves constraints and unvalidated assumptions rather than inventing baseline metrics",
+      "Aligns team vision explicitly beneath broader leadership direction"
+    ]
+  },
+  {
+    "query": "Map the benefits for our strategic objectives across public-sector value dimensions.",
+    "expected_behavior": [
+      "Covers public/democratic value, service value, operational/workforce value, risk/compliance reduction, and stewardship",
+      "Connects each benefit to required capabilities and organizational change in the Benefits Dependency Map"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "query": "Build a Now/Next/Later strategic roadmap from our Work Inventory and show where our 2 candidate ideas fit.",
+    "expected_behavior": [
+      "Places only approved Work Inventory items (WORK-X) as committed initiatives across Now, Next, and Later horizons",
+      "Represents the 2 unapproved candidate ideas (IDEA-X) strictly as Decision / Validation Gates rather than committed work",
+      "Documents prerequisite capabilities, dependencies, and assumptions to validate before horizon transitions"
+    ]
+  },
+  {
+    "query": "Create a Success Measures Register for our 3 strategic objectives, even though we don't have baseline numbers for two of them yet.",
+    "expected_behavior": [
+      "Defines Outcome Measures, Leading Indicators, and Guardrail Measures for each objective",
+      "Marks missing baselines honestly as 'Baseline Needed' rather than inventing numbers",
+      "Specifies evidence sources, owners, and review cadences"
+    ]
+  },
+  {
+    "query": "We want to measure speed of public inquiry turnaround. Make sure our measures don't incentivize cutting corners on privacy or procedural fairness.",
+    "expected_behavior": [
+      "Pairs the turnaround time outcome/leading measures with explicit Guardrail Measures covering procedural fairness, accuracy, and privacy compliance",
+      "Records the balanced triad in the Success Measures Register"
+    ]
+  }
+]

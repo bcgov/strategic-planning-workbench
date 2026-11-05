@@ -1,0 +1,25 @@
+[
+  {
+    "query": "We have 5 people on our team. Help me record their skills, what they want to grow into, and link them to the projects and operational work in our Work Inventory.",
+    "expected_behavior": [
+      "Guides the user interactively with a numbered menu and 1-2 plain-language questions at a time",
+      "Captures each team member's current skills/proficiency (L1-L3), growth interests (G), and baseline operational vs. strategic project capacity",
+      "Links active work assignments strictly to committed Work Inventory items (WORK-X) and offers Markdown, Mermaid, and Excel-ready CSV outputs after a recap confirmation gate"
+    ]
+  },
+  {
+    "query": "Kyron is the only person who knows how our legacy court statistics scripts work, and he is also leading 4 new projects while Alex wants to learn data analytics. Analyze this and show a visual.",
+    "expected_behavior": [
+      "Flags Kyron as both a single-point-of-failure ('bus factor = 1') on legacy court statistics and an over-allocated bottleneck across 4 concurrent projects",
+      "Matches Alex's growth interest in data analytics as a backup/co-mentoring pairing to reduce bus-factor risk and rebalance workload",
+      "Generates quoted, valid Mermaid person-to-work flowcharts and capacity allocation visuals in B.C. Government sentence case"
+    ]
+  },
+  {
+    "query": "Export our team skills and project assignments into a format I can open in Excel and also show a Mermaid diagram of who is doing what.",
+    "expected_behavior": [
+      "Generates the Excel-ready CSV tracker (team-work-tracker.csv) with Member ID, Role, Skills, Growth Interests, Work ID, Assignment Role, and Allocation %",
+      "Renders a Mermaid flowchart linking team members (MEM-X) to committed work items (WORK-X) and capabilities (CAP-X)"
+    ]
+  }
+]
