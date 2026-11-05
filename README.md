@@ -95,7 +95,7 @@ When starting or resuming a session, `running-strategic-planning-cycle` asks whe
 
 > **Protected `main` Branch**: Direct pushes to `main` are disabled. Always create a feature branch (`feat/*`, `fix/*`, `docs/*`), keep [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), and [README.md](README.md) synchronized when skills or registers change, run the compliance audits in [INSTALL.md](INSTALL.md), and open a Pull Request.
 
-- **[INSTALL.md](INSTALL.md)** — Global and project-local APM installation, update, rollback, and marketplace instructions.
+- **[INSTALL.md](INSTALL.md)** — Global and project-local APM installation (including Claude, GitHub Copilot, Codex, Antigravity `agy`, and GrokBot `grok-bot`/`grok-build`/`grok-cloud`), update, rollback, and marketplace instructions.
 - **[AGENTS.md](AGENTS.md)** — Canonical root agent instructions and non-negotiable invariants.
 - **[architecture.md](architecture.md)** — Deep-dive architecture: 5-tier BC Gov / CSB hierarchy, TOGAF ADM stage mapping, 3-inventory model, 12 living strategy files (`00`–`11`), and APM structure.
 - **[docs/governance.md](docs/governance.md)** — APM packaging, branch protection, and governance policy.

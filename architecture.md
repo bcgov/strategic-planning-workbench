@@ -98,7 +98,7 @@ When a team uses `strategic-planning-workbench` on an active planning engagement
 
 ## 5. End-to-End Skill Lifecycle & Continuous Update Loop (TOGAF ADM Aligned)
 
-0. **Front-Door Intake & Cycle Orchestration (`running-strategic-planning-cycle` — TOGAF ADM Cycle Coach)**:
+0. **Front-Door Intake & Cycle Orchestration (`running-strategic-planning-cycle` — TOGAF ADM Cycle Coach, Revisit Guide & GrokBot Ready)**:
    Scans `strategy/00`–`11`, offers a 5-option plain-language entry menu (Top-Down from leadership direction, Bottom-Up from existing projects/ideas, Resume where we left off, Import meeting notes, or Fast-Track briefing), and updates `strategy/00-planning-session-status.md`.
 1. **Initial Baseline (`analyzing-strategic-context` $\rightarrow$ `defining-strategic-vision` $\rightarrow$ `planning-business-capabilities` — ADM Preliminary, Phase A & Phase B)**:
    Establishes multi-tier context, stakeholder viewpoints, current state, target vision, 4-part TOGAF operating principles (`PRN-X`), outcome objectives (`OBJ-X`), benefits (`BEN-X`), value streams (`VST-X`), and required capabilities (`CAP-X`).
