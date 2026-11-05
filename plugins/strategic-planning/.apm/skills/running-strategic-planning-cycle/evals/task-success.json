@@ -1,0 +1,18 @@
+[
+  {
+    "query": "We want to build a strategic plan for our Court Services Branch unit, and we already have a bunch of active projects and notes from our directors Chris and Jessica. Where do we start?",
+    "expected_behavior": [
+      "Scans existing strategy/ registers first and reports what is already captured versus missing in plain language",
+      "Presents the numbered 5-option entry menu (Top-Down from leadership direction, Bottom-Up from existing projects/ideas, Resume, Import notes, Fast-track briefing)",
+      "Initializes or updates strategy/00-planning-session-status.md and routes to the chosen specialist skill"
+    ]
+  },
+  {
+    "query": "Where did we leave off in our strategy registers, and what is our next 15-minute step?",
+    "expected_behavior": [
+      "Reads strategy/00-planning-session-status.md and strategy/01 through 11 to summarize stage completion across the 6 TOGAF ADM-aligned stages",
+      "Highlights open assumptions (ASM-X), pending idea promotion gates (IDEA-X), and active dispensations (DSP-X)",
+      "Recommends one concrete next step and specialist skill in B.C. Government sentence case with zero emoji"
+    ]
+  }
+]

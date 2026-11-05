@@ -3,11 +3,11 @@
 **Branch / Team:** [Name]  
 **Date:** [YYYY-MM-DD]  
 
-## 1. Stakeholder Profiles
+## 1. Stakeholder profiles and viewpoints (TOGAF Phase A)
 
-| Stakeholder / Group | Role / Relationship | Influence (`High`/`Med`/`Low`) | Impacted (`High`/`Med`/`Low`) | Core Interests & Priorities | Key Concerns / Risks | Desired Outcome |
-|---|---|---|---|---|---|---|
-| [Group/Name] | | | | | | |
+| Stakeholder ID | Stakeholder / group | Role / relationship | Influence (`High`/`Med`/`Low`) | Impacted (`High`/`Med`/`Low`) | Core interests & priorities | Key concerns / risks | TOGAF viewpoint / briefing need |
+|---|---|---|---|---|---|---|---|
+| STK-001 | [Group/Name] | | | | | | [e.g., Executive summary / Operational impact / Judicial independence assurance] |
 
 ## 2. Stakeholder Tensions & Alignment Gaps
 

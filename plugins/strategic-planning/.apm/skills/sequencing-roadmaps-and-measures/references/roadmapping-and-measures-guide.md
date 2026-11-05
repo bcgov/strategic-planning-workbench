@@ -10,7 +10,14 @@ Strategic roadmaps communicate **sequencing, prerequisites, and decision gates**
 | **Horizon 2 — Next (Near-Term)** | Capability building and validated candidate transitions unlocked by Horizon 1 foundations. | Sequenced initiatives plus explicit **Decision Gates** for `candidate` ideas (`IDEA-X`). |
 | **Horizon 3 — Later (Long-Term)** | Strategic transformation and multi-partner capabilities dependent on policy, funding, or platform maturity. | High-level capability horizons and directional options—never detailed task lists. |
 
-## 2. Prioritizing Initiatives After Strategy Is Established
+## 2. Transition States / Plateaus (`PLT-X` — TOGAF Phase E & F)
+
+Rather than listing tasks in a vacuum, define the **Transition State (Plateau)** reached at the close of each horizon (`Baseline -> PLT-1 -> PLT-2 -> Target State`):
+- **Capabilities live (`CAP-X` maturity reached)**: Which capability moves from `L1` to `L3` at this plateau?
+- **Operational change**: What can court registry staff, partners, or citizens do at the end of this horizon that they cannot do today?
+- **Pain points or legacy workarounds retired**: Which manual bottleneck or fragmented practice is decommissioned?
+
+## 3. Prioritizing Initiatives After Strategy Is Established
 
 Once Strategic Objectives (`OBJ-X`) and Capabilities (`CAP-X`) are locked, prioritize initiatives using:
 - **Dependency Order**: Foundational capabilities (e.g., authoritative knowledge taxonomy, governance guardrails) must precede downstream automation or AI consumption.

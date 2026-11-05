@@ -25,3 +25,12 @@ Evaluate portfolio and strategic risks across seven lenses:
 5. **Workforce & Change Readiness Risk**: Change fatigue, key-person dependency, or lack of operational support capacity.
 6. **Cross-Ministry & Partner Dependency Risk**: Reliance on external ministries, central IT, or justice partners without agreed service levels.
 7. **Vendor & Platform Lock-In Risk**: Over-dependence on proprietary tooling or unapproved shadow IT.
+
+## 3. Business Transformation Readiness Assessment (`BTRA` — TOGAF Phase A & E)
+
+Before promoting major candidates into committed Horizon 1 work, evaluate five **TOGAF Transformation Readiness factors**:
+1. **Executive sponsorship stability**: Is a Tier 3/4 sponsor actively championing and funding the change?
+2. **Frontline absorption capacity**: Do court registry and operational staff have bandwidth to adopt new workflows without service disruption?
+3. **Training & practice readiness**: Are coaching, plain-language playbooks, and peer backups (`MEM-X`) in place?
+4. **Partner & dependency alignment**: Are justice sector partners, Corporate Services, or central IT aligned on timelines?
+5. **Governance & policy clarity**: Are privacy (FOIPPA), judicial independence, and records guardrails approved?

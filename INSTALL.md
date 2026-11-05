@@ -12,7 +12,7 @@ The workbench is a **level 2** package that pairs with two level 1 packages:
 |---|---|---|---|
 | 1 | `bc-gov-design-system` | [`richfrem/bc-gov-design-system`](https://github.com/richfrem/bc-gov-design-system) | Official B.C. Government Design System tokens, BC Sans fonts, HTML components, and PowerPoint (`pptx`) generator |
 | 1 | `agent-plugins-skills` | [`richfrem/agent-plugins-skills`](https://github.com/richfrem/agent-plugins-skills) | Authoring, packaging, memory, and governance skills |
-| 2 | `strategic-planning` (this repo) | [`bcgov/strategic-planning-workbench`](https://github.com/bcgov/strategic-planning-workbench) | 10 interactive strategic planning, capability mapping, idea/work inventory, and visual rendering skills |
+| 2 | `strategic-planning` (this repo) | [`bcgov/strategic-planning-workbench`](https://github.com/bcgov/strategic-planning-workbench) | 11 interactive strategic planning, TOGAF ADM cycle orchestration, capability/value-stream mapping, idea/work/team inventory, and visual rendering skills |
 
 `plugins/strategic-planning/apm.yml` declares no transitive dependencies, so installing that plugin alone never pulls unexpected packages. Check what is already installed globally first:
 
@@ -124,16 +124,17 @@ apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,c
 ```
 
 Available skills in `plugins/strategic-planning`:
-1. `analyzing-strategic-context`
-2. `defining-strategic-vision`
-3. `planning-business-capabilities`
-4. `managing-idea-inventory`
-5. `managing-work-inventory`
-6. `managing-team-skills-and-allocation`
-7. `aligning-strategy-and-portfolio`
-8. `sequencing-roadmaps-and-measures`
-9. `updating-strategic-registers`
-10. `rendering-strategic-visuals-and-decks`
+1. `running-strategic-planning-cycle` *(Front-door orchestrator & TOGAF ADM cycle coach)*
+2. `analyzing-strategic-context`
+3. `defining-strategic-vision`
+4. `planning-business-capabilities`
+5. `managing-idea-inventory`
+6. `managing-work-inventory`
+7. `managing-team-skills-and-allocation`
+8. `aligning-strategy-and-portfolio`
+9. `sequencing-roadmaps-and-measures`
+10. `updating-strategic-registers`
+11. `rendering-strategic-visuals-and-decks`
 
 ---
 

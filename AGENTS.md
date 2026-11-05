@@ -25,15 +25,16 @@ python -m pytest
 6. **APM-Native Packaging Hygiene**: All plugin skills MUST reside in `.apm/skills/` with zero raw symlinks, dual manifests, and `SKILL.md` under 80 lines ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
 
 ## On-Demand Skills & Reference Index
-- Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the 10 living strategy registers, or skill data flows.
+- Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the TOGAF ADM stage mapping, the 12 living strategy files (`00`–`11`), or skill data flows.
 - Read [docs/governance.md](docs/governance.md) when reviewing repository packaging and governance policies.
-- Use `analyzing-strategic-context` when starting a guided discovery interview for leadership direction, drivers, stakeholders ("the players"), current state, or assumptions.
-- Use `defining-strategic-vision` when interactively coaching target future state, operating principles, outcome-oriented strategic objectives, and expected value.
-- Use `planning-business-capabilities` when translating strategic objectives into required organizational capabilities and assessing 5-pillar maturity gaps.
-- Use `managing-idea-inventory` when capturing, clarifying, assumption-testing, or evaluating unapproved opportunities in the Idea Inventory.
-- Use `managing-work-inventory` when cataloging committed initiatives, active experiments, and operational work or promoting approved ideas.
-- Use `managing-team-skills-and-allocation` when mapping team member skills, growth interests, and active `WORK-X` assignments or exporting Excel/CSV and Mermaid workload trackers.
-- Use `aligning-strategy-and-portfolio` when interactively auditing end-to-end traceability and assessing strategic, policy, privacy, and delivery risks.
-- Use `sequencing-roadmaps-and-measures` when organizing committed work into Now/Next/Later horizons and defining outcome, leading, and guardrail measures.
-- Use `updating-strategic-registers` when importing evolving priorities, new drivers, stakeholder shifts, or progress updates into living workspace registers.
-- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML dashboards, Mermaid roadmaps, Gantt charts, or slide decks.
+- Use `running-strategic-planning-cycle` when starting or resuming a planning session, checking readiness across `strategy/00-planning-session-status.md`, or routing Top-Down vs. Bottom-Up across the 6 TOGAF ADM-aligned stages.
+- Use `analyzing-strategic-context` when starting a guided discovery interview for leadership direction, drivers, stakeholders ("the players") and TOGAF Phase A viewpoints, current state, or assumptions.
+- Use `defining-strategic-vision` when interactively coaching target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives (`OBJ-X`), and expected value (`BEN-X`).
+- Use `planning-business-capabilities` when translating strategic objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps.
+- Use `managing-idea-inventory` when capturing, clarifying, assumption-testing, or evaluating unapproved opportunities in the Idea Inventory (`IDEA-X`).
+- Use `managing-work-inventory` when cataloging committed initiatives, active experiments, and operational work (`WORK-X`) or promoting approved ideas.
+- Use `managing-team-skills-and-allocation` when mapping team member skills (`MEM-X`), growth interests, and active `WORK-X` assignments or exporting Excel/CSV and Mermaid workload trackers.
+- Use `aligning-strategy-and-portfolio` when interactively auditing end-to-end traceability, TOGAF Transformation Readiness (`BTRA`), and strategic, policy, privacy, and delivery risks (`RSK-X`).
+- Use `sequencing-roadmaps-and-measures` when organizing committed work into Now/Next/Later horizons, TOGAF Transition State plateaus (`PLT-X`), and outcome, leading, and guardrail measures (`MSR-X`).
+- Use `updating-strategic-registers` when importing evolving priorities, new drivers, stakeholder shifts, work progress, or time-boxed dispensations (`DSP-X`) with TOGAF Phase H change classification.
+- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML dashboards, Mermaid roadmaps, Gantt charts, value-stream maps, or slide decks.
