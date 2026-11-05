@@ -56,7 +56,9 @@ flowchart TD
 5. **Living Registers with Non-Destructive Updates**
    - Saves and maintains a session scorecard (`00`) plus 11 canonical markdown registers (`01`–`11`) in `strategy/` with stable IDs and change-log history as priorities evolve and work progresses.
 
-## The Living Strategic Registers (`strategy/`)
+## The Living Strategic Registers (`strategy/` or `~/strategic-planning-outputs/<team>/strategy/`)
+
+When starting or resuming a session, `running-strategic-planning-cycle` asks where you want to store your strategy files—recommending a dedicated user folder outside the template repo (such as `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` or `~/strategic-planning-outputs/<team-name>/strategy/`), `./strategy/` in your current workspace, or a custom synced folder—and asks where any existing source documents live.
 
 | Register | What It Records & Tracks |
 |---|---|
