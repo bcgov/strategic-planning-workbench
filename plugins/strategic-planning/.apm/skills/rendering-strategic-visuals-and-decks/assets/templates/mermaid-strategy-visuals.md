@@ -61,3 +61,17 @@ gantt
     section Horizon 3 (Later)
     CAP-004 Long-Term Transformation Horizon :w3, 2027-04-01, 2027-12-31
 ```
+
+## 5. Value Stream to Capability Cross-Map (TOGAF Phase B)
+
+```mermaid
+flowchart LR
+    subgraph V["Value Stream: VST-001"]
+        S1["Stage 1:<br>Intake &<br>Triage"] --> S2["Stage 2:<br>Guidance &<br>Processing"]
+        S2 --> S3["Stage 3:<br>Resolution &<br>Assurance"]
+    end
+
+    CAP1["CAP-001:<br>Policy Triage<br>(L1 -> L3)"] -.-> S1
+    CAP2["CAP-002:<br>Knowledge Mgmt<br>(L1 -> L3)"] -.-> S2
+    CAP3["CAP-003:<br>Quality Metrics<br>(L1 -> L4)"] -.-> S3
+```

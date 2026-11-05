@@ -22,22 +22,23 @@ flowchart TD
         T1 --> T2 --> T3 --> T4
     end
 
-    subgraph W["Team Strategic Planning & Portfolio Workbench (Tier 5)"]
+    subgraph W["Team Strategic Planning & Portfolio Workbench (Tier 5 — TOGAF ADM Cycle)"]
+        O["0. Cycle Orchestrator<br>(Top-Down, Bottom-Up<br>or Resume)"]
         A["1. Strategic<br>Context, Drivers<br>& Stakeholders"]
-        B["2. Target Vision,<br>Objectives &<br>Public Value"]
-        C["3. Business<br>Capabilities &<br>Maturity Gaps"]
+        B["2. Target Vision,<br>Principles &<br>Public Value"]
+        C["3. Value Streams,<br>Capabilities &<br>Maturity Gaps"]
         D["4. Idea Inventory<br>(Raw to<br>Candidate)"]
         E["5. Committed<br>Work Inventory<br>& Team Load"]
-        F["6. Alignment,<br>Risks, Roadmap<br>& Measures"]
-        G["7. Living Updates<br>& Visual Decks<br>(BC Gov Style)"]
+        F["6. Alignment,<br>BTRA, Plateaus<br>& Measures"]
+        G["7. Living Updates,<br>Dispensations &<br>BC Gov Visuals"]
 
-        A --> B --> C --> D
+        O --> A --> B --> C --> D
         D -->|"Promotion Gate<br>(Sponsor +<br>Owner +<br>Capacity)"| E
         E --> F --> G
-        G -.->|"Continuous<br>Evolution"| A
+        G -.->|"Continuous<br>ADM Loop"| O
     end
 
-    T4 --> A
+    T4 --> O
 ```
 
 ## Core Principles & Non-Negotiable Guardrails
@@ -45,51 +46,57 @@ flowchart TD
 1. **Five-Tier Organizational Line of Sight**
    - Explicitly traces team vision and strategic objectives (`OBJ-X`) upward through **Division**, **Branch (CSB)**, **Ministry (AG)**, and **Province-Wide (BC Gov)** goals while distinguishing `Confirmed` direction from `Interpreted` remarks.
 2. **Three Distinct Layers & Inventories**
-   - **Strategic Vision & Capabilities**: *Where are we trying to go, why does it matter, and what must our organization be able to do?*
+   - **Strategic Vision, Value Streams & Capabilities**: *Where are we trying to go, why does it matter, and what must our organization be able to do?*
    - **Idea Inventory (`IDEA-X`)**: *What might we do?* Captures raw opportunities, experiments, and proposals across maturity states (`raw` → `explored` → `validated` → `candidate` → `deferred` / `rejected`) without forcing premature scoring.
    - **Committed Work Inventory (`WORK-X`)**: *What are we actually doing or committed to doing?* Tracks approved initiatives, time-boxed active experiments, and operational responsibilities with verified sponsorship and ownership.
 3. **Evidence Over Invention & No Premature Solutioning**
    - Separates documented facts from unproven assumptions (`ASM-X`) and evidence gaps (`GAP-X`). Never fabricates baseline metrics (`Baseline Needed`) or prescribes software/project wish lists before establishing outcome objectives and required capabilities.
-4. **Living Registers with Non-Destructive Updates**
-   - Saves and maintains 10 canonical markdown registers in `strategy/` with stable IDs and change-log history as priorities evolve and work progresses.
+4. **TOGAF ADM Methodology in Plain Language**
+   - Translates high-value **TOGAF ADM** practices—4-part Operating Principles (`PRN-X`), Stakeholder Viewpoints, Value Stream cross-mapping (`VST-X`), Business Transformation Readiness Assessments (`BTRA`), Transition State Plateaus (`PLT-X`), and Phase H Change Triage / Time-Boxed Dispensations (`DSP-X`)—into conversational, jargon-free guidance.
+5. **Living Registers with Non-Destructive Updates**
+   - Saves and maintains a session scorecard (`00`) plus 11 canonical markdown registers (`01`–`11`) in `strategy/` with stable IDs and change-log history as priorities evolve and work progresses.
 
-## The 10 Living Strategic Registers (`strategy/`)
+## The Living Strategic Registers (`strategy/`)
 
 | Register | What It Records & Tracks |
 |---|---|
+| `strategy/00-planning-session-status.md` | Front-door session scorecard: TOGAF ADM stage progress, register readiness (`01`–`11`), open assumptions, pending promotion gates, active dispensations (`DSP-X`), and next recommended step |
 | `strategy/01-org-hierarchy-and-context.md` | 5-Tier direction (Province, AG, CSB, Division, Team), business drivers (problems/opportunities), and current-state summary |
-| `strategy/02-stakeholders-and-concerns.md` | Stakeholder power/interest analysis ("the players" Kyron identified), core concerns, desired outcomes, and perspective tensions |
-| `strategy/03-target-vision-and-objectives.md` | Target future-state vision, operating principles, and outcome-oriented strategic objectives (`OBJ-X`) |
+| `strategy/02-stakeholders-and-concerns.md` | Stakeholder power/interest analysis ("the players" Kyron identified), core concerns, TOGAF Phase A viewpoints, and perspective tensions |
+| `strategy/03-target-vision-and-objectives.md` | Target future-state vision, 4-part TOGAF operating principles (`PRN-X`), and outcome-oriented strategic objectives (`OBJ-X`) |
 | `strategy/04-expected-benefits-and-value.md` | Expected public, service, operational, workforce, risk-reduction, and financial value (`BEN-X`) |
-| `strategy/05-business-capabilities.md` | Required organizational capabilities (`CAP-X`) and 5-pillar maturity gaps (People, Process, Data, Tech, Governance) |
-| `strategy/06-constraints-assumptions-risks.md` | Fixed constraints (`CON-X`), unvalidated assumptions (`ASM-X`), evidence gaps (`GAP-X`), and strategic risks (`RSK-X`) |
+| `strategy/05-business-capabilities.md` | End-to-end service value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps |
+| `strategy/06-constraints-assumptions-risks.md` | Fixed constraints (`CON-X`), unvalidated assumptions (`ASM-X`), evidence gaps (`GAP-X`), strategic risks (`RSK-X`), and TOGAF Transformation Readiness (`BTRA`) |
 | `strategy/07-idea-inventory.md` | Unapproved ideas, opportunities, and proposals (`IDEA-X`) across the 7-stage promotion funnel |
 | `strategy/08-work-inventory.md` | Committed initiatives, active experiments, operational responsibilities (`WORK-X`), and progress updates |
 | `strategy/09-alignment-traceability-matrix.md` | End-to-end traceability chain and the 8 portfolio diagnostic checks (orphaned work, duplicates, capability blind spots) |
-| `strategy/10-roadmap-and-success-measures.md` | High-level sequencing (`Now / Next / Later`), decision gates (`GATE-X`), and outcome/leading/guardrail measures (`MSR-X`) |
+| `strategy/10-roadmap-and-success-measures.md` | High-level sequencing (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), decision gates (`GATE-X`), and outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning`
+## Skills in `plugins/strategic-planning` (11 Skills)
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
-| `analyzing-strategic-context` | Capture multi-tier leadership direction, business drivers, stakeholder power/interests ("the players"), current state, and assumptions. | Strategic Context Brief, Stakeholder Map, Assumptions & Evidence Register |
-| `defining-strategic-vision` | Articulate target future state, operating principles, outcome-oriented strategic objectives, and expected public/business value. | Strategy on a Page, Strategic Vision Brief, Benefits Dependency Map |
-| `planning-business-capabilities` | Translate vision and objectives into required organizational capabilities and assess 5-pillar maturity gaps. | Capability Map & Gap Assessment |
+| `running-strategic-planning-cycle` | **Front-door orchestrator**: checks existing `strategy/` registers, offers a 5-option entry menu (Top-Down, Bottom-Up, Resume, Import Notes, Fast-Track Briefing), coaches across TOGAF ADM stages, and maintains `00-planning-session-status.md`. | Planning Session Status & Readiness Scorecard (`00-planning-session-status.md`) |
+| `analyzing-strategic-context` | Capture multi-tier leadership direction, business drivers, stakeholder power/interests ("the players") and TOGAF Phase A viewpoints, current state, and assumptions. | Strategic Context Brief, Stakeholder Map, Assumptions & Evidence Register |
+| `defining-strategic-vision` | Articulate target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives, and expected public/business value. | Strategy on a Page, Strategic Vision Brief, Benefits Dependency Map |
+| `planning-business-capabilities` | Translate vision and objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps. | Value Stream & Capability Map + Gap Assessment |
 | `managing-idea-inventory` | Capture, clarify, stress-test, and evaluate unapproved ideas through a structured promotion funnel. | Idea Inventory, Idea Record, Idea Evaluation Brief |
 | `managing-work-inventory` | Maintain the portfolio of committed initiatives, active experiments, and operational work linked to sponsors and owners. | Work Inventory |
 | `managing-team-skills-and-allocation` | Map team members, current skills, growth interests, and active `WORK-X` assignments; detect key-person bottlenecks and export Excel/CSV & Mermaid visuals. | Team Skills & Allocation Register, Excel Work Tracker CSV, Mermaid Workload Diagrams |
-| `aligning-strategy-and-portfolio` | Audit end-to-end traceability (Province/AG/CSB → Vision → Objectives → Capabilities → Ideas → Work) and strategic risks. | Alignment Traceability Matrix, Strategic Risk Register |
-| `sequencing-roadmaps-and-measures` | Sequence committed work into Now/Next/Later or Three Horizons roadmaps with decision gates, OKRs, leading indicators, and guardrails. | Strategic Roadmap, Success Measures Register |
-| `updating-strategic-registers` | Import and incrementally update evolving priorities, new drivers, stakeholder shifts, new ideas, and work progress across living registers. | Multi-Tier Mandate Register, Register Update & Progress Changelog |
-| `rendering-strategic-visuals-and-decks` | Render Mermaid alignment trees, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive slide decks. | Visual Strategy Package (Mermaid), B.C. Gov HTML Dashboard, Executive Strategy Deck |
+| `aligning-strategy-and-portfolio` | Audit end-to-end traceability, TOGAF Business Transformation Readiness (`BTRA`), and strategic risks. | Alignment Traceability Matrix, Strategic Risk & Readiness Register |
+| `sequencing-roadmaps-and-measures` | Sequence committed work into Now/Next/Later roadmaps with TOGAF Transition State plateaus (`PLT-X`), decision gates, OKRs, leading indicators, and guardrails. | Strategic Roadmap & Plateaus, Success Measures Register |
+| `updating-strategic-registers` | Import and incrementally update evolving priorities, new drivers, stakeholder shifts, new ideas, work progress, and time-boxed dispensations (`DSP-X`) with TOGAF Phase H change classification. | Multi-Tier Mandate Register, Register Update & Dispensation Changelog |
+| `rendering-strategic-visuals-and-decks` | Render Mermaid alignment trees, value-stream maps, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive slide decks. | Visual Strategy Package (Mermaid), B.C. Gov HTML Dashboard, Executive Strategy Deck |
 
-## Repository Navigation
+## Repository Navigation & Contribution Workflow
+
+> **Protected `main` Branch**: Direct pushes to `main` are disabled. Always create a feature branch (`feat/*`, `fix/*`, `docs/*`), keep [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), and [README.md](README.md) synchronized when skills or registers change, run the compliance audits in [INSTALL.md](INSTALL.md), and open a Pull Request.
 
 - **[INSTALL.md](INSTALL.md)** — Global and project-local APM installation, update, rollback, and marketplace instructions.
 - **[AGENTS.md](AGENTS.md)** — Canonical root agent instructions and non-negotiable invariants.
-- **[architecture.md](architecture.md)** — Deep-dive architecture: 5-tier BC Gov / CSB hierarchy, 3-inventory model, 10 living registers, and APM structure.
-- **[docs/governance.md](docs/governance.md)** — APM packaging and governance policy.
+- **[architecture.md](architecture.md)** — Deep-dive architecture: 5-tier BC Gov / CSB hierarchy, TOGAF ADM stage mapping, 3-inventory model, 12 living strategy files (`00`–`11`), and APM structure.
+- **[docs/governance.md](docs/governance.md)** — APM packaging, branch protection, and governance policy.
 - **[plugins/strategic-planning/README.md](plugins/strategic-planning/README.md)** — Plugin documentation and skill directory tree.
 
 ## License

@@ -32,3 +32,9 @@ When assessing a capability gap, evaluate all five pillars:
 - **Level 3 (Defined & Standardized)**: Documented, governed, and consistently executed across the branch.
 - **Level 4 (Measured & Managed)**: Backed by reliable operational metrics, service levels, and feedback loops.
 - **Level 5 (Optimized & Adaptive)**: Continuously improved and shared as a reusable pattern across divisions.
+
+## 5. Pairing Value Streams (`VST-X`) with Capabilities (`CAP-X`) (TOGAF Phase B)
+
+In TOGAF Business Architecture, **Business Capabilities** define *what* the organization must be able to do, while **Value Streams (`VST-X`)** show *how end-to-end stages combine* to deliver value to a stakeholder (for example, a litigant, court registry clerk, judiciary member, or partner agency):
+- Ask the user: *"What are the 3 to 5 high-level stages a request, case, or service goes through from intake to resolution?"*
+- Link each `CAP-X` to the `VST-X` stage(s) it enables so leadership can immediately see why a capability gap slows down real-world service delivery.

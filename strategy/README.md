@@ -6,6 +6,7 @@ This directory holds the team's living strategic planning artifacts and register
 
 | File | Purpose | Primary Template Source |
 |---|---|---|
+| `00-planning-session-status.md` | Front-door session status & readiness scorecard across the 6 TOGAF ADM-aligned stages (`01`–`11`), open assumptions (`ASM-X`), pending promotion gates (`IDEA-X`), active dispensations (`DSP-X`), and next recommended step | `running-strategic-planning-cycle/assets/templates/planning-session-status.md` |
 | `01-org-hierarchy-and-context.md` | 5-tier organizational mandates (Province of BC, Ministry of AG, CSB, Division, Team), business drivers (problems/opportunities), and current-state summary | `updating-strategic-registers/assets/templates/org-hierarchy-and-mandates.md` & `analyzing-strategic-context/assets/templates/strategic-context-brief.md` |
 | `02-stakeholders-and-concerns.md` | Stakeholder power/interest analysis ("the players"), core concerns, desired outcomes, and conflicting perspectives | `analyzing-strategic-context/assets/templates/stakeholder-map.md` |
 | `03-target-vision-and-objectives.md` | Target future state, operating principles, Strategy on a Page, and outcome-oriented strategic objectives (`OBJ-X`) | `defining-strategic-vision/assets/templates/strategic-vision-brief.md` & `strategy-on-a-page.md` |

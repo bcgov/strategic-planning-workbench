@@ -25,10 +25,10 @@
 | Information & Evidence | | |
 | Governance & Alignment | | |
 
-## 4. Future-State Operating Principles
-| Principle | Rationale | Concrete Implications (What We Will / Won't Do) |
-|---|---|---|
-| | | |
+## 4. Future-state operating principles (TOGAF 4-part format)
+| Principle ID | Principle name & statement | Rationale (why this matters to our mandate) | Concrete implications (what we will start / stop doing) |
+|---|---|---|---|
+| PRN-001 | | | |
 
 ## 5. Strategic Objectives
 | Objective ID | Outcome Statement | Linked Drivers | Target Beneficiaries | Disguised Solutions Reframed |
