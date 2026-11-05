@@ -23,6 +23,7 @@ python -m pytest
 4. **Three-Inventory Separation**: Agents MUST keep Strategic Vision, the Idea Inventory, and the Committed Work Inventory strictly separate and NEVER treat unapproved ideas as committed work ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
 5. **Non-Destructive Register Updates**: Agents MUST preserve stable record IDs and decision histories when importing evolving priorities, new ideas, or work progress ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
 6. **APM-Native Packaging Hygiene**: All plugin skills MUST reside in `.apm/skills/` with zero raw symlinks, dual manifests, and `SKILL.md` under 80 lines ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
+7. **Feature-Branch PR & Doc Synchronization**: `main` is branch-protected; all changes MUST use a feature branch (`feat/*`, `fix/*`, `docs/*`) and Pull Request, keeping `AGENTS.md`, [architecture.md](architecture.md), and [README.md](README.md) synchronized ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
 
 ## On-Demand Skills & Reference Index
 - Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the TOGAF ADM stage mapping, the 12 living strategy files (`00`–`11`), or skill data flows.

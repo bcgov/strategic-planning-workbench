@@ -89,12 +89,14 @@ flowchart TD
 | `updating-strategic-registers` | Import and incrementally update evolving priorities, new drivers, stakeholder shifts, new ideas, work progress, and time-boxed dispensations (`DSP-X`) with TOGAF Phase H change classification. | Multi-Tier Mandate Register, Register Update & Dispensation Changelog |
 | `rendering-strategic-visuals-and-decks` | Render Mermaid alignment trees, value-stream maps, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive slide decks. | Visual Strategy Package (Mermaid), B.C. Gov HTML Dashboard, Executive Strategy Deck |
 
-## Repository Navigation
+## Repository Navigation & Contribution Workflow
+
+> **Protected `main` Branch**: Direct pushes to `main` are disabled. Always create a feature branch (`feat/*`, `fix/*`, `docs/*`), keep [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), and [README.md](README.md) synchronized when skills or registers change, run the compliance audits in [INSTALL.md](INSTALL.md), and open a Pull Request.
 
 - **[INSTALL.md](INSTALL.md)** — Global and project-local APM installation, update, rollback, and marketplace instructions.
 - **[AGENTS.md](AGENTS.md)** — Canonical root agent instructions and non-negotiable invariants.
-- **[architecture.md](architecture.md)** — Deep-dive architecture: 5-tier BC Gov / CSB hierarchy, 3-inventory model, 10 living registers, and APM structure.
-- **[docs/governance.md](docs/governance.md)** — APM packaging and governance policy.
+- **[architecture.md](architecture.md)** — Deep-dive architecture: 5-tier BC Gov / CSB hierarchy, TOGAF ADM stage mapping, 3-inventory model, 12 living strategy files (`00`–`11`), and APM structure.
+- **[docs/governance.md](docs/governance.md)** — APM packaging, branch protection, and governance policy.
 - **[plugins/strategic-planning/README.md](plugins/strategic-planning/README.md)** — Plugin documentation and skill directory tree.
 
 ## License

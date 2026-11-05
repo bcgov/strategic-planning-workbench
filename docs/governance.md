@@ -12,3 +12,4 @@
    - Strategic planning skills never fabricate organizational facts, baselines, or leadership mandates. Missing facts are logged in an Assumptions & Evidence Register.
    - Unapproved opportunities remain in the **Idea Inventory** until explicit sponsorship, ownership, and capacity commitment promote them into the **Work Inventory**.
 4. **Dual Manifests**: Every plugin maintains `apm.yml` and `.claude-plugin/plugin.json` (with an `author` object and auto-discovered components).
+5. **Protected `main` Branch & Documentation Synchronization**: `main` is branch-protected on `bcgov/strategic-planning-workbench`. All contributions must be developed on a feature branch (`feat/*`, `fix/*`, `docs/*`), pass the full compliance audit suite, update `AGENTS.md`, `architecture.md`, and `README.md` when skills or registers change, and merge via Pull Request.

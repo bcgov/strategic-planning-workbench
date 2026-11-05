@@ -8,6 +8,7 @@
 - [4. Canonical Living Strategic Registers (`strategy/`)](#4-canonical-living-strategic-registers-strategy)
 - [5. End-to-End Skill Lifecycle & Continuous Update Loop](#5-end-to-end-skill-lifecycle--continuous-update-loop)
 - [6. Repository & APM-Native Plugin Structure](#6-repository--apm-native-plugin-structure)
+- [7. Branch Protection, PR Workflow & Documentation Synchronization](#7-branch-protection-pr-workflow--documentation-synchronization)
 
 ---
 
@@ -153,3 +154,12 @@ strategic-planning-workbench/
             ├── evidence-and-hierarchy-alignment.md
             └── three-inventory-separation.md
 ```
+
+---
+
+## 7. Branch Protection, PR Workflow & Documentation Synchronization
+
+`main` is branch-protected on `bcgov/strategic-planning-workbench`:
+1. **Feature-Branch PR Workflow**: All changes must be made on a dedicated branch (`feat/<topic>`, `fix/<topic>`, `docs/<topic>`) and submitted via Pull Request.
+2. **Documentation Synchronization**: Any change that adds, renames, or modifies skills, living registers (`strategy/00`–`11`), or architectural invariants must update [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), [README.md](README.md), and [plugins/strategic-planning/README.md](plugins/strategic-planning/README.md) in the same Pull Request.
+3. **Pre-PR Verification**: Run `audit_agents_md.py --strict`, `audit_rule.py --all --strict`, `audit_plugin_structure.py`, `audit.py`, `audit_skill.py --all --mode source` & `--mode installed`, `validate_apm_package.py`, and `audit_marketplace_sources.py` before pushing.

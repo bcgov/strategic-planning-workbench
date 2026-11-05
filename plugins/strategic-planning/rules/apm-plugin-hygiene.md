@@ -17,6 +17,7 @@ globs: ["plugins/**/*", "apm.yml", ".claude-plugin/**/*"]
    - Every plugin root MUST maintain `apm.yml` and `.claude-plugin/plugin.json`.
    - `.claude-plugin/plugin.json` MUST define `author` as an object (`{"name": "..."}`) and MUST NEVER declare `skills`, `agents`, `hooks`, or `commands` arrays.
 5. **Gerund Naming & Third-Person Descriptions**: Skill folder names and frontmatter `name` fields MUST match in kebab-case gerund form, with third-person descriptions stating what the skill does and when to use it.
+6. **Protected `main` Branch & Documentation Sync**: Direct pushes to `main` are PROHIBITED. All changes MUST be committed to a feature branch (`feat/*`, `fix/*`, `docs/*`) and opened as a Pull Request, keeping `AGENTS.md`, `architecture.md`, and `README.md` synchronized whenever skills, registers, or architecture change.
 
 ## 3. Evaluation Checklist
 
