@@ -7,7 +7,7 @@
 High-level architectural pointers. For full layout, multi-tier hierarchy, and living register flows, see [architecture.md](architecture.md).
 - `plugins/strategic-planning/.apm/skills/`: Self-contained interactive strategic planning, register update, and B.C. Gov visual rendering skills.
 - `plugins/strategic-planning/rules/` & `.agent/rules/`: Non-negotiable governance invariants.
-- `strategy/`: Default workspace directory where living team strategic registers, inventories, and visual outputs are persisted.
+- `strategy/` (or user-selected `~/strategic-planning-outputs/<team>/strategy/`): Default workspace directory where living team strategic registers (`00`–`11`), inventories, and visual outputs are persisted.
 
 ## Core Commands
 Essential commands for validating plugins, skills, rules, and APM packaging:

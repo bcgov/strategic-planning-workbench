@@ -1,6 +1,8 @@
 # Strategic planning session status and readiness scorecard
 
 **Branch / Division / Team:** [Name]  
+**Active strategy output directory:** [`C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` or `./strategy/`]  
+**Source documents / reference notes location:** [Path to existing briefing docs/notes or `Provided in chat`]  
 **Current workbench stage:** [Stage 1–6]  
 **Last updated:** [YYYY-MM-DD]  
 

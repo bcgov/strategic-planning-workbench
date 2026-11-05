@@ -73,7 +73,9 @@ flowchart LR
 
 ---
 
-## 4. Canonical Living Strategic Registers (`strategy/`)
+## 4. Canonical Living Strategic Registers (`strategy/` or `~/strategic-planning-outputs/<team>/strategy/`)
+
+When a team uses `strategic-planning-workbench` on an active planning engagement, `running-strategic-planning-cycle` first confirms the target output directory (recommending `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` on Windows or `~/strategic-planning-outputs/<team-name>/strategy/` on macOS/Linux so live branch plans stay separate from the template repository, or `./strategy/` inside a dedicated project workspace) and asks where existing reference documents live:
 
 When a team uses `strategic-planning-workbench` on an active planning engagement, its living knowledge is captured, saved, and incrementally updated across 10 structured markdown registers (typically stored in `strategy/`):
 

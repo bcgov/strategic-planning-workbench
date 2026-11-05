@@ -1,11 +1,11 @@
 ---
 name: running-strategic-planning-cycle
-description: "Orchestrates the end-to-end strategic planning cycle for business users: checks existing strategy/ registers, presents a plain-language entry menu (Top-Down from leadership direction, Bottom-Up from existing projects/ideas, Resume where we left off, Ingest meeting notes, or Fast-Track briefing), coaches across TOGAF ADM-aligned stages, maintains strategy/00-planning-session-status.md, and routes to the right specialist skill. Use when the user asks 'where do we start', 'help us build our strategy', 'where did we leave off', 'walk me through strategic planning', or 'what is missing in our strategy'."
+description: "Orchestrates the end-to-end strategic planning cycle for business users: confirms where strategy outputs and source documents live, checks existing strategy/ registers, presents a plain-language entry menu (Top-Down, Bottom-Up, Resume/Revisit, Import notes, or Fast-Track briefing), coaches across TOGAF ADM-aligned stages, maintains 00-planning-session-status.md, and routes to the right specialist skill. Use when the user asks 'where do we start', 'help us build our strategy', 'where did we leave off', 'revisit or update our plan', or 'what is missing in our strategy'."
 ---
 
 # Running strategic planning cycle
 
-Acts as the front-door navigator, TOGAF ADM cycle coach, and session state tracker for the Strategic Planning Workbench. Helps non-developer business users start, resume, or audit their branch, division, or team strategy and routes each step to the right specialist skill.
+Acts as the front-door navigator, TOGAF ADM cycle coach, and session state tracker for the Strategic Planning Workbench. Helps non-developer business users start, resume, revisit, or audit their branch, division, or team strategy and routes each step to the right specialist skill.
 
 ## Contents
 
@@ -17,32 +17,31 @@ Acts as the front-door navigator, TOGAF ADM cycle coach, and session state track
 
 ## Constraints
 
-1. **Interactive plain-language coaching**: Never overwhelm the user with TOGAF jargon or all 11 templates at once. Scan `strategy/` first, report what exists in plain language, and present the 5-option entry menu from [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md).
-2. **Maintain session state (`strategy/00-planning-session-status.md`)**: Record completed registers, current TOGAF ADM stage, open assumptions (`ASM-X`), pending idea gates (`IDEA-X`), active dispensations (`DSP-X`), and the recommended next 15-minute step.
-3. **Gentle phase-gate coaching**: If a user asks for a downstream output (such as a roadmap or slide deck) before minimum upstream inputs exist, offer a 3-question fast-track rather than refusing or inventing strategy.
-4. **B.C. Government Design System style**: Use sentence case for headings and labels, calm direct language, zero emoji, and `<br>` tags inside Mermaid boxes.
+1. **Confirm output folder & source docs first**: Before reading or writing files, ask the user where to store their strategy outputs—offering `1. Dedicated user folder (e.g., C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\ or ~/strategic-planning-outputs/<team-name>/strategy/) (Recommended)`, `2. Current workspace (./strategy/)`, or `3. Custom path`—and ask where any existing source documents/notes are located ([revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md)).
+2. **Interactive plain-language coaching**: Scan the chosen output directory first, report what exists in plain language, and present the 5-option entry menu from [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) (or the 4-option revisit sub-menu in [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md) when revisiting an existing plan).
+3. **Maintain session state (`00-planning-session-status.md`)**: Record the active output directory path, source documents path, completed registers, current TOGAF ADM stage, open assumptions (`ASM-X`), pending idea gates (`IDEA-X`), active dispensations (`DSP-X`), and next 15-minute step.
+4. **Gentle phase-gate coaching & B.C. Gov style**: Offer a 3-question fast-track if downstream visuals are requested early, and use B.C. Government sentence case, zero emoji, and `<br>` tags inside Mermaid boxes.
 
 ## Quick start
 
-1. Read [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) and inspect `strategy/00-planning-session-status.md` plus `strategy/01` through `11`.
-2. Present a brief readiness snapshot and the 5-option entry menu so the user can choose Top-Down, Bottom-Up/Middle-Out, Resume, Note Ingestion, or Fast-Track Briefing.
-3. Update [planning-session-status.md](assets/templates/planning-session-status.md) (`strategy/00-planning-session-status.md`) and route to the selected specialist skill.
+1. Read [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) and [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md).
+2. Confirm the user's output folder path (defaulting to `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` or `./strategy/`) and source documents location, then inspect `00-planning-session-status.md` and registers `01`–`11`.
+3. Present a brief readiness snapshot and the 5-option entry menu (or 4-option revisit menu), update [planning-session-status.md](assets/templates/planning-session-status.md), and route to the selected specialist skill.
 
 ## Workflow
 
-1. **Readiness Scan**: Check which files in `strategy/` (`00`–`11`) exist and summarize their state (`Not started`, `Draft`, `Baseline confirmed`).
-2. **Interactive Entry Menu**: Present the 5 plain-language entry options (1. Top-Down from leadership direction, 2. Bottom-Up from current projects/team workload/ideas, 3. Resume & gap check, 4. Import meeting notes or changes, 5. Fast-track executive briefing/visuals).
-3. **Stage Routing & TOGAF ADM Coaching**: Guide the user through the selected stage (Stage 1 Context $\rightarrow$ Stage 2 Vision & Principles $\rightarrow$ Stage 3 Value Streams & Capabilities $\rightarrow$ Stage 4 Ideas, Work & Team $\rightarrow$ Stage 5 Alignment, Readiness & Plateau Roadmap $\rightarrow$ Stage 6 Visuals & Living Governance).
-4. **Update Session Scorecard**: Save progress and the next recommended action in `strategy/00-planning-session-status.md` after every stage confirmation gate.
+1. **Workspace & Document Path Check**: Ask where strategy outputs should be saved (`~/strategic-planning-outputs/<team>/strategy/`, `./strategy/`, or custom path) and where existing reference docs live.
+2. **Readiness Scan & Entry Menu**: Check which files (`00`–`11`) exist in the target output directory and present the 5 plain-language entry options (or the 4 revisit cadences in [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md)).
+3. **Stage Routing & TOGAF ADM Coaching**: Guide the user through the selected stage or revisit workflow and save progress in `00-planning-session-status.md` after every confirmation gate.
 
 ## Verification
 
 Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md):
-- Scans `strategy/` before asking questions and presents the 5-option entry menu in plain language.
-- Keeps `strategy/00-planning-session-status.md` synchronized with the 11 registers using B.C. Government sentence case.
+- Confirms output directory and source document paths before writing files, and presents the plain-language entry or revisit menu.
+- Keeps `00-planning-session-status.md` synchronized with the 11 registers using B.C. Government sentence case.
 
 ## References
 
-- Cycle navigation & TOGAF ADM mapping: [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md)
+- Cycle navigation & TOGAF ADM mapping: [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) • [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md)
 - Session scorecard template: [planning-session-status.md](assets/templates/planning-session-status.md)
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)

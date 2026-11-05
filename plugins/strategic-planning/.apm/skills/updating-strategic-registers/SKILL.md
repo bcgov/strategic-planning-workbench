@@ -25,8 +25,8 @@ Guides users interactively to import new meeting notes, leadership communication
 ## Quick start
 
 1. Read [living-register-update-guide.md](references/living-register-update-guide.md) and [bc-gov-csb-hierarchy-reference.md](references/bc-gov-csb-hierarchy-reference.md).
-2. Ask what new information the user wants to import or update (or offer a numbered menu of the 10 registers).
-3. Present the proposed updates and ripple impacts for confirmation, then update the target `strategy/` registers, [org-hierarchy-and-mandates.md](assets/templates/org-hierarchy-and-mandates.md), and [register-update-changelog.md](assets/templates/register-update-changelog.md).
+2. Confirm the active strategy output folder (from `00-planning-session-status.md`, or ask the user to choose `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\`, `./strategy/`, or a custom path) and ask where their new notes or source documents are located.
+3. Present the proposed updates, TOGAF Phase H change classification, and ripple impacts for confirmation, then update the target `strategy/` registers, [org-hierarchy-and-mandates.md](assets/templates/org-hierarchy-and-mandates.md), and [register-update-changelog.md](assets/templates/register-update-changelog.md).
 
 ## Workflow
 
