@@ -42,6 +42,6 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 
 ## References
 
-- Cycle navigation & TOGAF ADM mapping: [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) • [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md)
+- Cycle navigation & TOGAF ADM mapping: [strategic-planning-cycle-and-togaf-adm-guide.md](references/strategic-planning-cycle-and-togaf-adm-guide.md) • [revisiting-and-updating-plans-guide.md](references/revisiting-and-updating-plans-guide.md) • [grokbot-and-chat-agent-guide.md](references/grokbot-and-chat-agent-guide.md)
 - Session scorecard template: [planning-session-status.md](assets/templates/planning-session-status.md)
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
