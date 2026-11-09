@@ -25,7 +25,7 @@ flowchart TD
     subgraph W["Team Strategic Planning & Portfolio Workbench (Tier 5 — TOGAF ADM Cycle)"]
         O["0. Cycle Orchestrator<br>(Top-Down, Bottom-Up<br>or Resume)"]
         A["1. Strategic<br>Context, Drivers<br>& Stakeholders"]
-        B["2. Target Vision,<br>Principles &<br>Public Value"]
+        B["2. Target Vision,<br>Logic Models &<br>Public Value"]
         C["3. Value Streams,<br>Capabilities &<br>Maturity Gaps"]
         D["4. Idea Inventory<br>(Raw to<br>Candidate)"]
         E["5. Committed<br>Work Inventory<br>& Team Load"]
@@ -46,7 +46,7 @@ flowchart TD
 1. **Five-Tier Organizational Line of Sight**
    - Explicitly traces team vision and strategic objectives (`OBJ-X`) upward through **Division**, **Branch (CSB)**, **Ministry (AG)**, and **Province-Wide (BC Gov)** goals while distinguishing `Confirmed` direction from `Interpreted` remarks.
 2. **Three Distinct Layers & Inventories**
-   - **Strategic Vision, Value Streams & Capabilities**: *Where are we trying to go, why does it matter, and what must our organization be able to do?*
+   - **Strategic Vision, Logic Models, Value Streams & Capabilities**: *Where are we trying to go, why does it matter, what causal results pathways connect inputs to public outcomes, and what must our organization be able to do?*
    - **Idea Inventory (`IDEA-X`)**: *What might we do?* Captures raw opportunities, experiments, and proposals across maturity states (`raw` → `explored` → `validated` → `candidate` → `deferred` / `rejected`) without forcing premature scoring.
    - **Committed Work Inventory (`WORK-X`)**: *What are we actually doing or committed to doing?* Tracks approved initiatives, time-boxed active experiments, and operational responsibilities with verified sponsorship and ownership.
 3. **Evidence Over Invention & No Premature Solutioning**
@@ -58,7 +58,7 @@ flowchart TD
 
 ## The Living Strategic Registers (`strategy/` or `~/strategic-planning-outputs/<team>/strategy/`)
 
-When starting or resuming a session, `running-strategic-planning-cycle` asks where you want to store your strategy files—recommending a dedicated user folder outside the template repo (such as `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` or `~/strategic-planning-outputs/<team-name>/strategy/`), `./strategy/` in your current workspace, or a custom synced folder—and asks where any existing source documents live.
+When starting or resuming a session, `running-strategic-planning-cycle` asks where you want to store your strategy files—recommending a dedicated user folder outside the template repo (such as `~/strategic-planning-outputs/<team-name>/strategy/` or `./strategy/` in your current workspace) and asks where any existing source documents live.
 
 | Register | What It Records & Tracks |
 |---|---|
@@ -75,13 +75,14 @@ When starting or resuming a session, `running-strategic-planning-cycle` asks whe
 | `strategy/10-roadmap-and-success-measures.md` | High-level sequencing (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), decision gates (`GATE-X`), and outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning` (11 Skills)
+## Skills in `plugins/strategic-planning` (12 Skills)
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
 | `running-strategic-planning-cycle` | **Front-door orchestrator**: checks existing `strategy/` registers, offers a 5-option entry menu (Top-Down, Bottom-Up, Resume, Import Notes, Fast-Track Briefing), coaches across TOGAF ADM stages, and maintains `00-planning-session-status.md`. | Planning Session Status & Readiness Scorecard (`00-planning-session-status.md`) |
 | `analyzing-strategic-context` | Capture multi-tier leadership direction, business drivers, stakeholder power/interests ("the players") and TOGAF Phase A viewpoints, current state, and assumptions. | Strategic Context Brief, Stakeholder Map, Assumptions & Evidence Register |
 | `defining-strategic-vision` | Articulate target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives, and expected public/business value. | Strategy on a Page, Strategic Vision Brief, Benefits Dependency Map |
+| `designing-logic-models` | Design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | Logic Model & Results Chain (`logic-model-template.md`), BC Gov Mermaid Diagrams, Logframe Measurement Matrix |
 | `planning-business-capabilities` | Translate vision and objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps. | Value Stream & Capability Map + Gap Assessment |
 | `managing-idea-inventory` | Capture, clarify, stress-test, and evaluate unapproved ideas through a structured promotion funnel. | Idea Inventory, Idea Record, Idea Evaluation Brief |
 | `managing-work-inventory` | Maintain the portfolio of committed initiatives, active experiments, and operational work linked to sponsors and owners. | Work Inventory |

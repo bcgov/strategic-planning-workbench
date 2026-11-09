@@ -75,21 +75,21 @@ flowchart LR
 
 ## 4. Canonical Living Strategic Registers (`strategy/` or `~/strategic-planning-outputs/<team>/strategy/`)
 
-When a team uses `strategic-planning-workbench` on an active planning engagement, `running-strategic-planning-cycle` first confirms the target output directory (recommending `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` on Windows or `~/strategic-planning-outputs/<team-name>/strategy/` on macOS/Linux so live branch plans stay separate from the template repository, or `./strategy/` inside a dedicated project workspace) and asks where existing reference documents live:
+When a team uses `strategic-planning-workbench` on an active planning engagement, `running-strategic-planning-cycle` first confirms the target output directory (recommending `~/strategic-planning-outputs/<team-name>/strategy/` so live branch plans stay separate from the template repository, or `./strategy/` inside a dedicated project workspace) and asks where existing reference documents live:
 
-When a team uses `strategic-planning-workbench` on an active planning engagement, its living knowledge is captured, saved, and incrementally updated across 10 structured markdown registers (typically stored in `strategy/`):
+When a team uses `strategic-planning-workbench` on an active planning engagement, its living knowledge is captured, saved, and incrementally updated across 12 structured markdown registers (typically stored in `strategy/`):
 
 | Register File | Core Question Answered | Primary Owning Skills |
 |---|---|---|
 | `strategy/00-planning-session-status.md` | *Where are we in the 6-stage TOGAF ADM strategic planning cycle, what is complete vs. missing, and what is our next 15-minute step?* | `running-strategic-planning-cycle` |
 | `strategy/01-org-hierarchy-and-context.md` | *What have Provincial, Ministry (AG), Branch (CSB), and Division leaders communicated, and what are our business drivers and current-state realities?* | `analyzing-strategic-context`, `updating-strategic-registers` |
 | `strategy/02-stakeholders-and-concerns.md` | *Who are "the players" (internal, external, judicial, partners), what are their interests/concerns, what TOGAF Phase A viewpoints do they need, and where do perspectives conflict?* | `analyzing-strategic-context`, `updating-strategic-registers` |
-| `strategy/03-target-vision-and-objectives.md` | *What is our target future state, 4-part TOGAF operating principles (`PRN-X`), and outcome-oriented strategic objectives (`OBJ-X`)?* | `defining-strategic-vision`, `updating-strategic-registers` |
-| `strategy/04-expected-benefits-and-value.md` | *What public, service, operational, workforce, risk-reduction, and financial value (`BEN-X`) will those objectives deliver?* | `defining-strategic-vision`, `updating-strategic-registers` |
+| `strategy/03-target-vision-and-objectives.md` | *What is our target future state, 4-part TOGAF operating principles (`PRN-X`), and outcome-oriented strategic objectives (`OBJ-X`)?* | `defining-strategic-vision`, `designing-logic-models`, `updating-strategic-registers` |
+| `strategy/04-expected-benefits-and-value.md` | *What public, service, operational, workforce, risk-reduction, and financial value (`BEN-X`) will those objectives deliver?* | `defining-strategic-vision`, `designing-logic-models`, `updating-strategic-registers` |
 | `strategy/05-business-capabilities.md` | *Across our end-to-end value streams (`VST-X`), what must our team/branch be able to do (`CAP-X`), and where are the 5-pillar maturity gaps?* | `planning-business-capabilities`, `updating-strategic-registers` |
 | `strategy/06-constraints-assumptions-risks.md` | *What fixed constraints bind us, what unproven assumptions (`ASM-X`) and evidence gaps (`GAP-X`) need validation, what strategic risks (`RSK-X`) exist, and what is our TOGAF Business Transformation Readiness (`BTRA`)?* | `analyzing-strategic-context`, `aligning-strategy-and-portfolio`, `updating-strategic-registers` |
 | `strategy/07-idea-inventory.md` | *What possibilities, opportunities, and proposals (`IDEA-X`) are we exploring, deferring, or evaluating?* | `managing-idea-inventory`, `updating-strategic-registers` |
-| `strategy/08-work-inventory.md` | *What approved initiatives, active experiments, and operational duties (`WORK-X`) are we committed to doing, and what is their current progress?* | `managing-work-inventory`, `updating-strategic-registers` |
+| `strategy/08-work-inventory.md` | *What approved initiatives, active experiments, and operational duties (`WORK-X`) are we committed to doing, and what is their current progress?* | `managing-work-inventory`, `designing-logic-models`, `updating-strategic-registers` |
 | `strategy/09-alignment-traceability-matrix.md` | *How does everything connect from Province/Ministry/CSB down to team work, and where are the orphans, duplicates, or gaps?* | `aligning-strategy-and-portfolio` |
 | `strategy/10-roadmap-and-success-measures.md` | *How is committed work sequenced (`Now / Next / Later`), what are the TOGAF Transition State plateaus (`PLT-X`) and decision gates, and how is success measured (`MSR-X`)?* | `sequencing-roadmaps-and-measures`, `rendering-strategic-visuals-and-decks` |
 | `strategy/11-team-skills-and-allocation.md` | *Who is on our team (`MEM-X`), what are their skills and growth interests, which `WORK-X` items are assigned to them, and where are our key-person bottlenecks?* | `managing-team-skills-and-allocation`, `updating-strategic-registers` |
@@ -102,13 +102,15 @@ When a team uses `strategic-planning-workbench` on an active planning engagement
    Scans `strategy/00`–`11`, offers a 5-option plain-language entry menu (Top-Down from leadership direction, Bottom-Up from existing projects/ideas, Resume where we left off, Import meeting notes, or Fast-Track briefing), and updates `strategy/00-planning-session-status.md`.
 1. **Initial Baseline (`analyzing-strategic-context` $\rightarrow$ `defining-strategic-vision` $\rightarrow$ `planning-business-capabilities` — ADM Preliminary, Phase A & Phase B)**:
    Establishes multi-tier context, stakeholder viewpoints, current state, target vision, 4-part TOGAF operating principles (`PRN-X`), outcome objectives (`OBJ-X`), benefits (`BEN-X`), value streams (`VST-X`), and required capabilities (`CAP-X`).
-2. **Inventory Capture, Team Allocation & Triage (`managing-idea-inventory`, `managing-work-inventory` & `managing-team-skills-and-allocation` — ADM Phase E)**:
+2. **Causal Pathway Modeling (`designing-logic-models` — ADM Phase B & Phase E)**:
+   Connects inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes for specific programs, strategic objectives (`OBJ-X`), or committed initiatives (`WORK-X`), stress-testing causal hypotheses, assumptions, and logframe indicators.
+3. **Inventory Capture, Team Allocation & Triage (`managing-idea-inventory`, `managing-work-inventory` & `managing-team-skills-and-allocation` — ADM Phase E)**:
    Separates possibilities (`IDEA-X`) from committed work (`WORK-X`), enforces the Promotion Gate, and maps team skills, growth interests, and `MEM-X` capacity.
-3. **Alignment, Readiness & Plateau Sequencing (`aligning-strategy-and-portfolio` & `sequencing-roadmaps-and-measures` — ADM Phase E & Phase F)**:
+4. **Alignment, Readiness & Plateau Sequencing (`aligning-strategy-and-portfolio` & `sequencing-roadmaps-and-measures` — ADM Phase E & Phase F)**:
    Audits the full traceability chain, assesses TOGAF Business Transformation Readiness (`BTRA`), logs strategic risks, defines Transition State plateaus (`PLT-X`) across horizons, and establishes balanced measures (`MSR-X`).
-4. **Living Ingestion, Change Triage & Dispensations (`updating-strategic-registers` — ADM Phase G, Phase H & Requirements Management)**:
+5. **Living Ingestion, Change Triage & Dispensations (`updating-strategic-registers` — ADM Phase G, Phase H & Requirements Management)**:
    Imports new meeting notes, evolving leadership priorities, new business drivers, emerging problems, new ideas, status updates, and time-boxed strategic dispensations (`DSP-X`) while preserving stable IDs and change logs.
-5. **Visual & Executive Rendering (`rendering-strategic-visuals-and-decks`)**:
+6. **Visual & Executive Rendering (`rendering-strategic-visuals-and-decks`)**:
    Generates Mermaid roadmaps, Gantt/horizon charts, value-stream maps, capability charts, alignment flowcharts, B.C. Gov HTML Strategy on a Page dashboards, and executive presentation decks directly from the living registers.
 
 ---
@@ -139,6 +141,7 @@ strategic-planning-workbench/
         │       ├── aligning-strategy-and-portfolio/
         │       ├── analyzing-strategic-context/
         │       ├── defining-strategic-vision/
+        │       ├── designing-logic-models/
         │       ├── managing-idea-inventory/
         │       ├── managing-team-skills-and-allocation/
         │       ├── managing-work-inventory/

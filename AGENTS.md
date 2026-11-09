@@ -28,9 +28,10 @@ python -m pytest
 ## On-Demand Skills & Reference Index
 - Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the TOGAF ADM stage mapping, the 12 living strategy files (`00`–`11`), or skill data flows.
 - Read [docs/governance.md](docs/governance.md) when reviewing repository packaging and governance policies.
-- Use `running-strategic-planning-cycle` when starting or resuming a planning session, confirming the output directory (`C:\Users\<username>\strategic-planning-outputs\<team>\strategy\` or `./strategy/`), checking readiness across `00-planning-session-status.md`, or routing Top-Down, Bottom-Up, or Revisit flows across Claude, Copilot, Codex, Antigravity (`agy`), and GrokBot (`grok-bot`).
+- Use `running-strategic-planning-cycle` when starting or resuming a planning session, confirming the output directory (`~/strategic-planning-outputs/<team>/strategy/` or `./strategy/`), checking readiness across `00-planning-session-status.md`, or routing Top-Down, Bottom-Up, or Revisit flows across Claude, Copilot, Codex, Antigravity (`agy`), and GrokBot (`grok-bot`).
 - Use `analyzing-strategic-context` when starting a guided discovery interview for leadership direction, drivers, stakeholders ("the players") and TOGAF Phase A viewpoints, current state, or assumptions.
 - Use `defining-strategic-vision` when interactively coaching target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives (`OBJ-X`), and expected value (`BEN-X`).
+- Use `designing-logic-models` when constructing, stress-testing, or documenting program logic models, results chains, outcome chains, theories of change, or results frameworks connecting inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes.
 - Use `planning-business-capabilities` when translating strategic objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps.
 - Use `managing-idea-inventory` when capturing, clarifying, assumption-testing, or evaluating unapproved opportunities in the Idea Inventory (`IDEA-X`).
 - Use `managing-work-inventory` when cataloging committed initiatives, active experiments, and operational work (`WORK-X`) or promoting approved ideas.

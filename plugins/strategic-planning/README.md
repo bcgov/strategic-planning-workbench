@@ -23,6 +23,11 @@ strategic-planning/
 │       │   ├── assets/templates/
 │       │   ├── evals/
 │       │   └── references/
+│       ├── designing-logic-models/
+│       │   ├── SKILL.md
+│       │   ├── assets/templates/
+│       │   ├── evals/
+│       │   └── references/
 │       ├── managing-idea-inventory/
 │       │   ├── SKILL.md
 │       │   ├── assets/templates/
@@ -80,6 +85,7 @@ strategic-planning/
 | `running-strategic-planning-cycle` | **Front-door orchestrator & TOGAF ADM cycle coach**: scans existing `strategy/` registers, offers a 5-option entry menu (Top-Down, Bottom-Up, Resume, Import Notes, Fast-Track Briefing), maintains `00-planning-session-status.md`, and routes across the 10 specialist skills. | `planning-session-status.md` |
 | `analyzing-strategic-context` | Multi-tier leadership direction, mandates, business drivers, stakeholder power/interest mapping ("the players") and TOGAF Phase A viewpoints, evidence-based current state, and assumption tracking. | `strategic-context-brief.md`, `stakeholder-map.md`, `assumptions-and-evidence-register.md` |
 | `defining-strategic-vision` | Target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives (detecting disguised activities), and public/business value. | `strategy-on-a-page.md`, `strategic-vision-brief.md`, `benefits-dependency-map.md` |
+| `designing-logic-models` | Designing, reviewing, and documenting program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | `logic-model-template.md` |
 | `planning-business-capabilities` | Translating vision and objectives into TOGAF Phase B value streams (`VST-X`), required business capabilities (`CAP-X`), maturity levels, and 5-pillar capability gap analysis. | `capability-map-and-gaps.md` |
 | `managing-idea-inventory` | Capturing, clarifying, assumption-testing, and evaluating unapproved opportunities across maturity states (`raw` → `candidate` / `deferred` / `rejected`). | `idea-inventory.md`, `idea-record.md`, `idea-evaluation.md` |
 | `managing-work-inventory` | Maintaining the portfolio of committed initiatives, active experiments, and operational responsibilities with verified sponsorship and ownership. | `work-inventory.md` |
