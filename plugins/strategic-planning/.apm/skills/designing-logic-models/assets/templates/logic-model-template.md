@@ -19,7 +19,7 @@
 ## 2. Canonical Results Chain
 
 ```mermaid
-%%{init: {"flowchart": {"wrappingWidth": 450, "minNodeWidth": 350}} }%%
+%%{init: {"flowchart": {"wrappingWidth": 460, "minNodeWidth": 360}} }%%
 flowchart TB
 
 N["PROGRAM NEED<br/>[Current operational problem or policy gap]"]

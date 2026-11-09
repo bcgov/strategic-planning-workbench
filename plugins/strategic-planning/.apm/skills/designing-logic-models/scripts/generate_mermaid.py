@@ -70,8 +70,8 @@ def format_node_label(stage: LogicStage) -> str:
 
 def generate_mermaid(model: LogicModel) -> str:
     """Generate clean Mermaid flowchart syntax with configurable node widths."""
-    wrap_w = model.wrapping_width or (450 if model.layout == "TB" else 260)
-    min_w = model.min_node_width or (350 if model.layout == "TB" else 220)
+    wrap_w = model.wrapping_width or (460 if model.layout == "TB" else 300)
+    min_w = model.min_node_width or (360 if model.layout == "TB" else 240)
     init_directive = f'%%{{init: {{"flowchart": {{"wrappingWidth": {wrap_w}, "minNodeWidth": {min_w}}}}} }}%%'
     out: List[str] = [init_directive, f"flowchart {model.layout}", ""]
 

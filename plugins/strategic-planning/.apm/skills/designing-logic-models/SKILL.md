@@ -53,5 +53,6 @@ Audit outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 - Design method & pacing: [design-method.md](references/design-method.md)
 - Anti-pattern validation: [validation-rules.md](references/validation-rules.md)
 - Templates & syntax: [output-templates.md](references/output-templates.md)
-- Worked public sector examples: [worked-examples.md](references/worked-examples.md)
+- Worked examples index: [worked-examples.md](references/worked-examples.md)
+- Domain examples: [Court Evidence](references/examples/court-evidence-policy-validation.md) • [Canonical LR](references/examples/canonical-results-chain.md) • [Digital E-Filing](references/examples/court-registry-digital-efiling.md) • [Workforce Academy](references/examples/workforce-training-academy.md) • [Justice AI](references/examples/justice-ai-docket-summarizer.md)
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
