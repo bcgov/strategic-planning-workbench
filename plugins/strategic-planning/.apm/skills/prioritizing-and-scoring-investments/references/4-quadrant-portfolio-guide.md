@@ -2,6 +2,14 @@
 
 This guide describes how to interpret, communicate, and act upon the **Value vs. Ability to Deliver 4-Quadrant Portfolio Matrix**.
 
+## Contents
+
+- [Visualizing the portfolio landscape](#1-visualizing-the-portfolio-landscape)
+- [Quadrant definitions and executive actions](#2-quadrant-definitions-and-executive-actions)
+- [Portfolio balance guidelines for executive boards](#3-portfolio-balance-guidelines-for-executive-boards)
+- [Downstream traceability](#4-downstream-traceability)
+- [Dynamic interactive filtering and real-time scoring](#5-dynamic-interactive-filtering-and-real-time-scoring)
+
 ---
 
 ## 1. Visualizing the Portfolio Landscape
@@ -80,3 +88,19 @@ For a healthy public-sector capital portfolio:
          │
          └── Q4 (Deprioritize)       ──> Record rejection rationale in `strategy/07-idea-inventory.md`
 ```
+
+---
+
+## 5. Dynamic Interactive Filtering and Real-Time Scoring
+
+For interactive leadership reviews and dynamic scenario planning, launch the live dashboard:
+
+```bash
+python scripts/interactive_investment_app.py --input strategy/court-investment-scoring-ledger.json
+```
+
+The interactive application allows reviewers to:
+- **Filter dynamically**: Toggle visibility by quadrant (Q1 to Q4), search by keyword or sponsor, and filter by minimum composite score.
+- **Tune weights live**: Adjust the Value vs. Delivery split slider (e.g. 70/30) and individual category sliders to observe bubble movement in real time.
+- **Onboard and edit proposals**: Add new investment candidates or adjust 0–10 criteria scores directly through the modal interface.
+- **Persist to disk**: Save all adjustments directly back to the JSON and CSV ledgers with one click.
