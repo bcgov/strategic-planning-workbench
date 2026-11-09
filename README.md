@@ -25,7 +25,7 @@ flowchart TD
     subgraph W["Team Strategic Planning & Portfolio Workbench (Tier 5 — TOGAF ADM Cycle)"]
         O["0. Cycle Orchestrator<br>(Top-Down, Bottom-Up<br>or Resume)"]
         A["1. Strategic<br>Context, Drivers<br>& Stakeholders"]
-        B["2. Target Vision,<br>Principles &<br>Public Value"]
+        B["2. Target Vision,<br>Logic Models &<br>Public Value"]
         C["3. Value Streams,<br>Capabilities &<br>Maturity Gaps"]
         D["4. Idea Inventory<br>(Raw to<br>Candidate)"]
         E["5. Committed<br>Work Inventory<br>& Team Load"]
@@ -46,7 +46,7 @@ flowchart TD
 1. **Five-Tier Organizational Line of Sight**
    - Explicitly traces team vision and strategic objectives (`OBJ-X`) upward through **Division**, **Branch (CSB)**, **Ministry (AG)**, and **Province-Wide (BC Gov)** goals while distinguishing `Confirmed` direction from `Interpreted` remarks.
 2. **Three Distinct Layers & Inventories**
-   - **Strategic Vision, Value Streams & Capabilities**: *Where are we trying to go, why does it matter, and what must our organization be able to do?*
+   - **Strategic Vision, Logic Models, Value Streams & Capabilities**: *Where are we trying to go, why does it matter, what causal results pathways connect inputs to public outcomes, and what must our organization be able to do?*
    - **Idea Inventory (`IDEA-X`)**: *What might we do?* Captures raw opportunities, experiments, and proposals across maturity states (`raw` → `explored` → `validated` → `candidate` → `deferred` / `rejected`) without forcing premature scoring.
    - **Committed Work Inventory (`WORK-X`)**: *What are we actually doing or committed to doing?* Tracks approved initiatives, time-boxed active experiments, and operational responsibilities with verified sponsorship and ownership.
 3. **Evidence Over Invention & No Premature Solutioning**
@@ -58,7 +58,7 @@ flowchart TD
 
 ## The Living Strategic Registers (`strategy/` or `~/strategic-planning-outputs/<team>/strategy/`)
 
-When starting or resuming a session, `running-strategic-planning-cycle` asks where you want to store your strategy files—recommending a dedicated user folder outside the template repo (such as `C:\Users\<username>\strategic-planning-outputs\<team-name>\strategy\` or `~/strategic-planning-outputs/<team-name>/strategy/`), `./strategy/` in your current workspace, or a custom synced folder—and asks where any existing source documents live.
+When starting or resuming a session, `running-strategic-planning-cycle` asks where you want to store your strategy files—recommending a dedicated user folder outside the template repo (such as `~/strategic-planning-outputs/<team-name>/strategy/` or `./strategy/` in your current workspace) and asks where any existing source documents live.
 
 | Register | What It Records & Tracks |
 |---|---|
