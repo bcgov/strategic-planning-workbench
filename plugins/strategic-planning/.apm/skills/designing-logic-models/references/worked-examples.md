@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
 - [Baseline Reference Model (Program Logic Model / Results Chain)](#baseline-reference-model-program-logic-model--results-chain)
+- [Program Need-Driven Court Evidence Model](#program-need-driven-court-evidence-model)
 - [Worked Example 1: Digital Public-Service Modernization](#worked-example-1-digital-public-service-modernization)
 - [Worked Example 2: Workforce Training & Capability Development](#worked-example-2-workforce-training--capability-development)
 - [Worked Example 3: Technology & AI Adoption in Justice Services](#worked-example-3-technology--ai-adoption-in-justice-services)
@@ -47,6 +48,53 @@ style O fill:#E9F4E4,stroke:#518A3A,stroke-width:2px
 style IO fill:#FFF4D6,stroke:#C49102,stroke-width:2px
 style MO fill:#FCE8D5,stroke:#C76B19,stroke-width:2px
 style LO fill:#F3E5F5,stroke:#7B4B94,stroke-width:2px
+```
+
+---
+
+## Program Need-Driven Court Evidence Model
+
+This model demonstrates the top-to-bottom (`flowchart TB`) architecture with an explicit **Program Need** anchor (`N -->|"justifies"| I`) and reusable `classDef` CSS classes. It captures court validation rules, digital exhibit management, and verified credential access:
+
+```mermaid
+flowchart TB
+
+N["PROGRAM NEED<br/>Court processes remain manual,<br/>high-touch and fragmented.<br/>Validation often occurs late.<br/>Digital evidence is hard to manage.<br/>Policy changes require manual effort."]
+
+I["INPUTS<br/>Program funding<br/>Court policy and expertise<br/>CSO and CEIS services<br/>BC Court Assistant<br/>CITZ shared IDP capability<br/>Azure and OpenShift platforms<br/>Verified credentials<br/>Security and privacy controls"]
+
+A["ACTIVITIES<br/>Encode policy rules<br/>Build pre-flight validation<br/>Configure data extraction<br/>Set confidence thresholds<br/>Integrate results with CEIS<br/>Enable self-service authoring<br/>Digitize exhibit management<br/>Expose governed APIs<br/>Implement credential access"]
+
+O["OUTPUTS<br/>Validation portal and API<br/>Machine-readable rule schemas<br/>Validation tokens<br/>Extracted fields and scores<br/>Human-review routing<br/>Form-authoring tools<br/>Digital-exhibit service<br/>External filing APIs<br/>Credential-based access"]
+
+IO["IMMEDIATE OUTCOMES<br/>Earlier client feedback<br/>Problems detected sooner<br/>Structured registry data<br/>Faster rule updates<br/>Secure digital access<br/>Less removable-media handling<br/>More traceable decisions"]
+
+MO["INTERMEDIATE OUTCOMES<br/>Fewer rejected filings<br/>Better first-time accuracy<br/>Less manual processing<br/>Faster service delivery<br/>More consistent enforcement<br/>Lower vendor dependence<br/>Fewer counter visits<br/>Safer information handling"]
+
+LO["LONG-TERM OUTCOMES<br/>More accessible court services<br/>More timely court services<br/>Reliable court administration<br/>Sustainable digital delivery<br/>Protected judicial information<br/>Improved access to justice<br/>Fully digital court processes"]
+
+N -->|"justifies"| I
+I -->|"enables"| A
+A -->|"produces"| O
+O -->|"leads to"| IO
+IO -->|"contributes to"| MO
+MO -->|"contributes to"| LO
+
+classDef need fill:#F4F4F4,stroke:#555,color:#111
+classDef input fill:#E8F1FA,stroke:#2B6EA6,color:#111
+classDef activity fill:#E5F3F3,stroke:#258080,color:#111
+classDef output fill:#E9F4E4,stroke:#518A3A,color:#111
+classDef immediate fill:#FFF4D6,stroke:#C49102,color:#111
+classDef intermediate fill:#FCE8D5,stroke:#C76B19,color:#111
+classDef longterm fill:#F3E5F5,stroke:#7B4B94,color:#111
+
+class N need
+class I input
+class A activity
+class O output
+class IO immediate
+class MO intermediate
+class LO longterm
 ```
 
 ---

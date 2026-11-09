@@ -29,7 +29,7 @@ Guides teams through an interactive conversation to construct, stress-test, and 
 2. Select direction: **Backward design** (recommended for strategy/objectives) or **Forward design** (for auditing existing project work).
 3. Walk the user interactively through the 7 canonical stages in [design-method.md](references/design-method.md).
 4. Run the 15-rule anti-pattern check in [validation-rules.md](references/validation-rules.md).
-5. Generate the Mermaid flowchart and results matrix using [output-templates.md](references/output-templates.md).
+5. Generate the Mermaid flowchart (via `scripts/generate_mermaid.py`) and matrix using [output-templates.md](references/output-templates.md).
 
 ## Workflow
 

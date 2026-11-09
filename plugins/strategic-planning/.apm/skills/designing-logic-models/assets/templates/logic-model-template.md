@@ -19,27 +19,41 @@
 ## 2. Canonical Results Chain
 
 ```mermaid
-flowchart TD
-    IN1["INPUTS<br/>[What we invest: funding, staff FTEs, platform]"]
-    AC1["ACTIVITIES<br/>[What we do: redesign, build, consult, train]"]
-    OP1["OUTPUTS<br/>[What we produce: deliverables, portals, tools]"]
-    IM1["IMMEDIATE OUTCOMES<br/>[What changes first: access, skills, awareness]"]
-    IT1["INTERMEDIATE OUTCOMES<br/>[What changes next: behavior, throughput, efficiency]"]
-    LT1["LONG-TERM OUTCOMES<br/>[Ultimate impact: public value, enduring benefits]"]
+flowchart TB
 
-    IN1 -->|"enables"| AC1
-    AC1 -->|"produces"| OP1
-    OP1 -->|"leads to"| IM1
-    IM1 -->|"contributes to"| IT1
-    IT1 -->|"contributes to"| LT1
+N["PROGRAM NEED<br/>[Current operational problem or policy gap]"]
+I["INPUTS<br/>[What we invest: funding, court policy, expertise, platform]"]
+A["ACTIVITIES<br/>[What we do: encode rules, validation, integrations, training]"]
+O["OUTPUTS<br/>[What we produce: validation portal, APIs, schemas, tools]"]
+IO["IMMEDIATE OUTCOMES<br/>[What changes first: earlier client feedback, structured data]"]
+MO["INTERMEDIATE OUTCOMES<br/>[What changes next: fewer rejected filings, faster delivery]"]
+LO["LONG-TERM OUTCOMES<br/>[Ultimate impact: timely, accessible, sustainable court services]"]
 
-    style IN1 fill:#E8F1FA,stroke:#2B6EA6,stroke-width:2px
-    style AC1 fill:#E5F3F3,stroke:#258080,stroke-width:2px
-    style OP1 fill:#E9F4E4,stroke:#518A3A,stroke-width:2px
-    style IM1 fill:#FFF4D6,stroke:#C49102,stroke-width:2px
-    style IT1 fill:#FCE8D5,stroke:#C76B19,stroke-width:2px
-    style LT1 fill:#F3E5F5,stroke:#7B4B94,stroke-width:2px
+N -->|"justifies"| I
+I -->|"enables"| A
+A -->|"produces"| O
+O -->|"leads to"| IO
+IO -->|"contributes to"| MO
+MO -->|"contributes to"| LO
+
+classDef need fill:#F4F4F4,stroke:#555,color:#111
+classDef input fill:#E8F1FA,stroke:#2B6EA6,color:#111
+classDef activity fill:#E5F3F3,stroke:#258080,color:#111
+classDef output fill:#E9F4E4,stroke:#518A3A,color:#111
+classDef immediate fill:#FFF4D6,stroke:#C49102,color:#111
+classDef intermediate fill:#FCE8D5,stroke:#C76B19,color:#111
+classDef longterm fill:#F3E5F5,stroke:#7B4B94,color:#111
+
+class N need
+class I input
+class A activity
+class O output
+class IO immediate
+class MO intermediate
+class LO longterm
 ```
+
+> **Tip**: For compact 5-stage views without the Program Need box, switch to `flowchart LR` using direct `style` tokens. Generate automatically via `python scripts/generate_mermaid.py`.
 
 ---
 
