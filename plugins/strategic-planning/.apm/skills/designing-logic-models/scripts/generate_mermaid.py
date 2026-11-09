@@ -29,6 +29,8 @@ class LogicModel:
     """Complete logic model definition."""
     layout: str = "TB"  # 'TB' or 'LR'
     style_mode: str = "classDef"  # 'classDef' or 'style'
+    wrapping_width: Optional[int] = None
+    min_node_width: Optional[int] = None
     need: Optional[LogicStage] = None
     inputs: Optional[LogicStage] = None
     activities: Optional[LogicStage] = None
@@ -67,8 +69,11 @@ def format_node_label(stage: LogicStage) -> str:
 
 
 def generate_mermaid(model: LogicModel) -> str:
-    """Generate clean Mermaid flowchart syntax under 200 chars per line."""
-    out: List[str] = [f"flowchart {model.layout}", ""]
+    """Generate clean Mermaid flowchart syntax with configurable node widths."""
+    wrap_w = model.wrapping_width or (450 if model.layout == "TB" else 260)
+    min_w = model.min_node_width or (350 if model.layout == "TB" else 220)
+    init_directive = f'%%{{init: {{"flowchart": {{"wrappingWidth": {wrap_w}, "minNodeWidth": {min_w}}}}} }}%%'
+    out: List[str] = [init_directive, f"flowchart {model.layout}", ""]
 
     stages: List[LogicStage] = []
     if model.need:
@@ -341,6 +346,8 @@ def main() -> None:
     parser.add_argument("--input", type=Path, help="Path to JSON file defining the logic model.")
     parser.add_argument("--layout", choices=["TB", "LR"], default=None, help="Override flowchart direction (TB or LR).")
     parser.add_argument("--style", choices=["classDef", "style"], default=None, help="Styling syntax mode.")
+    parser.add_argument("--wrapping-width", type=int, default=None, help="Maximum text wrapping width in pixels (e.g., 450).")
+    parser.add_argument("--min-node-width", type=int, default=None, help="Minimum node box width in pixels (e.g., 350).")
     parser.add_argument("--output", type=Path, help="Write output to file instead of stdout.")
     parser.add_argument("--raw", action="store_true", help="Omit ```mermaid markdown code fence.")
 
@@ -362,6 +369,10 @@ def main() -> None:
         model.layout = args.layout
     if args.style:
         model.style_mode = args.style
+    if args.wrapping_width:
+        model.wrapping_width = args.wrapping_width
+    if args.min_node_width:
+        model.min_node_width = args.min_node_width
 
     diagram = generate_mermaid(model)
     rendered = diagram if args.raw else f"```mermaid\n{diagram}\n```"
