@@ -1,0 +1,20 @@
+[
+  {
+    "query": "Evaluate our candidate project proposals using the weighted investment framework and generate a 4-quadrant visual.",
+    "expected_behavior": [
+      "Guides the user interactively through Value / ROI and Ability to Deliver criteria using anchored 0-10 rubrics",
+      "Normalizes category weights within each axis to 100% and calculates accurate composite scores",
+      "Classifies each proposal into one of the 4 quadrants (Strategic Priorities, Big Bets, Tactical Efficiencies, Deprioritize)",
+      "Maintains dual-format scoring ledgers in both JSON and CSV",
+      "Generates an executive ranking table and 4-quadrant visual report using B.C. Government Design System styling"
+    ]
+  },
+  {
+    "query": "We want to give more weight to legislative drivers and ministry alignment. Show us how to adjust the weighting before and after.",
+    "expected_behavior": [
+      "Explains category weight adjustments within Value / ROI (e.g., increasing Drivers to 46% and Alignment to 26%) while maintaining a 100-point total",
+      "Demonstrates overall axis weighting changes (e.g., 72.5% Value vs 27.5% Delivery)",
+      "Re-computes composite rankings and highlights any quadrant shifts"
+    ]
+  }
+]

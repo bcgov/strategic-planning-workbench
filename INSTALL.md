@@ -129,14 +129,16 @@ Available skills in `plugins/strategic-planning`:
 1. `running-strategic-planning-cycle` *(Front-door orchestrator & TOGAF ADM cycle coach)*
 2. `analyzing-strategic-context`
 3. `defining-strategic-vision`
-4. `planning-business-capabilities`
-5. `managing-idea-inventory`
-6. `managing-work-inventory`
-7. `managing-team-skills-and-allocation`
-8. `aligning-strategy-and-portfolio`
-9. `sequencing-roadmaps-and-measures`
-10. `updating-strategic-registers`
-11. `rendering-strategic-visuals-and-decks`
+4. `designing-logic-models`
+5. `planning-business-capabilities`
+6. `managing-idea-inventory`
+7. `prioritizing-and-scoring-investments`
+8. `managing-work-inventory`
+9. `managing-team-skills-and-allocation`
+10. `aligning-strategy-and-portfolio`
+11. `sequencing-roadmaps-and-measures`
+12. `updating-strategic-registers`
+13. `rendering-strategic-visuals-and-decks`
 
 ---
 

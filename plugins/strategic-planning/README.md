@@ -48,6 +48,12 @@ strategic-planning/
 │       │   ├── assets/templates/
 │       │   ├── evals/
 │       │   └── references/
+│       ├── prioritizing-and-scoring-investments/
+│       │   ├── SKILL.md
+│       │   ├── assets/templates/
+│       │   ├── evals/
+│       │   ├── references/
+│       │   └── scripts/
 │       ├── rendering-strategic-visuals-and-decks/
 │       │   ├── SKILL.md
 │       │   ├── assets/templates/
@@ -88,6 +94,7 @@ strategic-planning/
 | `designing-logic-models` | Designing, reviewing, and documenting program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | `logic-model-template.md` |
 | `planning-business-capabilities` | Translating vision and objectives into TOGAF Phase B value streams (`VST-X`), required business capabilities (`CAP-X`), maturity levels, and 5-pillar capability gap analysis. | `capability-map-and-gaps.md` |
 | `managing-idea-inventory` | Capturing, clarifying, assumption-testing, and evaluating unapproved opportunities across maturity states (`raw` → `candidate` / `deferred` / `rejected`). | `idea-inventory.md`, `idea-record.md`, `idea-evaluation.md` |
+| `prioritizing-and-scoring-investments` | Evaluating, weighting, and ranking candidate investments across Value/ROI and Ability to Deliver using a 4-quadrant scatter chart, dual-format JSON/CSV ledgers, and executive briefs. | `investment-scoring-framework.json`, `investment-scoring-ledger.json`, `investment-scoring-ledger.csv`, `investment-scoring-brief.md` |
 | `managing-work-inventory` | Maintaining the portfolio of committed initiatives, active experiments, and operational responsibilities with verified sponsorship and ownership. | `work-inventory.md` |
 | `managing-team-skills-and-allocation` | Mapping team members (`MEM-X`), current skills/proficiency, growth interests, and active `WORK-X` assignments; exporting Excel CSV trackers and Mermaid workload charts. | `team-skills-and-allocation-register.md`, `team-work-tracker.csv` |
 | `aligning-strategy-and-portfolio` | Auditing end-to-end traceability (Province/AG/CSB → Vision → Objectives → Capabilities → Ideas → Work), TOGAF Transformation Readiness (`BTRA`), and strategic risk registers. | `alignment-traceability-matrix.md`, `strategic-risk-register.md` |

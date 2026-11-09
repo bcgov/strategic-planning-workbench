@@ -33,7 +33,7 @@ Guides users interactively to maintain the **Idea inventory** (*"What might we d
 1. **Interactive Capture (`raw`)**: Ask for the idea title, source, and problem/opportunity in plain language—allowing incomplete fields without judgment.
 2. **Clarify & Align (`explored`)**: Ask 1–2 questions to separate the underlying problem from the proposed solution and link to `OBJ-X` and `CAP-X`.
 3. **Stress-Test Assumptions (`validated`)**: Walk the user through the Riskiest Assumption Test (policy, privacy, judicial/operational fit, capacity) and suggest a small validation step.
-4. **Compare & Decide (`candidate` / `deferred` / `rejected`)**: Present a comparison table using [idea-evaluation.md](assets/templates/idea-evaluation.md) and ask the user to choose a disposition (`Promote`, `Explore`, `Defer`, `Combine`, `Reject`).
+4. **Compare & Decide (`candidate` / `deferred` / `rejected`)**: Present a comparison table using [idea-evaluation.md](assets/templates/idea-evaluation.md) (or route to `prioritizing-and-scoring-investments` for weighted 4-quadrant scoring) and ask the user to choose a disposition (`Promote`, `Explore`, `Defer`, `Combine`, `Reject`).
 5. **Recap & Promotion Gate**: Confirm the recap before updating `strategy/07-idea-inventory.md`; if promoted with confirmed sponsor/owner, chain to `managing-work-inventory`.
 
 ## Verification
