@@ -42,7 +42,7 @@ To ensure robust rendering across all markdown viewers, IDEs, and documentation 
 
 Use these high-contrast, accessible token hex values:
 
-```mermaid
+```text
 %% Direct style syntax
 style N fill:#F4F4F4,stroke:#555555,stroke-width:2px
 style I fill:#E8F1FA,stroke:#2B6EA6,stroke-width:2px
@@ -69,7 +69,7 @@ style LO fill:#F3E5F5,stroke:#7B4B94,stroke-width:2px
 
 Alternatively, define classes with `classDef` for clean visual separation:
 
-```mermaid
+```text
 classDef need fill:#F4F4F4,stroke:#555,color:#111
 classDef input fill:#E8F1FA,stroke:#2B6EA6,color:#111
 classDef activity fill:#E5F3F3,stroke:#258080,color:#111
