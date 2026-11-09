@@ -12,6 +12,10 @@
     "should_trigger": true
   },
   {
+    "query": "Create a Shared Vision Model canvas for our Court Administration Transformation program like the CATS business case example.",
+    "should_trigger": true
+  },
+  {
     "query": "Add this raw idea for an automated scheduling experiment to our idea backlog.",
     "should_trigger": false
   },

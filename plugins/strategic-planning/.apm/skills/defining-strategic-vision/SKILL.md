@@ -24,9 +24,10 @@ Guides teams through an interactive conversation to establish a shared strategic
 
 ## Quick start
 
-1. Read [vision-and-objectives-guide.md](references/vision-and-objectives-guide.md) for interactive coaching prompts and the activity-to-outcome test.
+1. Read [vision-and-objectives-guide.md](references/vision-and-objectives-guide.md) and [shared-vision-model-guide.md](references/shared-vision-model-guide.md) for interactive coaching prompts and the activity-to-outcome test.
 2. Walk the user through target future state, operating principles, outcome objectives, and expected value with a recap confirmation gate.
-3. Populate [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md), [strategic-vision-brief.md](assets/templates/strategic-vision-brief.md), and [benefits-dependency-map.md](assets/templates/benefits-dependency-map.md).
+3. Populate [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md), [strategic-vision-brief.md](assets/templates/strategic-vision-brief.md), [benefits-dependency-map.md](assets/templates/benefits-dependency-map.md), or [shared-vision-model.md](assets/templates/shared-vision-model.md).
+4. Generate outputs using [generate_shared_vision.py](scripts/generate_shared_vision.py).
 
 ## Workflow
 
@@ -34,7 +35,8 @@ Guides teams through an interactive conversation to establish a shared strategic
 2. **Co-Design Operating Principles**: Propose 4–6 candidate operating principles (each with Statement, Rationale, and Trade-Off Implication) and ask the user which ones fit their branch reality.
 3. **Coach Strategic Objectives (Outcome Test)**: Draft 3–6 outcome objectives (`OBJ-X`). If any input is a disguised activity, explain why and offer outcome reframings while routing the activity to `managing-idea-inventory`.
 4. **Map Public & Operational Value**: Connect each objective to public, service, operational, workforce, risk, and stewardship benefits in [benefits-dependency-map.md](assets/templates/benefits-dependency-map.md).
-5. **Recap Gate & Hand Off**: Confirm the [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md) summary and offer next steps (`planning-business-capabilities` or `rendering-strategic-visuals-and-decks`).
+5. **Shared Vision Model Option**: For major transformation business cases, draft the 8-dimension canvas using [cats-court-transformation-shared-vision.md](references/examples/cats-court-transformation-shared-vision.md) as a benchmark.
+6. **Recap Gate & Hand Off**: Confirm the [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md) summary and offer next steps (`planning-business-capabilities` or `rendering-strategic-visuals-and-decks`).
 
 ## Verification
 
@@ -44,6 +46,8 @@ Verify outputs against [acceptance-criteria.md](references/acceptance-criteria.m
 
 ## References
 
-- Methodology & interactive prompts: [vision-and-objectives-guide.md](references/vision-and-objectives-guide.md)
-- Templates: [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md) • [strategic-vision-brief.md](assets/templates/strategic-vision-brief.md) • [benefits-dependency-map.md](assets/templates/benefits-dependency-map.md)
+- Methodology & interactive prompts: [vision-and-objectives-guide.md](references/vision-and-objectives-guide.md) • [shared-vision-model-guide.md](references/shared-vision-model-guide.md)
+- Templates: [strategy-on-a-page.md](assets/templates/strategy-on-a-page.md) • [strategic-vision-brief.md](assets/templates/strategic-vision-brief.md) • [benefits-dependency-map.md](assets/templates/benefits-dependency-map.md) • [shared-vision-model.md](assets/templates/shared-vision-model.md)
+- Reference examples: [cats-court-transformation-shared-vision.md](references/examples/cats-court-transformation-shared-vision.md)
+- Generator scripts: [generate_shared_vision.py](scripts/generate_shared_vision.py)
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)

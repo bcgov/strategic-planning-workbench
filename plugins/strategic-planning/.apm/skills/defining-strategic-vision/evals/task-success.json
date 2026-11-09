@@ -21,5 +21,14 @@
       "Covers public/democratic value, service value, operational/workforce value, risk/compliance reduction, and stewardship",
       "Connects each benefit to required capabilities and organizational change in the Benefits Dependency Map"
     ]
+  },
+  {
+    "query": "Create a Shared Vision Model canvas for our Court Administration Transformation program like the CATS business case example.",
+    "expected_behavior": [
+      "Structures the canvas across the 8 public-sector dimensions (For, Who Need, This, Through, Will Enable, Which Support, Unlike, So As To Be)",
+      "Captures distinct target group needs for citizens, frontline practitioners, and the Judiciary",
+      "Separates controllable application outputs from measurable investment outcomes (increases and decreases)",
+      "Aligns upward with Ministry of Justice Service Plan goals and corporate access to justice priorities"
+    ]
   }
 ]
