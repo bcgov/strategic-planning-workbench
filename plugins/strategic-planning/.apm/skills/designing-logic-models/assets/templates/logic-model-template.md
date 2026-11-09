@@ -1,6 +1,6 @@
 # Logic Model & Results Chain: [Initiative or Objective Name]
 
-> **Status**: Draft | Reviewed | Approved  
+> **Status**: Draft (Template Example)  
 > **Date**: [YYYY-MM-DD]  
 > **Owning Team**: [Team Name]  
 > **Related Register IDs**: `OBJ-[X]`, `WORK-[X]`, `BEN-[X]`, `CAP-[X]`, `MSR-[X]`  

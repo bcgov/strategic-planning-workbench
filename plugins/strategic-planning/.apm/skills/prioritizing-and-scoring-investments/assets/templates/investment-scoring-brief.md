@@ -1,6 +1,6 @@
 # Investment Prioritization & Scoring Brief: [Portfolio / Fiscal Year]
 
-> **Status**: Draft | Under Review | Approved  
+> **Status**: Draft (Template Example)  
 > **Evaluation Date**: [YYYY-MM-DD]  
 > **Review Body**: [e.g., Justice Information Board / CSB Executive Committee]  
 > **Weighting Model**: Value ([50%]) × Ability to Deliver ([50%])
