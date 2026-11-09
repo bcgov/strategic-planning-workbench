@@ -1,0 +1,117 @@
+[
+  {
+    "id": "INV-101",
+    "name": "Remote Video Appearance Expansion for Regional Registries",
+    "description": "Deploy dedicated high-definition video appearance suites and network bandwidth upgrades across 14 rural and regional court registries to expand access to justice and reduce sheriff escort travel.",
+    "sponsor": "Executive Director, Regional Operations",
+    "lead_division": "Court Facilities & Operations",
+    "scores": {
+      "drivers": 8.5,
+      "alignment": 9.0,
+      "outcomes_and_benefits": 8.5,
+      "sector_benefits": 8.0,
+      "readiness": 8.0,
+      "extent_of_research": 8.5,
+      "investment_cost": 7.5,
+      "executive_support": 8.5,
+      "ease_of_implementation": 7.5
+    },
+    "value_score": 8.5,
+    "delivery_score": 8.0,
+    "composite_score": 8.25,
+    "quadrant": "Strategic Priorities & Quick Wins",
+    "recommendation": "Fund and deploy across Phase 1 priority regional registries"
+  },
+  {
+    "id": "INV-102",
+    "name": "Automated Multi-Jurisdiction Court Scheduling & Judicial Rota Engine",
+    "description": "Cross-jurisdictional automated scheduling engine coordinating judicial sitting rotas, courtrooms, court clerks, and sheriff escorts across Provincial and Supreme Courts.",
+    "sponsor": "Assistant Deputy Minister, Court Services Branch",
+    "lead_division": "Business Innovation & Strategic Technology",
+    "scores": {
+      "drivers": 9.0,
+      "alignment": 9.5,
+      "outcomes_and_benefits": 9.0,
+      "sector_benefits": 8.5,
+      "readiness": 4.0,
+      "extent_of_research": 4.5,
+      "investment_cost": 3.5,
+      "executive_support": 7.0,
+      "ease_of_implementation": 3.0
+    },
+    "value_score": 9.0,
+    "delivery_score": 4.4,
+    "composite_score": 6.7,
+    "quadrant": "Strategic Big Bets",
+    "recommendation": "Fund 6-month discovery spike and judicial governance consultation before capital allocation"
+  },
+  {
+    "id": "INV-103",
+    "name": "Digital Exhibit & Evidence Intake Vault",
+    "description": "Secure, tamper-evident digital evidence repository with cryptographic chain-of-custody verification for multimedia evidence submitted by police, Crown, and defence.",
+    "sponsor": "Director, Court Digital Solutions",
+    "lead_division": "Information & Digital Technology",
+    "scores": {
+      "drivers": 9.5,
+      "alignment": 8.5,
+      "outcomes_and_benefits": 8.5,
+      "sector_benefits": 9.0,
+      "readiness": 6.5,
+      "extent_of_research": 7.0,
+      "investment_cost": 5.5,
+      "executive_support": 8.0,
+      "ease_of_implementation": 6.0
+    },
+    "value_score": 8.88,
+    "delivery_score": 6.6,
+    "composite_score": 7.74,
+    "quadrant": "Strategic Priorities & Quick Wins",
+    "recommendation": "Proceed with procurement of certified digital evidence SaaS platform and pilot"
+  },
+  {
+    "id": "INV-104",
+    "name": "Custom Microfilm Archival Re-scanning Hardware Project",
+    "description": "Procurement of specialized optical robotic scanners to digitize historical 1960-1980 microfilms stored in basement archive vaults.",
+    "sponsor": "Manager, Records & Information Management",
+    "lead_division": "Corporate Registry Services",
+    "scores": {
+      "drivers": 3.0,
+      "alignment": 3.0,
+      "outcomes_and_benefits": 3.5,
+      "sector_benefits": 2.5,
+      "readiness": 4.0,
+      "extent_of_research": 3.5,
+      "investment_cost": 3.0,
+      "executive_support": 3.5,
+      "ease_of_implementation": 4.0
+    },
+    "value_score": 3.0,
+    "delivery_score": 3.6,
+    "composite_score": 3.3,
+    "quadrant": "Deprioritize & Defer",
+    "recommendation": "Decline bespoke hardware purchase; utilize standard provincial archival scanning service on demand"
+  },
+  {
+    "id": "INV-105",
+    "name": "Online Self-Service Violation & Fine Dispute Resolution Portal",
+    "description": "Public-facing self-service web portal for reviewing traffic and provincial statute violations, requesting extensions, and submitting written dispute statements.",
+    "sponsor": "Director, Operational Policy & Registry Modernization",
+    "lead_division": "Court Digital Services",
+    "scores": {
+      "drivers": 4.5,
+      "alignment": 4.5,
+      "outcomes_and_benefits": 4.5,
+      "sector_benefits": 4.5,
+      "readiness": 8.0,
+      "extent_of_research": 8.0,
+      "investment_cost": 8.0,
+      "executive_support": 8.0,
+      "ease_of_implementation": 8.0
+    },
+    "value_score": 4.5,
+    "delivery_score": 8.0,
+    "composite_score": 6.25,
+    "quadrant": "Tactical Efficiencies",
+    "recommendation": "Deliver opportunistically using existing B.C. Gov digital forms platform"
+  }
+]

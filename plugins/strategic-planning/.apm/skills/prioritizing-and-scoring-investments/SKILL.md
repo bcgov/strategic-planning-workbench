@@ -28,13 +28,14 @@ Guides executive sponsors and teams interactively to evaluate, weight, and rank 
 1. Review [scoring-rubric-and-weighting-guide.md](references/scoring-rubric-and-weighting-guide.md) and [4-quadrant-portfolio-guide.md](references/4-quadrant-portfolio-guide.md).
 2. Configure category weights in [investment-scoring-framework.json](assets/templates/investment-scoring-framework.json) or accept standard defaults.
 3. Intake and score proposals in [investment-scoring-ledger.json](assets/templates/investment-scoring-ledger.json) or [investment-scoring-ledger.csv](assets/templates/investment-scoring-ledger.csv).
-4. Generate the 4-quadrant visual and executive report using [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py) and compile [investment-scoring-brief.md](assets/templates/investment-scoring-brief.md).
+4. Generate the 4-quadrant visual and executive report using [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py) or run the live dynamic dashboard with [interactive_investment_app.py](scripts/interactive_investment_app.py).
+5. Compile findings into [investment-scoring-brief.md](assets/templates/investment-scoring-brief.md).
 
 ## Workflow
 
 1. **Weighting Configuration**: Confirm category weights (summing to 100 points per axis) and overall axis split (default 50% Value / 50% Delivery).
 2. **Interactive Proposal Scoring**: Walk through candidate proposals across 4 Value criteria (Drivers, Alignment, Outcomes, Sector) and 5 Delivery criteria (Readiness, Research, Cost, Sponsor, Ease) on the 0–10 rubric.
-3. **Calculate & Classify**: Run [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py) to compute normalized scores and classify into Quadrants (Q1 Strategic Priority, Q2 Big Bet, Q3 Tactical, Q4 Defer).
+3. **Calculate & Classify**: Run [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py) or [interactive_investment_app.py](scripts/interactive_investment_app.py) to compute normalized scores, adjust live filters, and classify into Quadrants (Q1 Strategic Priority, Q2 Big Bet, Q3 Tactical, Q4 Defer).
 4. **Recap Confirmation Gate**: Present the ranking table and visual placement for leadership validation.
 5. **Commitment Handoff**: Promote Q1 approved items to `managing-work-inventory` (`WORK-X`) and archive rejected or deferred proposals in `strategy/07-idea-inventory.md`.
 
@@ -48,5 +49,5 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 
 - Framework & rubrics: [scoring-rubric-and-weighting-guide.md](references/scoring-rubric-and-weighting-guide.md) • [4-quadrant-portfolio-guide.md](references/4-quadrant-portfolio-guide.md)
 - Templates: [investment-scoring-framework.json](assets/templates/investment-scoring-framework.json) • [investment-scoring-ledger.json](assets/templates/investment-scoring-ledger.json) • [investment-scoring-ledger.csv](assets/templates/investment-scoring-ledger.csv) • [investment-scoring-brief.md](assets/templates/investment-scoring-brief.md)
-- Generator script: [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py)
+- Tools: [generate_investment_quadrant.py](scripts/generate_investment_quadrant.py) • [interactive_investment_app.py](scripts/interactive_investment_app.py)
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
