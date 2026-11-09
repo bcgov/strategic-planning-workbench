@@ -20,7 +20,7 @@ This directory provides public-sector reference logic models and results chains 
 
 All example diagrams use standard B.C. Government Design System tokens and include the Mermaid configuration directive:
 
-```mermaid
+```text
 %%{init: {"flowchart": {"wrappingWidth": 460, "minNodeWidth": 360}} }%%
 ```
 
