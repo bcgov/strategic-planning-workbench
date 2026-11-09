@@ -34,6 +34,7 @@ python -m pytest
 - Use `designing-logic-models` when constructing, stress-testing, or documenting program logic models, results chains, outcome chains, theories of change, or results frameworks connecting inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes.
 - Use `planning-business-capabilities` when translating strategic objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps.
 - Use `managing-idea-inventory` when capturing, clarifying, assumption-testing, or evaluating unapproved opportunities in the Idea Inventory (`IDEA-X`).
+- Use `prioritizing-and-scoring-investments` when evaluating, weighting, and ranking candidate projects, investments, or requests for funding (RFF) across Value/ROI and Ability to Deliver using 4-quadrant scatter charts and JSON/CSV scoring ledgers.
 - Use `managing-work-inventory` when cataloging committed initiatives, active experiments, and operational work (`WORK-X`) or promoting approved ideas.
 - Use `managing-team-skills-and-allocation` when mapping team member skills (`MEM-X`), growth interests, and active `WORK-X` assignments or exporting Excel/CSV and Mermaid workload trackers.
 - Use `aligning-strategy-and-portfolio` when interactively auditing end-to-end traceability, TOGAF Transformation Readiness (`BTRA`), and strategic, policy, privacy, and delivery risks (`RSK-X`).

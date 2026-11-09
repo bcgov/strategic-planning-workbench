@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Evaluate our 5 candidate court IT projects using the weighted scoring framework and plot them on a 4-quadrant chart by Value and Delivery readiness.",
+    "should_trigger": true
+  },
+  {
+    "query": "Score this request for funding for a self-service registry portal across the Value and Ability to Deliver criteria.",
+    "should_trigger": true
+  },
+  {
+    "query": "Adjust our investment framework weights to 70% Value and 30% Ability to Deliver, and re-rank our portfolio.",
+    "should_trigger": true
+  },
+  {
+    "query": "Here is a quick raw idea I had in the shower about voice transcription: log it in our ideas.",
+    "should_trigger": false
+  },
+  {
+    "query": "Sequence our approved committed projects into Now, Next, and Later horizons.",
+    "should_trigger": false
+  },
+  {
+    "query": "Check if any active work items have no assigned team members.",
+    "should_trigger": false
+  }
+]

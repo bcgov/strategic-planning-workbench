@@ -104,8 +104,8 @@ When a team uses `strategic-planning-workbench` on an active planning engagement
    Establishes multi-tier context, stakeholder viewpoints, current state, target vision, 4-part TOGAF operating principles (`PRN-X`), outcome objectives (`OBJ-X`), benefits (`BEN-X`), value streams (`VST-X`), and required capabilities (`CAP-X`).
 2. **Causal Pathway Modeling (`designing-logic-models` — ADM Phase B & Phase E)**:
    Connects inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes for specific programs, strategic objectives (`OBJ-X`), or committed initiatives (`WORK-X`), stress-testing causal hypotheses, assumptions, and logframe indicators.
-3. **Inventory Capture, Team Allocation & Triage (`managing-idea-inventory`, `managing-work-inventory` & `managing-team-skills-and-allocation` — ADM Phase E)**:
-   Separates possibilities (`IDEA-X`) from committed work (`WORK-X`), enforces the Promotion Gate, and maps team skills, growth interests, and `MEM-X` capacity.
+3. **Inventory Capture, Scoring & Team Allocation (`managing-idea-inventory`, `prioritizing-and-scoring-investments`, `managing-work-inventory` & `managing-team-skills-and-allocation` — ADM Phase E)**:
+   Separates possibilities (`IDEA-X`) from committed work (`WORK-X`), evaluates candidate investments across Value/ROI and Ability to Deliver using weighted 4-quadrant scoring, enforces the Promotion Gate, and maps team skills, growth interests, and `MEM-X` capacity.
 4. **Alignment, Readiness & Plateau Sequencing (`aligning-strategy-and-portfolio` & `sequencing-roadmaps-and-measures` — ADM Phase E & Phase F)**:
    Audits the full traceability chain, assesses TOGAF Business Transformation Readiness (`BTRA`), logs strategic risks, defines Transition State plateaus (`PLT-X`) across horizons, and establishes balanced measures (`MSR-X`).
 5. **Living Ingestion, Change Triage & Dispensations (`updating-strategic-registers` — ADM Phase G, Phase H & Requirements Management)**:
@@ -146,6 +146,7 @@ strategic-planning-workbench/
         │       ├── managing-team-skills-and-allocation/
         │       ├── managing-work-inventory/
         │       ├── planning-business-capabilities/
+        │       ├── prioritizing-and-scoring-investments/
         │       ├── rendering-strategic-visuals-and-decks/
         │       ├── running-strategic-planning-cycle/
         │       ├── sequencing-roadmaps-and-measures/
