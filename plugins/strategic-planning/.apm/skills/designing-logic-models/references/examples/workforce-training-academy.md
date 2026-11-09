@@ -1,5 +1,6 @@
 # Worked Example 2: Workforce Training & Capability Development
 
+> **Status**: Draft (Example Only)  
 > **Initiative ID**: `WORK-024`  
 > **Scope**: In-House Digital Delivery & Cloud Skills Academy  
 > **Methodology Depth**: Extended Logic Model

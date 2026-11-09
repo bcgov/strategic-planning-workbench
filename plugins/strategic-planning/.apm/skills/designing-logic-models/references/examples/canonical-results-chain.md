@@ -1,5 +1,7 @@
 # Canonical Baseline Results Chain (Left-to-Right)
 
+> **Status**: Draft (Example Only)  
+
 A standard public-sector results pathway demonstrating progressive causal transitions from investments to ultimate public value in horizontal layout (`flowchart LR`).
 
 ```mermaid

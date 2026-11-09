@@ -2,7 +2,7 @@
 
 **Branch / Team:** [Name]  
 **Date:** [YYYY-MM-DD]  
-**Status:** Draft | Working | Baseline  
+**Status:** Draft (Template Example)  
 
 ## 1. Leadership Direction & Mandate
 

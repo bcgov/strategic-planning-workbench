@@ -2,7 +2,7 @@
 
 **Branch / Team:** [Name]  
 **Date:** [YYYY-MM-DD]  
-**Status:** Draft | Working | Approved  
+**Status:** Draft (Template Example)  
 
 ## 1. Executive Summary
 [Concise synthesis of the strategic direction, why it is needed now, and what it establishes]

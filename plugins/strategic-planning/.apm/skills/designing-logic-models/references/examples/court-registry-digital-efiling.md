@@ -1,5 +1,6 @@
 # Worked Example 1: Court Registry Digital E-Filing System
 
+> **Status**: Draft (Example Only)  
 > **Initiative ID**: `WORK-012`  
 > **Scope**: Provincial Court Registry Modernization  
 > **Methodology Depth**: Extended Logic Model
