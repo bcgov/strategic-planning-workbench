@@ -9,7 +9,5 @@ __pycache__/
 # Local agent memory and runtime context
 context/
 
-# Team living strategy registers & outputs (local workspace data)
-strategy/*
-!strategy/README.md
-!strategy/.gitkeep
+# Team living strategy registers & outputs (local workspace data, kept private on disk)
+strategy/
