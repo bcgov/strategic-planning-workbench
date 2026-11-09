@@ -30,6 +30,11 @@ To ensure robust rendering across all markdown viewers, IDEs, and documentation 
 6. **Layout**:
    - Use `flowchart LR` for compact models with brief text.
    - Use `flowchart TB` when nodes contain multi-line descriptions, multiple items per stage, or a top Program Need block.
+7. **Box width & text wrapping**:
+   - Mermaid defaults to a narrow `120px` wrapping width, which clips multi-line text horizontally.
+   - Always include an `%%{init: ...}%%` directive at the top of the diagram:
+     - For `flowchart TB`: `%%{init: {"flowchart": {"wrappingWidth": 450, "minNodeWidth": 350}} }%%`
+     - For `flowchart LR`: `%%{init: {"flowchart": {"wrappingWidth": 260, "minNodeWidth": 220}} }%%`
 
 ---
 

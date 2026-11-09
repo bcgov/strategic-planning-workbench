@@ -22,6 +22,7 @@ This guide provides tested, public-sector reference logic models tailored for th
 This canonical baseline represents a standard public-sector digital service transformation results chain:
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 260, "minNodeWidth": 220}} }%%
 flowchart LR
 
 I["INPUTS<br/>What we invest<br/><br/>Program funding<br/>Staff and expertise<br/>Technology platform<br/>Existing service data"]
@@ -54,9 +55,10 @@ style LO fill:#F3E5F5,stroke:#7B4B94,stroke-width:2px
 
 ## Program Need-Driven Court Evidence Model
 
-This model demonstrates the top-to-bottom (`flowchart TB`) architecture with an explicit **Program Need** anchor (`N -->|"justifies"| I`) and reusable `classDef` CSS classes. It captures court validation rules, digital exhibit management, and verified credential access:
+This model demonstrates the top-to-bottom (`flowchart TB`) architecture with an explicit **Program Need** anchor (`N -->|"justifies"| I`), expanded box widths via `wrappingWidth` and `minNodeWidth`, and reusable `classDef` CSS classes. It captures court validation rules, digital exhibit management, and verified credential access:
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 450, "minNodeWidth": 350}} }%%
 flowchart TB
 
 N["PROGRAM NEED<br/>Court processes remain manual,<br/>high-touch and fragmented.<br/>Validation often occurs late.<br/>Digital evidence is hard to manage.<br/>Policy changes require manual effort."]
@@ -133,6 +135,7 @@ class LO longterm
 ### Mermaid Diagram
 
 ```mermaid
+%%{init: {"flowchart": {"wrappingWidth": 420, "minNodeWidth": 320}} }%%
 flowchart TD
     IN1["Inputs<br/>Modern platform, funding & court expertise"]
     AC1["Activities<br/>Design e-filing portal & train registry staff"]
