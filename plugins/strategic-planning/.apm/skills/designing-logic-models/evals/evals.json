@@ -1,0 +1,46 @@
+[
+  {
+    "query": "Help us create a program logic model for our new digital court scheduling initiative.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a results chain showing how our process redesign activities lead to immediate outputs and long-term public service outcomes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review our Theory of Change and check for missing intermediate outcomes or unsupported causal assumptions.",
+    "should_trigger": true
+  },
+  {
+    "query": "Design a 7-stage logic model with Mermaid flowchart and BC Gov tokens for our workforce training program.",
+    "should_trigger": true
+  },
+  {
+    "query": "Convert this project deliverable list into an outcome chain with clear distinctions between activities, outputs, and impacts.",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit our project logframe matrix and flag any activities disguised as outcomes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft a high-level Strategic Vision Brief and Strategy on a Page for our branch.",
+    "should_trigger": false
+  },
+  {
+    "query": "Map our business capabilities and evaluate 5-pillar maturity gaps across our court service value stream.",
+    "should_trigger": false
+  },
+  {
+    "query": "Log this raw idea for a chatbot experiment into our idea inventory backlog.",
+    "should_trigger": false
+  },
+  {
+    "query": "Sequence our committed projects into Now, Next, and Later horizon roadmaps with transition state plateaus.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write unit tests for our Python API router.",
+    "should_trigger": false
+  }
+]

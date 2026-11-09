@@ -1,0 +1,29 @@
+[
+  {
+    "query": "Here is our draft chain: Inputs: $200k funding; Activities: Build court scheduling portal; Outputs: Faster court hearing access; Outcomes: Modernized court system. Refine this into a validated logic model.",
+    "expected_behavior": [
+      "Detects that 'Build court scheduling portal' is an activity that produces an output (portal deployed), not an outcome itself",
+      "Detects that 'Faster court hearing access' was incorrectly labelled as an output when it is actually an outcome (intermediate outcome)",
+      "Separates outputs from immediate, intermediate, and long-term outcomes using the 7-stage canonical sequence",
+      "Validates against anti-patterns (VAL-02, VAL-03, VAL-07)",
+      "Generates a BC Gov-styled Mermaid flowchart and structured results matrix"
+    ]
+  },
+  {
+    "query": "Create an extended Theory of Change for an AI document summarization initiative for court trial coordinators.",
+    "expected_behavior": [
+      "Distinguishes technology deployment (output/enabler) from operational time savings (intermediate outcome) and public justice access (long-term contribution)",
+      "Explicitly articulates assumptions (zero model hallucination, privacy compliance) and external factors (judicial directions)",
+      "Includes target population and beneficiary definitions",
+      "Employs backward design from long-term public value to necessary prerequisites"
+    ]
+  },
+  {
+    "query": "Generate a measurement-ready results framework / logframe for a digital public service modernization project.",
+    "expected_behavior": [
+      "Populates indicators, baselines, targets, means of verification, and critical assumptions across all results tiers",
+      "Ensures each output has a designated user group and verifiable delivery acceptance criterion",
+      "Applies B.C. Government plain-language guidelines and sentence case"
+    ]
+  }
+]

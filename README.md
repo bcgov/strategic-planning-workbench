@@ -75,13 +75,14 @@ When starting or resuming a session, `running-strategic-planning-cycle` asks whe
 | `strategy/10-roadmap-and-success-measures.md` | High-level sequencing (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), decision gates (`GATE-X`), and outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning` (11 Skills)
+## Skills in `plugins/strategic-planning` (12 Skills)
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
 | `running-strategic-planning-cycle` | **Front-door orchestrator**: checks existing `strategy/` registers, offers a 5-option entry menu (Top-Down, Bottom-Up, Resume, Import Notes, Fast-Track Briefing), coaches across TOGAF ADM stages, and maintains `00-planning-session-status.md`. | Planning Session Status & Readiness Scorecard (`00-planning-session-status.md`) |
 | `analyzing-strategic-context` | Capture multi-tier leadership direction, business drivers, stakeholder power/interests ("the players") and TOGAF Phase A viewpoints, current state, and assumptions. | Strategic Context Brief, Stakeholder Map, Assumptions & Evidence Register |
 | `defining-strategic-vision` | Articulate target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives, and expected public/business value. | Strategy on a Page, Strategic Vision Brief, Benefits Dependency Map |
+| `designing-logic-models` | Design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | Logic Model & Results Chain (`logic-model-template.md`), BC Gov Mermaid Diagrams, Logframe Measurement Matrix |
 | `planning-business-capabilities` | Translate vision and objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps. | Value Stream & Capability Map + Gap Assessment |
 | `managing-idea-inventory` | Capture, clarify, stress-test, and evaluate unapproved ideas through a structured promotion funnel. | Idea Inventory, Idea Record, Idea Evaluation Brief |
 | `managing-work-inventory` | Maintain the portfolio of committed initiatives, active experiments, and operational work linked to sponsors and owners. | Work Inventory |
