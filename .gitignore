@@ -5,3 +5,11 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .DS_Store
+
+# Local agent memory and runtime context
+context/
+
+# Team living strategy registers & outputs (local workspace data)
+strategy/*
+!strategy/README.md
+!strategy/.gitkeep

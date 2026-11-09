@@ -75,7 +75,7 @@ When starting or resuming a session, `running-strategic-planning-cycle` asks whe
 | `strategy/10-roadmap-and-success-measures.md` | High-level sequencing (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), decision gates (`GATE-X`), and outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning` (12 Skills)
+## Skills in `plugins/strategic-planning` (13 Skills)
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
@@ -85,13 +85,24 @@ When starting or resuming a session, `running-strategic-planning-cycle` asks whe
 | `designing-logic-models` | Design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | Logic Model & Results Chain (`logic-model-template.md`), BC Gov Mermaid Diagrams, Logframe Measurement Matrix |
 | `planning-business-capabilities` | Translate vision and objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps. | Value Stream & Capability Map + Gap Assessment |
 | `managing-idea-inventory` | Capture, clarify, stress-test, and evaluate unapproved ideas through a structured promotion funnel. | Idea Inventory, Idea Record, Idea Evaluation Brief |
-| `prioritizing-and-scoring-investments` | Evaluate, weight, and rank candidate investments across Value/ROI and Ability to Deliver using a 4-quadrant scatter chart and dual-format JSON/CSV ledgers. | Investment Scoring Framework, Scoring Ledger (JSON/CSV), 4-Quadrant Visual (HTML), Investment Scoring Brief |
+| `prioritizing-and-scoring-investments` | Evaluate, weight, and rank candidate investments across Value/ROI and Ability to Deliver using a 4-quadrant scatter chart, interactive dashboard, and dual-format JSON/CSV ledgers. | Investment Scoring Framework, Scoring Ledger (JSON/CSV), Interactive Web Dashboard, Investment Scoring Brief |
 | `managing-work-inventory` | Maintain the portfolio of committed initiatives, active experiments, and operational work linked to sponsors and owners. | Work Inventory |
 | `managing-team-skills-and-allocation` | Map team members, current skills, growth interests, and active `WORK-X` assignments; detect key-person bottlenecks and export Excel/CSV & Mermaid visuals. | Team Skills & Allocation Register, Excel Work Tracker CSV, Mermaid Workload Diagrams |
 | `aligning-strategy-and-portfolio` | Audit end-to-end traceability, TOGAF Business Transformation Readiness (`BTRA`), and strategic risks. | Alignment Traceability Matrix, Strategic Risk & Readiness Register |
 | `sequencing-roadmaps-and-measures` | Sequence committed work into Now/Next/Later roadmaps with TOGAF Transition State plateaus (`PLT-X`), decision gates, OKRs, leading indicators, and guardrails. | Strategic Roadmap & Plateaus, Success Measures Register |
 | `updating-strategic-registers` | Import and incrementally update evolving priorities, new drivers, stakeholder shifts, new ideas, work progress, and time-boxed dispensations (`DSP-X`) with TOGAF Phase H change classification. | Multi-Tier Mandate Register, Register Update & Dispensation Changelog |
 | `rendering-strategic-visuals-and-decks` | Render Mermaid alignment trees, value-stream maps, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive slide decks. | Visual Strategy Package (Mermaid), B.C. Gov HTML Dashboard, Executive Strategy Deck |
+
+## Interactive Investment Prioritization & 4-Quadrant Workbench
+
+The `prioritizing-and-scoring-investments` skill includes a standalone, zero-dependency interactive dashboard (`interactive_investment_app.py`) for evaluating candidate investments, requests for funding (RFF), and proposed project portfolios:
+
+![Investment Prioritization Workbench](docs/images/investment-prioritization-workbench.jpg)
+
+- **Dynamic Quadrant Filtering**: Instantly toggle visibility for Q1 (*Strategic Priorities & Quick Wins*), Q2 (*Strategic Big Bets*), Q3 (*Tactical Efficiencies*), and Q4 (*Deprioritize & Defer*).
+- **Live Search & Score Thresholds**: Filter proposals dynamically by name, sponsor, division, or composite score.
+- **Real-Time Weight Sliders**: Adjust the overall Value vs. Delivery balance (e.g., 50/50 vs 70/30) and individual category weights to see scatter bubbles re-plot in real time.
+- **Interactive Onboarding & Scoring Modal**: Score candidate investments across anchored 0–10 rubrics and save updates directly to disk in both JSON and CSV ledgers.
 
 ## Repository Navigation & Contribution Workflow
 
