@@ -1,5 +1,6 @@
 # Worked Example 3: Technology & AI Adoption in Justice Services
 
+> **Status**: Draft (Example Only)  
 > **Initiative ID**: `WORK-031` / `IDEA-044`  
 > **Scope**: Secure AI Transcript & Docket Summarizer  
 > **Methodology Depth**: Extended Logic Model

@@ -1,6 +1,6 @@
 # Court Administration Transformation Initiative (CATS) Shared Vision Model
 
-> **Status**: Approved Reference Business Case Example  
+> **Status**: Draft (Example Only)  
 > **Owning Organization**: Ministry of Justice / Court Services Branch (CSB)  
 > **Strategic Context**: B.C. Justice Reform White Paper (October 2012) & Court Administration Transformation Strategy (CATS)  
 > **Format**: B.C. Government Public Sector Shared Vision Model Canvas

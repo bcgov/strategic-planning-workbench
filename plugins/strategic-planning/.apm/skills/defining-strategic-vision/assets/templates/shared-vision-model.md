@@ -1,6 +1,6 @@
 # Shared Vision Model: [Initiative or Program Name]
 
-> **Status**: Draft | Reviewed | Approved  
+> **Status**: Draft (Template Example)  
 > **Date**: [YYYY-MM-DD]  
 > **Owning Program / Branch**: [Ministry / Division / Court Services Branch]  
 > **Executive Sponsors**: [Executive Director / Sponsors]  

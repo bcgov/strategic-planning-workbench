@@ -1,7 +1,7 @@
 # Program Logic Model: Court Digital Policy Validation & Evidence Modernization
 
 > **Scope**: Court Services Branch (CSB) Digital Transformation  
-> **Status**: Reviewed & Approved  
+> **Status**: Draft (Example Only)  
 > **Methodology Depth**: Measurement-Ready (Results Framework / Logframe)  
 > **Related Register IDs**: `OBJ-CSB-002`, `WORK-019`, `CAP-CSB-004`, `MSR-CSB-008`
 
