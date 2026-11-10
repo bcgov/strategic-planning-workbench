@@ -14,3 +14,11 @@ strategy/
 
 # Built Copilot Cowork packages (rebuild with the packaging-copilot-cowork-plugins scripts)
 dist/
+
+
+# APM dependencies
+apm_modules/
+# Local APM install outputs (generated copies of plugins/strategic-planning skills)
+.agents/skills/
+.claude/skills/
+apm.lock.yaml
