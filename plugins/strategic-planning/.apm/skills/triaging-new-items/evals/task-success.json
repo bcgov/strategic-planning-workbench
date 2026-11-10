@@ -1,0 +1,105 @@
+[
+  {
+    "query": "Our notes say: 'build an AI tool for case search', 'monthly statistics report', 'pilot of e-filing kiosks running since March, nobody funds it'. Triage these.",
+    "expected_behavior": [
+      "Splits the AI tool into a problem and a solution and routes both to the idea inventory (the problem as observed, the solution as raw)",
+      "Routes the monthly report as an ongoing operational item to the work inventory",
+      "Flags the kiosk pilot as a Shadow Operation and asks for a sponsor and owner decision",
+      "Presents a recap table and waits for confirmation before saving the triage log"
+    ]
+  },
+  {
+    "query": "Add 'migrate the document templates' as a work package under the case-search project.",
+    "expected_behavior": [
+      "Checks that the parent project exists in the work inventory or asks to onboard it first",
+      "Asks for a deliverable and due date",
+      "Routes to the Work mode of developing-and-managing-strategy with a Parent Work ID rather than creating a stand-alone project"
+    ]
+  },
+  {
+    "query": "The director approved the kiosk pilot. Log it.",
+    "expected_behavior": [
+      "Treats it as Approved with a sponsor but asks who the owner is and whether capacity exists",
+      "If capacity is not confirmed, routes it as a decision gate flagged Capacity unconfirmed, not as committed work",
+      "Does not create records and saves only the triage log after confirmation"
+    ]
+  },
+  {
+    "query": "Here are 15 notes from our meeting. Sort them out.",
+    "expected_behavior": [
+      "Summarizes what it understood in one table and asks only about unclear items",
+      "Asks at most two questions per turn with a recommended default",
+      "Waits for confirmation before saving the triage log"
+    ]
+  },
+  {
+    "query": "Registry clerks keep telling us case search is too slow.",
+    "expected_behavior": [
+      "Classifies it as a Problem, not a Solution, and asks who is affected and how often",
+      "Routes it to Ideas mode with the problem starting at state observed",
+      "Does not propose a fix as part of the problem record"
+    ]
+  },
+  {
+    "query": "Two of our clerks want to take a records management course next quarter.",
+    "expected_behavior": [
+      "Classifies it as Training, not a project",
+      "Routes it to managing-team-skills-and-allocation as a learning assignment or growth interest",
+      "Asks whether funding or a deliverable is involved and, if so, flags Funding request and adds an idea rather than creating work"
+    ]
+  },
+  {
+    "query": "We need funding for a new e-filing kiosk. A director likes it.",
+    "expected_behavior": [
+      "Classifies it as a Solution with a Funding request flag and splits out the underlying problem",
+      "Records the sponsor but notes no owner or capacity, so it is not committed",
+      "Routes it to Ideas first and says what is needed before it can be scored; does not jump to Score or Work"
+    ]
+  },
+  {
+    "query": "Leadership has to choose between the vendor platform and building in-house. Also WORK-012 is blocked on the privacy assessment.",
+    "expected_behavior": [
+      "Splits two rows: a Decision and a Blocker",
+      "Routes the decision to Roadmap as a decision gate and the blocker to Work as Blocked on WORK-012",
+      "Writes only the triage log"
+    ]
+  },
+  {
+    "query": "We were allowed a temporary workaround for the intake form until March because of the court rule change.",
+    "expected_behavior": [
+      "Classifies it as an Exception, not a project",
+      "Routes it to Update mode as a dispensation with an expiry date and remediation trigger"
+    ]
+  },
+  {
+    "query": "The court rules changed last month and now require e-service by March.",
+    "expected_behavior": [
+      "Classifies it as a Driver (a pressure), not a project or a strategy change",
+      "Routes it to Update mode as a DRV-X entry in register 01 with source and date",
+      "Asks whether it exposes an unsolved need and offers to log a Problem or Opportunity separately"
+    ]
+  },
+  {
+    "query": "We assume central IT will fund the licence, and policy requires a privacy impact assessment.",
+    "expected_behavior": [
+      "Splits two rows: an Assumption and a Constraint",
+      "Routes both to Update mode (register 06 strategy sections) and notes dependent risks and work as follow-ups",
+      "Does not create a risk automatically"
+    ]
+  },
+  {
+    "query": "A new analyst starts in January and one of our leads is going on leave.",
+    "expected_behavior": [
+      "Classifies both as Team change",
+      "Routes them to managing-team-skills-and-allocation, not to work or ideas"
+    ]
+  },
+  {
+    "query": "Follow up with finance about the invoice. Also WORK-012 is now complete.",
+    "expected_behavior": [
+      "Treats the follow-up as an Action item and does not create a record",
+      "Treats WORK-012 complete as a Status update, skips triage and hands it to Work mode",
+      "Writes only the triage log, and only if there is anything to log"
+    ]
+  }
+]

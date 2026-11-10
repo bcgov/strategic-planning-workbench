@@ -25,5 +25,13 @@
       "Ensures each output has a designated user group and verifiable delivery acceptance criterion",
       "Applies B.C. Government plain-language guidelines and sentence case"
     ]
+  },
+  {
+    "query": "I need a logic model for our new registry service.",
+    "expected_behavior": [
+      "Starts with a short question or menu about the program and its outcomes",
+      "Asks 1-2 questions per turn and explains terms like 'output' and 'outcome' in plain language",
+      "Confirms the model before saving the diagram"
+    ]
   }
 ]

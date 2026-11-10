@@ -1,6 +1,6 @@
 ---
 name: managing-team-skills-and-allocation
-description: "Guides users interactively to manage team members, their current skills, proficiency levels, learning/growth interests, and work allocations linked to the committed Work Inventory and Business Capabilities, producing Markdown registers, Excel/CSV trackers, and Mermaid workload visuals. Use when mapping team skills and interests, tracking who is assigned to which projects or operational work, detecting key-person bottlenecks, or generating team workload visuals and spreadsheets."
+description: "Guides users interactively to manage team members, their current skills, proficiency levels, learning/growth interests, and work allocations linked to the committed work inventory and business capabilities, producing Markdown registers, Excel/CSV trackers, and Mermaid workload visuals. Use when mapping team skills and interests, tracking who is assigned to which projects or operational work, detecting key-person bottlenecks, confirming capacity before work is committed, or generating team workload visuals and spreadsheets. Not for recording, scoring or sequencing the work items themselves (use developing-and-managing-strategy) sorting new items (use triaging-new-items), logic models (use designing-logic-models) or decks and dashboards (use rendering-strategic-visuals-and-decks)."
 ---
 
 # Managing team skills and allocation
@@ -17,10 +17,12 @@ Guides users interactively to map **team members (`MEM-X`), their current skills
 
 ## Constraints
 
-1. **Interactive HITL pacing & format choice**: Open with a numbered action menu, ask 1–2 plain-language questions at a time, and let the user choose their preferred output format (`1. Markdown register + Mermaid workload visuals (Recommended)`, `2. Excel-ready CSV work & skills tracker`, `3. Both`).
+1. **Guided interaction and format choice** (see [guided-interaction.md](references/guided-interaction.md)): Open with a numbered action menu, ask 1–2 plain-language questions at a time, and let the user choose their preferred output format (`1. Markdown register + Mermaid workload visuals (Recommended)`, `2. Excel-ready CSV work & skills tracker`, `3. Both`).
 2. **Only assign committed work**: Active work allocations must reference verified items from the Committed work inventory (`WORK-X`). Unapproved ideas (`IDEA-X`) may be linked *only* as **Growth / exploration interests**, never as active project assignments.
 3. **Constructive developmental framing**: Frame skills and capacity data to identify growth opportunities, co-mentoring pairs, and single-point-of-failure ("bus factor") risks—never as punitive surveillance.
-4. **B.C. Government Design System style**: Use sentence case for headings and labels, plain language, zero emoji, and confirm via a recap gate before saving.
+4. **Supply capacity evidence, never approve work**: An allocation (person, `WORK-X`, role, percent, source, date) is the capacity evidence that `developing-and-managing-strategy` needs before a record can be committed. Record it when the owner confirms it; when it closes a `Capacity unconfirmed` flag, raise a follow-up for Work or Roadmap mode instead of editing `08` or `10`. Flag people above 100% load.
+5. **Own only register `11`**: Follow the [bookkeeping contract](references/shared/bookkeeping-contract.md); never edit other skills' sections.
+6. **B.C. Government Design System style**: Use sentence case for headings and labels, plain language, zero emoji, and confirm via a recap gate before saving.
 
 ## Quick start
 
@@ -30,8 +32,8 @@ Guides users interactively to map **team members (`MEM-X`), their current skills
 
 ## Workflow
 
-1. **Interactive Roster & Skills Capture**: Ask who is on the team (`MEM-X`), their primary role, their current strengths/capabilities (`CAP-X`), and what areas or skills they are interested in developing.
-2. **Map Work Assignments (`MEM-X` $\leftrightarrow$ `WORK-X`)**: Link each person's active projects, experiments, and operational duties from `managing-work-inventory` with their role (`Lead / Owner`, `Contributor`, `Backup / Reviewer`) and estimated capacity split (`Operational %` vs. `Project / Strategic %`).
+1. **Interactive Roster & Skills Capture** (also receives `Training` requests and `Team change` items from `triaging-new-items`: record them as growth interests, learning assignments or roster changes): Ask who is on the team (`MEM-X`), their primary role, their current strengths/capabilities (`CAP-X`), and what areas or skills they are interested in developing.
+2. **Map Work Assignments (`MEM-X` $\leftrightarrow$ `WORK-X`)**: Link each person's active projects, experiments, and operational duties from `developing-and-managing-strategy` with their role (`Lead / Owner`, `Contributor`, `Backup / Reviewer`) and estimated capacity split (`Operational %` vs. `Project / Strategic %`).
 3. **Run Capacity & Coverage Diagnostics**: Surface key-person dependencies (capabilities or critical work items with only 1 person and no backup), overloaded owners, and matches between a team member's growth interest and a branch capability gap.
 4. **Recap Gate & Multi-Format Export**: Confirm the summary, save to `strategy/11-team-skills-and-allocation.md` ([team-skills-and-allocation-register.md](assets/templates/team-skills-and-allocation-register.md)) and/or `assets/templates/team-work-tracker.csv`, and render Mermaid person-to-work diagrams.
 
@@ -46,3 +48,4 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 - Methodology & interactive prompts: [team-skills-and-workload-guide.md](references/team-skills-and-workload-guide.md)
 - Templates: [team-skills-and-allocation-register.md](assets/templates/team-skills-and-allocation-register.md) • `assets/templates/team-work-tracker.csv`
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
+- Shared rules for `00`, the changelog and section ownership: [bookkeeping-contract.md](references/shared/bookkeeping-contract.md)

@@ -1,3 +1,3 @@
-Member_ID,Member_Name,Role_Title,Core_Skills,Capability_ID,Proficiency_Level,Growth_Interests,Work_ID,Work_Name,Work_Type,Assignment_Role,Allocation_Percent,Work_Status,Backup_Assigned
-MEM-001,"[Name]","[Role]","[Skills]",CAP-001,L3 - Lead/SME,"[Growth interest]",WORK-001,"[Initiative or operational duty]",Initiative,Lead-Owner,30,Active,Yes (MEM-002)
-MEM-002,"[Name]","[Role]","[Skills]",CAP-001,G - Growth interest,"[Growth interest]",WORK-001,"[Initiative or operational duty]",Initiative,Backup-Reviewer,10,Active,Yes (MEM-001)
+Member_ID,Member_Name,Role_Title,Core_Skills,Capability_ID,Proficiency_Level,Growth_Interests,Work_ID,Work_Name,Work_Type,Assignment_Role,Allocation_Percent,Work_Status,Backup_Assigned,Capacity_Confirmed_By,Capacity_Confirmed_On,Capacity_Source
+MEM-001,[Name],[Role],[Skills],CAP-001,L3 - Lead/SME,[Growth interest],WORK-001,[Initiative or operational duty],Initiative,Lead-Owner,30,Active,Yes (MEM-002),[Name],[YYYY-MM-DD],[e.g. owner confirmation]
+MEM-002,[Name],[Role],[Skills],CAP-001,G - Growth interest,[Growth interest],WORK-001,[Initiative or operational duty],Initiative,Backup-Reviewer,10,Active,Yes (MEM-001),[Name],[YYYY-MM-DD],[e.g. owner confirmation]

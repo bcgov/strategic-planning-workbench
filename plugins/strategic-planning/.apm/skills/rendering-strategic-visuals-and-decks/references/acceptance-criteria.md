@@ -11,3 +11,7 @@
 3. **Visual separation between ideas and committed work**:
    - **Pass**: Committed `WORK-X` items render as solid bars/cards, while unapproved `IDEA-X` items render only as dashed nodes or `milestone` decision gates.
    - **Fail**: Renders unapproved brainstormed ideas as scheduled Gantt bars alongside committed projects.
+
+5. **Uncommitted work is not drawn as committed**:
+   - **Pass**: A work item flagged `Capacity unconfirmed`, or missing sponsor, owner or confirmed capacity, appears as a decision gate with the missing evidence labeled.
+   - **Fail**: Such an item is drawn as a solid bar, card or committed roadmap entry.

@@ -73,7 +73,7 @@ git checkout <tag-or-commit>      # optional: pin a release
 
 > **Note for GrokBot (`grok-bot`, `grok-build`, `grok-cloud`) and Antigravity (`agy`)**: In APM `0.35.0+`, `--target all` explicitly excludes `grok-bot` and `agy`. Include `grok-bot,grok-build,grok-cloud` explicitly in `--target` when deploying to GrokBot environments (`apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,codex,agy,grok-bot,grok-build,grok-cloud --parallel-downloads 0`).
 
-Make all 10 strategic planning skills available across every workspace. Global installs require the **absolute path** to the plugin folder; a relative path such as `./plugins/strategic-planning` is rejected by APM.
+Make all 5 strategic planning skills available across every workspace. Global installs require the **absolute path** to the plugin folder; a relative path such as `./plugins/strategic-planning` is rejected by APM.
 
 **Windows (PowerShell):**
 ```powershell
@@ -119,26 +119,18 @@ This records the dependency in the project's `apm.yml`, writes `apm.lock.yaml`, 
 
 ### 4. Install only specific skills (optional)
 
-All 10 skills in `strategic-planning` are designed to work together, but you can install a subset using repeatable `--skill` flags:
+All 5 skills in `strategic-planning` are designed to work together, but you can install a subset using repeatable `--skill` flags:
 
 ```powershell
-apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,codex,agy --parallel-downloads 0 --skill analyzing-strategic-context --skill defining-strategic-vision
+apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,codex,agy --parallel-downloads 0 --skill developing-and-managing-strategy --skill triaging-new-items
 ```
 
 Available skills in `plugins/strategic-planning`:
-1. `running-strategic-planning-cycle` *(Front-door orchestrator & TOGAF ADM cycle coach)*
-2. `analyzing-strategic-context`
-3. `defining-strategic-vision`
+1. `developing-and-managing-strategy` *(main skill: strategy interview, registers, ideas, work, risks, scoring, roadmap)*
+2. `triaging-new-items` *(classify and route new or unclear material)*
+3. `managing-team-skills-and-allocation` *(team skills, capacity evidence)*
 4. `designing-logic-models`
-5. `planning-business-capabilities`
-6. `managing-idea-inventory`
-7. `prioritizing-and-scoring-investments`
-8. `managing-work-inventory`
-9. `managing-team-skills-and-allocation`
-10. `aligning-strategy-and-portfolio`
-11. `sequencing-roadmaps-and-measures`
-12. `updating-strategic-registers`
-13. `rendering-strategic-visuals-and-decks`
+5. `rendering-strategic-visuals-and-decks`
 
 ---
 
@@ -227,9 +219,12 @@ python "$HOME\.gemini\antigravity-cli\skills\authoring-instructions\scripts\audi
 python "$HOME\.gemini\antigravity-cli\skills\authoring-plugins\scripts\audit_plugin_structure.py" plugins\strategic-planning
 python "$HOME\.gemini\antigravity-cli\skills\authoring-plugins\scripts\audit.py" --path plugins\strategic-planning
 
-# 3. Audit all 10 skills (source and installed modes)
+# 3. Audit all 5 skills (source and installed modes)
 python "$HOME\.gemini\antigravity-cli\skills\authoring-skills\scripts\audit_skill.py" plugins\strategic-planning --all --mode source
 python "$HOME\.gemini\antigravity-cli\skills\authoring-skills\scripts\audit_skill.py" plugins\strategic-planning --all --mode installed
+
+# 3b. Run the scoring script regression checks
+python plugins\strategic-planning\.apm\skills\developing-and-managing-strategy\scripts\test_investment_scripts.py
 
 # 4. Validate APM manifests and marketplace catalog
 python "$HOME\.gemini\antigravity-cli\skills\packaging-with-apm\scripts\validate_apm_package.py" --path .

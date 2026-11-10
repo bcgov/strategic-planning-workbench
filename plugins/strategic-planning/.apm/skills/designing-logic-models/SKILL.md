@@ -1,6 +1,6 @@
 ---
 name: designing-logic-models
-description: "Guides users interactively to design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks. Use when mapping causal relationships from inputs and activities to outputs and successive outcomes for a project or objective, validating causal assumptions, or generating BC Gov-styled Mermaid diagrams and logframe matrices. Not for drafting high-level strategic vision (use defining-strategic-vision) or scheduling roadmaps (use sequencing-roadmaps-and-measures)."
+description: "Guides users interactively to design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks. Use when mapping causal relationships from inputs and activities to outputs and successive outcomes for a project or objective, validating causal assumptions, or generating BC Gov-styled Mermaid diagrams and logframe matrices. Not for drafting the strategic vision, objectives, measures or roadmap (use developing-and-managing-strategy), logging items (use triaging-new-items), team capacity (use managing-team-skills-and-allocation) or presentation decks (use rendering-strategic-visuals-and-decks)."
 ---
 
 # Designing logic models
@@ -20,7 +20,7 @@ Guides teams through an interactive conversation to construct, stress-test, and 
 1. **Strict causal purity**: Rigorously separate activities (work done), outputs (things produced), and outcomes (behavioral or operational changes resulting from use).
 2. **Intermediate stepping**: Reject unmediated leaps from early outputs to macro impacts without immediate and intermediate stepping stones.
 3. **Attribution vs. contribution**: Direct control applies only to outputs; long-term outcomes must be framed as contribution alongside external influences.
-4. **Interactive plain-language pacing**: Ask 1–2 plain-language questions per turn with numbered option menus. Always run a recap confirmation gate before saving.
+4. **Guided interaction**: Guide the user step by step with questions, following [guided-interaction.md](references/guided-interaction.md): open with a numbered menu or one question, ask 1–2 per turn with a recommended default, show progress, accept "I don't know" as an open item, and confirm a recap before every write.
 5. **B.C. Government style**: Use sentence case, plain language, zero emoji, zero exclamation marks, and official BC Gov token hex colors in Mermaid diagrams.
 
 ## Quick start
@@ -39,6 +39,16 @@ Guides teams through an interactive conversation to construct, stress-test, and 
 4. **Validation Gate**: Audit the model against the 15 anti-patterns in [validation-rules.md](references/validation-rules.md), correcting activities-as-outcomes and causal leaps.
 5. **Recap Confirmation Gate**: Present a concise draft recap to the user for confirmation before output generation.
 6. **Artifact Generation**: Produce the copy-paste-ready B.C. Gov Mermaid diagram, tabular matrix, or full [logic-model-template.md](assets/templates/logic-model-template.md).
+
+## Related skills
+
+| Need | Skill |
+|---|---|
+| Objectives, outcomes and measures the model should serve (Vision and Measures modes), or adding the result to the strategy | `developing-and-managing-strategy` |
+| A new project, risk or idea found while modeling | `triaging-new-items` |
+| Turning the finished model into a slide or dashboard | `rendering-strategic-visuals-and-decks` |
+
+This skill writes no registers; it produces the model artifact only.
 
 ## Verification
 

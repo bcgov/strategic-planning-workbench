@@ -1,6 +1,6 @@
 name: strategic-planning-workbench
 version: 0.1.0
-description: "APM workspace meta-package for organizational and public-sector branch strategic planning, logic modeling and results chains, capability mapping, idea funnel management, and portfolio alignment."
+description: "APM workspace meta-package for organizational and public-sector branch strategic planning, logic modeling and results chains, capability mapping, intake triage, idea funnel and portfolio management, risk tracking, and portfolio alignment."
 author: richfrem
 license: Apache-2.0
 dependencies:

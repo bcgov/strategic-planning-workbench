@@ -5,7 +5,7 @@
 
 ## Architecture & Layout
 High-level architectural pointers. For full layout, multi-tier hierarchy, and living register flows, see [architecture.md](architecture.md).
-- `plugins/strategic-planning/.apm/skills/`: Self-contained interactive strategic planning, register update, and B.C. Gov visual rendering skills.
+- `plugins/strategic-planning/.apm/skills/`: Five self-contained interactive skills: strategy and item management (`developing-and-managing-strategy`), triage (`triaging-new-items`), team skills and allocation, logic models, and B.C. Gov visual rendering.
 - `plugins/strategic-planning/rules/` & `.agent/rules/`: Non-negotiable governance invariants.
 - `strategy/` (or user-selected `~/strategic-planning-outputs/<team>/strategy/`): Default workspace directory where living team strategic registers (`00`–`11`), inventories, and visual outputs are persisted.
 
@@ -14,30 +14,23 @@ Essential commands for validating plugins, skills, rules, and APM packaging:
 ```bash
 apm compile --validate
 python -m pytest
+python plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/scripts/test_investment_scripts.py
 ```
 
 ## Non-Negotiable Rules / Invariants
 1. **Multi-Tier Mandate & Evidence Integrity**: Agents MUST trace team objectives upward through Division, Branch (CSB), Ministry, and Provincial mandates and NEVER fabricate evidence or baselines ([evidence-and-hierarchy-alignment.md](.agent/rules/evidence-and-hierarchy-alignment.md)).
-2. **Interactive Plain-Language Pacing**: Agents MUST guide users interactively with numbered option menus, 1–2 plain-language questions per turn, and a recap confirmation gate before saving ([evidence-and-hierarchy-alignment.md](.agent/rules/evidence-and-hierarchy-alignment.md)).
+2. **Interactive Plain-Language Pacing**: Agents MUST guide users interactively with numbered option menus, 1–2 plain-language questions per turn, progress indicators, "I don't know" accepted as an open item, and a recap confirmation gate before saving (each skill carries `references/guided-interaction.md`) ([evidence-and-hierarchy-alignment.md](.agent/rules/evidence-and-hierarchy-alignment.md)).
 3. **B.C. Government Design System Style**: All outputs MUST use B.C. Government sentence case, plain language, zero emoji, and official B.C. Design System v5 tokens ([evidence-and-hierarchy-alignment.md](.agent/rules/evidence-and-hierarchy-alignment.md)).
-4. **Three-Inventory Separation**: Agents MUST keep Strategic Vision, the Idea Inventory, and the Committed Work Inventory strictly separate and NEVER treat unapproved ideas as committed work ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
-5. **Non-Destructive Register Updates**: Agents MUST preserve stable record IDs and decision histories when importing evolving priorities, new ideas, or work progress ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
-6. **APM-Native Packaging Hygiene**: All plugin skills MUST reside in `.apm/skills/` with zero raw symlinks, dual manifests, and `SKILL.md` under 80 lines ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
+4. **Three-Inventory Separation**: Agents MUST keep Strategic Vision, the Idea Inventory, and the Committed Work Inventory strictly separate and NEVER treat unapproved ideas as committed work. Work is committed only with a named sponsor and approval date, a named owner and confirmed capacity; approval without capacity is a decision gate flagged `Capacity unconfirmed` ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
+5. **Non-Destructive Register Updates**: Agents MUST preserve stable record IDs and decision histories when importing evolving priorities, new ideas, or work progress, edit only the register sections their mode owns, and record changes that touch another owner's records as `Open follow-ups` in `00` ([three-inventory-separation.md](.agent/rules/three-inventory-separation.md)).
+6. **APM-Native Packaging Hygiene**: All plugin skills MUST reside in `.apm/skills/` with zero raw symlinks, dual manifests, and `SKILL.md` as a router under 80 lines with depth in `references/` ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
 7. **Feature-Branch PR & Doc Synchronization**: `main` is branch-protected; all changes MUST use a feature branch (`feat/*`, `fix/*`, `docs/*`) and Pull Request, keeping `AGENTS.md`, [architecture.md](architecture.md), and [README.md](README.md) synchronized ([apm-plugin-hygiene.md](.agent/rules/apm-plugin-hygiene.md)).
 
 ## On-Demand Skills & Reference Index
-- Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the TOGAF ADM stage mapping, the 12 living strategy files (`00`–`11`), or skill data flows.
+- Read [architecture.md](architecture.md) when orienting to the 5-tier B.C. Gov / CSB hierarchy, the TOGAF ADM stage mapping, the 12 living strategy files (`00`–`11`) and their section ownership, skill routing, or data flows.
 - Read [docs/governance.md](docs/governance.md) when reviewing repository packaging and governance policies.
-- Use `running-strategic-planning-cycle` when starting or resuming a planning session, confirming the output directory (`~/strategic-planning-outputs/<team>/strategy/` or `./strategy/`), checking readiness across `00-planning-session-status.md`, or routing Top-Down, Bottom-Up, or Revisit flows across Claude, Copilot, Codex, Antigravity (`agy`), and GrokBot (`grok-bot`).
-- Use `analyzing-strategic-context` when starting a guided discovery interview for leadership direction, drivers, stakeholders ("the players") and TOGAF Phase A viewpoints, current state, or assumptions.
-- Use `defining-strategic-vision` when interactively coaching target future state, 4-part TOGAF operating principles (`PRN-X`), outcome-oriented strategic objectives (`OBJ-X`), and expected value (`BEN-X`).
+- Use `developing-and-managing-strategy` for the main workflow. On first use it asks where to save outputs and runs the strategic interview; afterwards it resumes and revisits the plan. Modes: Cycle, Context, Vision, Capabilities (establish direction); Update (change direction, dispensations `DSP-X`, TOGAF Phase H); Ideas (`IDEA-X`), Work (`WORK-X`), Risks (`RSK-X`), Score (Value/ROI vs. Ability to Deliver with 4-quadrant charts and JSON/CSV ledgers) (manage items); Alignment (incl. `BTRA`), Measures (`MSR-X`), Roadmap (`PLT-X`, `GATE-X`), Review (review alignment and delivery). Works across Claude, Copilot, Codex, Antigravity (`agy`) and GrokBot (`grok-bot`).
+- Use `triaging-new-items` when sorting a new, mixed or unclear list (meeting notes, a spreadsheet, "log this problem or risk"): it classifies by commitment state and nature (problem, driver, risk, idea, project, training, decision, blocker and more), then routes each item. Not needed for an explicit request on a named record such as "update WORK-12".
+- Use `managing-team-skills-and-allocation` when mapping team member skills (`MEM-X`), growth interests, training requests, and active `WORK-X` assignments, recording capacity evidence for commitments, or exporting Excel/CSV and Mermaid workload trackers.
 - Use `designing-logic-models` when constructing, stress-testing, or documenting program logic models, results chains, outcome chains, theories of change, or results frameworks connecting inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes.
-- Use `planning-business-capabilities` when translating strategic objectives into TOGAF Phase B value streams (`VST-X`), required organizational capabilities (`CAP-X`), and 5-pillar maturity gaps.
-- Use `managing-idea-inventory` when capturing, clarifying, assumption-testing, or evaluating unapproved opportunities in the Idea Inventory (`IDEA-X`).
-- Use `prioritizing-and-scoring-investments` when evaluating, weighting, and ranking candidate projects, investments, or requests for funding (RFF) across Value/ROI and Ability to Deliver using 4-quadrant scatter charts and JSON/CSV scoring ledgers.
-- Use `managing-work-inventory` when cataloging committed initiatives, active experiments, and operational work (`WORK-X`) or promoting approved ideas.
-- Use `managing-team-skills-and-allocation` when mapping team member skills (`MEM-X`), growth interests, and active `WORK-X` assignments or exporting Excel/CSV and Mermaid workload trackers.
-- Use `aligning-strategy-and-portfolio` when interactively auditing end-to-end traceability, TOGAF Transformation Readiness (`BTRA`), and strategic, policy, privacy, and delivery risks (`RSK-X`).
-- Use `sequencing-roadmaps-and-measures` when organizing committed work into Now/Next/Later horizons, TOGAF Transition State plateaus (`PLT-X`), and outcome, leading, and guardrail measures (`MSR-X`).
-- Use `updating-strategic-registers` when importing evolving priorities, new drivers, stakeholder shifts, work progress, or time-boxed dispensations (`DSP-X`) with TOGAF Phase H change classification.
-- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML dashboards, Mermaid roadmaps, Gantt charts, value-stream maps, or slide decks.
+- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML dashboards, Mermaid roadmaps, Gantt charts, value-stream maps, or slide decks from the registers.

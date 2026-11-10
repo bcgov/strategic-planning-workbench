@@ -1,0 +1,19 @@
+flowchart TD
+    A["Collect and split items"] --> B{"Existing record with an explicit action?"}
+    B -->|Yes| Z["Skip triage: hand to the owner mode"]
+    B -->|No| C{"Gate 2: nature"}
+    C -->|Risk| R["Risks mode: RSK-X"]
+    C -->|"Strategy change, Driver, Assumption or constraint, Exception"| U["Update mode: DRV-X, registers 01 to 06, DSP-X"]
+    C -->|Decision| D["Roadmap mode: decision gate"]
+    C -->|Blocker| W["Work mode: Blocked on the named item"]
+    C -->|"Team change, Training"| TM["managing-team-skills-and-allocation"]
+    C -->|"Action item"| N["Not a record: note on the parent item"]
+    C -->|Problem| P["Ideas mode: IDEA-X Problem at observed"]
+    C -->|"Opportunity, Solution, Experiment, Delivery, Operational, Research"| G1{"Gate 1: commitment state"}
+    G1 -->|"Heard or Considering"| I["Ideas mode: IDEA-X at raw"]
+    G1 -->|"Approved with sponsor, owner and capacity"| WK["Work mode: WORK-X Planned"]
+    G1 -->|"Approved without capacity"| DG["Decision gate flagged Capacity unconfirmed"]
+    G1 -->|"Running, approved"| WA["Work mode: WORK-X Active"]
+    G1 -->|"Running, not approved"| SH["Work mode: Shadow Operation"]
+    G1 -->|Ongoing| OP["Work mode: Operational"]
+    I -->|"Funding request and validated candidate"| SC["Score mode"]

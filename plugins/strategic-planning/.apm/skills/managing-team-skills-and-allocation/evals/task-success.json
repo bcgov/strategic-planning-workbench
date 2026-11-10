@@ -21,5 +21,21 @@
       "Generates the Excel-ready CSV tracker (team-work-tracker.csv) with Member ID, Role, Skills, Growth Interests, Work ID, Assignment Role, and Allocation %",
       "Renders a Mermaid flowchart linking team members (MEM-X) to committed work items (WORK-X) and capabilities (CAP-X)"
     ]
+  },
+  {
+    "query": "The owner confirms 30 percent capacity for WORK-014, which was flagged Capacity unconfirmed.",
+    "expected_behavior": [
+      "Records the allocation with source and date in register 11",
+      "Warns if the person's total load exceeds 100 percent",
+      "Raises a follow-up for Work mode of developing-and-managing-strategy to clear the flag instead of editing 08 or 10"
+    ]
+  },
+  {
+    "query": "Help me map who is working on what.",
+    "expected_behavior": [
+      "Opens with the action menu and the output-format choice",
+      "Asks one or two questions at a time and accepts 'not sure' as an open item",
+      "Confirms a recap before saving any register or export"
+    ]
   }
 ]
