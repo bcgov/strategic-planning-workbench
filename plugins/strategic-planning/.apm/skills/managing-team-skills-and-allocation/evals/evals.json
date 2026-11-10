@@ -22,5 +22,13 @@
   {
     "query": "Configure an Azure AI Foundry agent deployment.",
     "should_trigger": false
+  },
+  {
+    "query": "Can the registry team take on the kiosk pilot at 30 percent for the next quarter? Record the allocation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make a roadmap for next year.",
+    "should_trigger": false
   }
 ]

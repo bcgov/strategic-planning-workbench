@@ -37,3 +37,13 @@ Capturing both **current proficiency** and **growth interest** turns capability 
 | **Interactive planning, Git version control, Cowork preview** | **Markdown register + Mermaid diagrams** (`team-skills-and-allocation-register.md`): Includes `flowchart LR` (Person $\rightarrow$ Work $\rightarrow$ Capability) and `xychart-beta` (Operational vs. Project capacity split). |
 | **Sorting, filtering, pivot tables, or SharePoint List import** | **Excel-ready CSV (`team-work-tracker.csv`)**: One row per person-to-work assignment with columns for Member ID, Name, Role, Skills, Growth Interests, Work ID, Work Type, Assignment Role, Allocation %, and Status. |
 | **Leadership or branch briefing** | Delegate to `rendering-strategic-visuals-and-decks` to embed anonymized capability coverage and capacity balance in the B.C. Gov HTML dashboard or slide deck. |
+
+## Capacity evidence for commitments
+
+Work in `developing-and-managing-strategy` can be committed only with confirmed capacity. An allocation (`ASG-X`) is that evidence when it records the person, the `WORK-X` item, the role, the percentage, who confirmed it, the date and the source (for example, "owner confirmed in the 2026-11-03 check-in").
+
+1. Ask the owner to confirm the percentage; never estimate it for them.
+2. Record who confirmed it and when. An unconfirmed estimate stays `Planned` and is not capacity evidence.
+3. Check the person's total load. Above 100% is a flag, not a block; show it and ask how to rebalance.
+4. If the allocation clears a `Capacity unconfirmed` flag on a work item or roadmap entry, raise a follow-up for Work or Roadmap mode of `developing-and-managing-strategy`. Do not edit registers `08` or `10`.
+5. This skill never approves work. Sponsor approval is a separate fact held by the work record.

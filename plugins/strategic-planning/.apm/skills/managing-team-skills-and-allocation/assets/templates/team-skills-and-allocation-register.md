@@ -12,10 +12,10 @@
 
 ## 2. Active work assignment tracker (`MEM-X` to `WORK-X`)
 
-| Assignment ID | Member (`MEM-X`) | Assigned work item (`WORK-X`) | Work type (`Initiative` / `Project` / `Experiment` / `Operational`) | Assignment role (`Lead-Owner` / `Contributor` / `Backup-Reviewer`) | Linked capability (`CAP-X`) | Estimated allocation (`%`) | Status (`Active` / `Planned` / `Blocked`) |
-|---|---|---|---|---|---|---|---|
-| ASG-001 | MEM-001 | WORK-001 | Initiative | Lead-Owner | CAP-001 | 30% | Active |
-| ASG-002 | MEM-002 | WORK-001 | Initiative | Backup-Reviewer | CAP-001 | 10% | Active |
+| Assignment ID | Member (`MEM-X`) | Assigned work item (`WORK-X`) | Work type (`Initiative` / `Project` / `Experiment` / `Operational`) | Assignment role (`Lead-Owner` / `Contributor` / `Backup-Reviewer`) | Linked capability (`CAP-X`) | Estimated allocation (`%`) | Confirmed by and on (capacity evidence) | Status (`Active` / `Planned` / `Blocked`) |
+|---|---|---|---|---|---|---|---|---|
+| ASG-001 | MEM-001 | WORK-001 | Initiative | Lead-Owner | CAP-001 | 30% | [Name, date, source] | Active |
+| ASG-002 | MEM-002 | WORK-001 | Initiative | Backup-Reviewer | CAP-001 | 10% | [Name, date, source] | Active |
 
 ## 3. Capacity, coverage and key-person risk diagnostics
 

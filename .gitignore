@@ -11,3 +11,6 @@ context/
 
 # Team living strategy registers & outputs (local workspace data, kept private on disk)
 strategy/
+
+# Built Copilot Cowork packages (rebuild with the packaging-copilot-cowork-plugins scripts)
+dist/

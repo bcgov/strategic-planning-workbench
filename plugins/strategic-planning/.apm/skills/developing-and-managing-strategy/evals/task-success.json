@@ -1,0 +1,331 @@
+[
+  {
+    "query": "We want to build a strategic plan for our Court Services Branch unit, and we already have a bunch of active projects and notes from our directors Chris and Jessica. Where do we start?",
+    "expected_behavior": [
+      "Resolves the strategy folder first and reports in plain language what already exists versus what is missing",
+      "If this is a first run, asks where to save and offers three starting paths: top-down interview, bottom-up from existing items, or import notes; if returning, offers the short menu (continue, update, alignment or measures, revisit, visuals)",
+      "Hands pasted projects and notes to triaging-new-items instead of classifying commitment itself",
+      "Creates or updates 00-planning-session-status.md only after confirmation"
+    ]
+  },
+  {
+    "query": "Where did we leave off in our strategy registers, and what is our next 15-minute step?",
+    "expected_behavior": [
+      "Reads strategy/00-planning-session-status.md and strategy/01 through 11 to summarize stage completion across the 6 TOGAF ADM-aligned stages",
+      "Highlights open assumptions (ASM-X), pending idea promotion gates (IDEA-X), and active dispensations (DSP-X)",
+      "Recommends one concrete next step and specialist skill in B.C. Government sentence case with zero emoji"
+    ]
+  },
+  {
+    "query": "We just had a quarterly strategy check-in. Leadership shifted priority toward digital registry self-service, Kyron raised a new concern from court clerks, we have 2 new automation ideas, and Initiative WORK-003 hit a privacy review blocker. Update our registers.",
+    "expected_behavior": [
+      "Routes the leadership priority shift to the Org Hierarchy & Context register (tagging Confirmed vs. Interpreted)",
+      "Updates the Stakeholder Map with the court clerks' concern, appends the 2 new ideas to the Idea Inventory as 'raw', and updates WORK-003 status/blocker in the Work Inventory",
+      "Preserves existing record IDs, logs the changes in the Register Update Changelog, and flags ripple impacts on risks and roadmap gates"
+    ]
+  },
+  {
+    "query": "Document our upward alignment from our Team level through Division, Court Services Branch (CSB), Ministry of Attorney General, and BC Government.",
+    "expected_behavior": [
+      "Populates the 5-tier organizational hierarchy register (Tier 1 Province of BC, Tier 2 Ministry of AG, Tier 3 CSB, Tier 4 Division, Tier 5 Team)",
+      "Links team strategic objectives (OBJ-X) upward through each tier without inventing undocumented mandates"
+    ]
+  },
+  {
+    "query": "Assumption ASM-002 (that central IT would fund the license) was just invalidated. Update our registers.",
+    "expected_behavior": [
+      "Updates ASM-002 status to 'Invalidated' in the Constraints, Assumptions & Risks register",
+      "Identifies which candidate ideas (IDEA-X), active work items (WORK-X), or roadmap gates depend on ASM-002 and flags them for leadership decision"
+    ]
+  },
+  {
+    "query": "We have meeting notes from leadership (Chris and Jessica) and a stakeholder list from Kyron. Build our Strategic Context Brief and Stakeholder Map.",
+    "expected_behavior": [
+      "Separates confirmed leadership statements from team interpretations and unverified assumptions",
+      "Populates the Stakeholder Map with influence, impact, concerns, desired outcomes, and tensions between players",
+      "Logs missing baselines and unproven claims in the Assumptions & Evidence Register without inventing facts"
+    ]
+  },
+  {
+    "query": "Summarize our branch's current state from these staff workshop notes without jumping into project recommendations.",
+    "expected_behavior": [
+      "Categorizes current state across services, processes, information/technology, workforce, and governance",
+      "Tags claims as Evidence-Backed or Anecdotal",
+      "Refrains from prescribing technology solutions or project backlogs"
+    ]
+  },
+  {
+    "query": "Apply a public-sector justice lens to our current-state context and stakeholder map.",
+    "expected_behavior": [
+      "Addresses legislative/policy mandates, judicial and operational independence, and access to justice",
+      "Includes Indigenous reconciliation commitments, privacy/records management, and procedural fairness considerations",
+      "Identifies cross-ministry and external justice partner dependencies"
+    ]
+  },
+  {
+    "query": "Here are our draft objectives: 1) Build an AI search bot, 2) Migrate files to SharePoint Online, 3) Improve access to court scheduling information. Refine these and build a Strategy on a Page.",
+    "expected_behavior": [
+      "Detects that 'Build an AI search bot' and 'Migrate files to SharePoint Online' are activities/solutions rather than strategic objectives",
+      "Reframes them into outcome-oriented strategic objectives while suggesting the specific solutions be logged in the Idea or Work Inventory",
+      "Produces a Strategy on a Page with vision, operating principles, outcome objectives, and expected public/operational value"
+    ]
+  },
+  {
+    "query": "Draft a working Strategic Vision Brief for leadership discussion with Chris and Jessica.",
+    "expected_behavior": [
+      "Includes current-to-future state shifts, operating principles (Statement, Rationale, Implications), and outcome objectives",
+      "Preserves constraints and unvalidated assumptions rather than inventing baseline metrics",
+      "Aligns team vision explicitly beneath broader leadership direction"
+    ]
+  },
+  {
+    "query": "Map the benefits for our strategic objectives across public-sector value dimensions.",
+    "expected_behavior": [
+      "Covers public/democratic value, service value, operational/workforce value, risk/compliance reduction, and stewardship",
+      "Connects each benefit to required capabilities and organizational change in the Benefits Dependency Map"
+    ]
+  },
+  {
+    "query": "Create a Shared Vision Model canvas for our Court Administration Transformation program like the CATS business case example.",
+    "expected_behavior": [
+      "Structures the canvas across the 8 public-sector dimensions (For, Who Need, This, Through, Will Enable, Which Support, Unlike, So As To Be)",
+      "Captures distinct target group needs for citizens, frontline practitioners, and the Judiciary",
+      "Separates controllable application outputs from measurable investment outcomes (increases and decreases)",
+      "Aligns upward with Ministry of Justice Service Plan goals and corporate access to justice priorities"
+    ]
+  },
+  {
+    "query": "We have 4 strategic objectives for our branch. Help us define the required business capabilities and avoid turning them into a software shopping list.",
+    "expected_behavior": [
+      "Defines solution-agnostic business capabilities (what the organization must be able to do) linked to each strategic objective",
+      "Reframes any tool-specific suggestions into enduring capabilities",
+      "Evaluates current vs. target maturity (0-5) across People, Process, Information, Technology, and Governance"
+    ]
+  },
+  {
+    "query": "Assess our capability gaps for 'Evidence-Based Service Design' and 'Cross-Agency Information Sharing' and determine how we should source them.",
+    "expected_behavior": [
+      "Breaks down each capability gap across the five capability dimensions (People, Process, Information, Technology, Policy/Governance)",
+      "Classifies disposition as Strengthen Existing, Create Net-New, Leverage Shared/Cross-Ministry, or Obtain Externally",
+      "Flags where capabilities have no supporting ideas or active work items"
+    ]
+  },
+  {
+    "query": "Review our draft capability list: '1. SharePoint Team, 2. PowerBI Dashboards, 3. Intake Triage'. Fix any naming anti-patterns.",
+    "expected_behavior": [
+      "Identifies 'SharePoint Team' (org unit/tool) and 'PowerBI Dashboards' (software tool) as capability naming anti-patterns",
+      "Rewrites them into stable noun-phrase business capabilities",
+      "Populates the Capability Map & Gap Assessment template"
+    ]
+  },
+  {
+    "query": "Compare our Strategic Vision Brief, Capability Map, Idea Inventory, and Work Inventory to surface misalignments and gaps.",
+    "expected_behavior": [
+      "Builds the End-to-End Traceability Matrix connecting Leadership Direction, Objectives, Capabilities, Ideas, Work, and Measures",
+      "Runs all 8 diagnostic checks (orphaned work, unsupported objectives, unaddressed capabilities, unevaluated ideas, duplicate ideas, duplicate work, shadow ops, and ideas treated as commitments)",
+      "Provides concrete stop, pause, combine, or promote recommendations for leadership"
+    ]
+  },
+  {
+    "query": "Assess the strategic and public-sector risks for our branch strategy and active portfolio.",
+    "expected_behavior": [
+      "Evaluates risks across Strategic, Policy/Legislative, Privacy/Security, Judicial/Operational Independence, Workforce, Dependency, and Delivery categories",
+      "Separates fixed constraints and unvalidated assumptions from probabilistic risks",
+      "Assigns likelihood, severity, mitigation guardrails, and risk owners in the Strategic Risk Register"
+    ]
+  },
+  {
+    "query": "Two sub-teams have active projects building similar intake trackers while Objective OBJ-3 has zero supporting work. Document this in an alignment audit.",
+    "expected_behavior": [
+      "Flags the two intake tracker projects under Diagnostic Check #6 (Duplicate Active Work Across Teams)",
+      "Flags OBJ-3 under Diagnostic Check #2 (Unsupported Strategic Objective)",
+      "Recommends consolidating the duplicate work and commissioning discovery or idea promotion for OBJ-3"
+    ]
+  },
+  {
+    "query": "Create a Success Measures Register for our 3 strategic objectives, even though we don't have baseline numbers for two of them yet.",
+    "expected_behavior": [
+      "Defines Outcome Measures, Leading Indicators, and Guardrail Measures for each objective",
+      "Marks missing baselines honestly as 'Baseline Needed' rather than inventing numbers",
+      "Specifies evidence sources, owners, and review cadences"
+    ]
+  },
+  {
+    "query": "We want to measure speed of public inquiry turnaround. Make sure our measures don't incentivize cutting corners on privacy or procedural fairness.",
+    "expected_behavior": [
+      "Pairs the turnaround time outcome/leading measures with explicit Guardrail Measures covering procedural fairness, accuracy, and privacy compliance",
+      "Records the balanced triad in the Success Measures Register"
+    ]
+  },
+  {
+    "query": "We have never done a strategic plan for our branch and have no files yet. Help us get started.",
+    "expected_behavior": [
+      "Finds no existing strategy folder and treats this as a first run",
+      "Asks where to save strategy outputs and where source documents live before writing anything",
+      "Offers three starting paths: top-down interview, bottom-up from existing items, or import notes",
+      "Creates 00-planning-session-status.md and remembers the chosen folder"
+    ]
+  },
+  {
+    "query": "Continue our strategy. We finished the context interview last month.",
+    "expected_behavior": [
+      "Finds the remembered strategy folder and reads 00-planning-session-status.md",
+      "Resumes at the vision step instead of restarting the context interview",
+      "Offers the returning menu: continue, update the strategy, alignment or measures, revisit on a cadence, visuals or a deck",
+      "Does not list item work as a menu option; a request to log or promote an item goes straight to the matching mode or to triaging-new-items"
+    ]
+  },
+  {
+    "query": "Our top objective changed from faster filing to fewer in-person visits.",
+    "expected_behavior": [
+      "Classifies the change (Re-direction) and updates only the strategy-owned registers after confirmation",
+      "Lists every affected record by ID with its owning mode or skill: work items, risks, allocations and roadmap entries",
+      "Writes one Open follow-ups row per affected record in 00 instead of editing other skills' sections",
+      "Keeps the follow-ups visible until the owning mode or skill applies and logs them"
+    ]
+  },
+  {
+    "query": "ASM-002 (central IT funds the licence) is invalidated.",
+    "expected_behavior": [
+      "Updates the assumption in the strategy-owned section of register 06",
+      "Raises follow-ups for every dependent RSK-X and WORK-X rather than converting the assumption into a risk or editing risks directly",
+      "Logs a changelog row listing the follow-ups"
+    ]
+  },
+  {
+    "query": "Review our priorities.",
+    "expected_behavior": [
+      "Recognizes the request is ambiguous and asks one short question: objectives and measures, ranking of ideas and projects, or delivery status",
+      "Routes to the matching skill and mode after the answer instead of guessing"
+    ]
+  },
+  {
+    "query": "There are two strategy folders on this machine and the remembered path no longer exists.",
+    "expected_behavior": [
+      "Says the remembered path is gone and lists the candidate folders with last-updated dates",
+      "Asks which to use or whether to start a new one, and creates nothing before the user answers"
+    ]
+  },
+  {
+    "query": "Start the strategy tool. There is a strategy folder with registers 01 to 11 but no 00 file.",
+    "expected_behavior": [
+      "Adopts the existing registers by creating 00 from what exists",
+      "Sets each register's status from the files and continues without restarting the interview"
+    ]
+  },
+  {
+    "query": "Someone in our meeting suggested building an AI transcription summary tool. Log it in our Idea Inventory and stress-test the idea.",
+    "expected_behavior": [
+      "Records the proposal in the Idea Inventory with maturity status 'raw' or 'explored' rather than treating it as committed work",
+      "Separates the underlying operational problem from the proposed AI solution",
+      "Identifies unproven assumptions, privacy/policy constraints, and the cheapest validation step"
+    ]
+  },
+  {
+    "query": "We have 3 validated ideas supporting Capability CAP-002. Compare them and check if any pass the promotion gate.",
+    "expected_behavior": [
+      "Evaluates the candidates across strategic alignment, public/service value, operational impact, policy/privacy feasibility, and overlap with existing work",
+      "Enforces the Promotion Gate Checklist (requiring confirmed sponsor, owner, and capacity commitment before entering the Work Inventory)",
+      "Preserves decision rationale for deferred, combined, or rejected ideas"
+    ]
+  },
+  {
+    "query": "Add two early, incomplete ideas from our brainstorming session without forcing RICE scores we don't have evidence for.",
+    "expected_behavior": [
+      "Captures the early ideas in the Idea Inventory with 'raw' maturity status",
+      "Allows incomplete fields and avoids fabricating numerical priority scores",
+      "Suggests a concrete next step (Clarify, Research, or Consultation)"
+    ]
+  },
+  {
+    "query": "Here is a spreadsheet of 10 items our team is doing or talking about doing. Build our Work Inventory.",
+    "expected_behavior": [
+      "Separates verified committed work (approved initiatives, active experiments, operational duties) from unapproved ideas",
+      "Routes unapproved ideas to the Idea Inventory rather than listing them as committed work",
+      "Populates the Work Inventory with work type, owner, sponsor, linked objective/capability, deliverables, and status"
+    ]
+  },
+  {
+    "query": "We built a quick prototype six months ago that court registry clerks now use every day, but nobody officially owns or funds it. How should we record it?",
+    "expected_behavior": [
+      "Logs the item in the Work Inventory and flags it explicitly as a Shadow Operation / Unverified Operational Commitment",
+      "Highlights the governance, support, and risk gap requiring a formal sponsor and service owner decision"
+    ]
+  },
+  {
+    "query": "Promote approved candidate IDEA-008 into the Work Inventory.",
+    "expected_behavior": [
+      "Verifies sponsor, owner, outcome, and capacity commitment",
+      "Creates the Work Inventory entry while preserving traceability to IDEA-008 and the approval reference"
+    ]
+  },
+  {
+    "query": "Evaluate our candidate project proposals using the weighted investment framework and generate a 4-quadrant visual.",
+    "expected_behavior": [
+      "Guides the user interactively through Value / ROI and Ability to Deliver criteria using anchored 0-10 rubrics",
+      "Normalizes category weights within each axis to 100% and calculates accurate composite scores",
+      "Classifies each proposal into one of the 4 quadrants (Strategic Priorities, Big Bets, Tactical Efficiencies, Deprioritize)",
+      "Maintains dual-format scoring ledgers in both JSON and CSV",
+      "Generates an executive ranking table and 4-quadrant visual report using B.C. Government Design System styling"
+    ]
+  },
+  {
+    "query": "We want to give more weight to legislative drivers and ministry alignment. Show us how to adjust the weighting before and after.",
+    "expected_behavior": [
+      "Explains category weight adjustments within Value / ROI (e.g., increasing Drivers to 46% and Alignment to 26%) while maintaining a 100-point total",
+      "Demonstrates overall axis weighting changes (e.g., 72.5% Value vs 27.5% Delivery)",
+      "Re-computes composite rankings and highlights any quadrant shifts"
+    ]
+  },
+  {
+    "query": "Our vendor may withdraw support for the registry platform next year. Log it and decide what we should do.",
+    "expected_behavior": [
+      "Records an RSK-X risk linked to the affected WORK-X and OBJ-X",
+      "Asks for likelihood, impact and proximity and records an owner and next review date",
+      "Offers a response choice: mitigate, transfer, avoid or accept, with rationale and approver if accepted",
+      "If mitigate is chosen, offers to raise a work package under the affected work item"
+    ]
+  },
+  {
+    "query": "Build a Now/Next/Later strategic roadmap from our Work Inventory and show where our 2 candidate ideas fit.",
+    "expected_behavior": [
+      "Places only approved Work Inventory items (WORK-X) as committed initiatives across Now, Next, and Later horizons",
+      "Represents the 2 unapproved candidate ideas (IDEA-X) strictly as Decision / Validation Gates rather than committed work",
+      "Documents prerequisite capabilities, dependencies, and assumptions to validate before horizon transitions"
+    ]
+  },
+  {
+    "query": "The director approved the kiosk pilot, so put it on the roadmap.",
+    "expected_behavior": [
+      "Records the sponsor and approval date but finds no confirmed capacity",
+      "Keeps the item as a decision gate flagged Capacity unconfirmed instead of committed work",
+      "States the missing evidence as the gate's exit criterion and offers to check capacity with the team skill"
+    ]
+  },
+  {
+    "query": "Close the open follow-up that says our objective changed and WORK-005 may no longer fit.",
+    "expected_behavior": [
+      "Reviews WORK-005 against the changed objective and records the outcome",
+      "Applies any change only to owned sections and logs it in the changelog",
+      "Marks the follow-up closed only after the change is applied and logged"
+    ]
+  },
+  {
+    "query": "Help us build a strategy. I have never done this before.",
+    "expected_behavior": [
+      "Opens with a plain-language question or numbered menu, not a request for a finished document",
+      "Asks at most two questions per turn and shows progress",
+      "Treats \"I don't know\" as an open item and continues",
+      "Shows a recap and asks for confirmation before saving anything"
+    ]
+  },
+  {
+    "query": "Score our four candidate proposals. The top-right one is our favourite but nobody has confirmed anyone's capacity for it.",
+    "expected_behavior": [
+      "Scores proposals one at a time on the 0-10 rubric and shows the quadrant",
+      "Places the top-right proposal in Q1 but does not recommend funding or committing it",
+      "Holds it as a decision gate flagged Capacity unconfirmed and names the missing evidence",
+      "Keeps any existing planning note separate from the recommended action"
+    ]
+  }
+]

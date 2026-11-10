@@ -20,5 +20,21 @@
       "Generates a Mermaid xychart-beta or flowchart comparing current vs. target maturity (0-5) for each capability ID",
       "Grounds the chart in the register data without inventing unverified scores"
     ]
+  },
+  {
+    "query": "Make something for the leadership meeting.",
+    "expected_behavior": [
+      "Opens with the format menu with a recommended option",
+      "Asks about audience and data before generating",
+      "Confirms the choice before writing any file"
+    ]
+  },
+  {
+    "query": "Put the kiosk pilot (WORK-014, flagged Capacity unconfirmed) on the roadmap slide.",
+    "expected_behavior": [
+      "Renders WORK-014 as a decision gate, not a solid committed bar",
+      "Labels the missing evidence (confirmed capacity) on the slide",
+      "Offers to hand off to developing-and-managing-strategy or managing-team-skills-and-allocation to resolve the flag"
+    ]
   }
 ]

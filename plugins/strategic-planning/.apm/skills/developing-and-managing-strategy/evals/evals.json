@@ -1,0 +1,286 @@
+[
+  {
+    "query": "Help us build a strategic plan for our Court Services Branch team—where do we start and what order should we go in?",
+    "should_trigger": true
+  },
+  {
+    "query": "Where did we leave off in our strategic planning, and what is still missing before we brief Chris and Jessica?",
+    "should_trigger": true
+  },
+  {
+    "query": "Walk me through organizing our existing projects, team workload, and ideas into a strategic plan step by step.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a Python unit test for our SQLite database connection pool.",
+    "should_trigger": false
+  },
+  {
+    "query": "Deploy a SharePoint Framework web part to the tenant app catalog.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create an Entra ID app registration with Sites.Selected permission.",
+    "should_trigger": false
+  },
+  {
+    "query": "Import these new meeting notes from Chris and Jessica to update our evolving divisional priorities, add two new business drivers, and log a new idea.",
+    "should_trigger": true
+  },
+  {
+    "query": "Map how our team objectives align upward to our Division, Court Services Branch (CSB), Ministry of Attorney General, and BC Government mandates.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draw a Mermaid Gantt chart and slide deck presentation for our quarterly town hall.",
+    "should_trigger": false
+  },
+  {
+    "query": "Scaffold a new Python CLI script.",
+    "should_trigger": false
+  },
+  {
+    "query": "Run pytest on the repository.",
+    "should_trigger": false
+  },
+  {
+    "query": "Help us capture what Chris and Jessica have communicated about our branch direction and separate confirmed mandate from our assumptions.",
+    "should_trigger": true
+  },
+  {
+    "query": "We need to map the players and stakeholders for our Court Services strategic planning exercise, including where their interests conflict.",
+    "should_trigger": true
+  },
+  {
+    "query": "Synthesize these interview notes and operational pain points into an evidence-based current-state assessment and assumptions register.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a PRD with user stories and acceptance criteria for the new login button.",
+    "should_trigger": false
+  },
+  {
+    "query": "Promote Idea ID-014 into our committed work inventory with an assigned project manager.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft a Strategic Vision Brief and a Strategy on a Page for our branch based on our context analysis.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us turn our vision into 4 outcome-oriented strategic objectives and flag any objectives that are actually disguised technology projects.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define our future-state operating principles and map the expected public and operational benefits for our strategy.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a Shared Vision Model canvas for our Court Administration Transformation program like the CATS business case example.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add this raw idea for an automated scheduling experiment to our idea backlog.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write Python unit tests for our FastAPI endpoint.",
+    "should_trigger": false
+  },
+  {
+    "query": "Translate our strategic objectives into the business capabilities our branch must possess or strengthen, and assess maturity gaps.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a capability map showing which capabilities already exist, which must be created net-new, and which can be shared across the ministry.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us identify what organizational capabilities are missing between our target vision and our current project list.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture this new brainstormed idea for an AI intake assistant in our idea inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft a weekly status update email for the engineering sprint.",
+    "should_trigger": false
+  },
+  {
+    "query": "Format a SharePoint list column with JSON.",
+    "should_trigger": false
+  },
+  {
+    "query": "Audit the alignment between our leadership vision, strategic objectives, capabilities, idea inventory, and active work inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Find any orphaned projects in our work inventory that don't support a strategic objective, and check which objectives have no supporting work.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a new SharePoint document library with PnP PowerShell.",
+    "should_trigger": false
+  },
+  {
+    "query": "Capture a raw idea from today's hallway conversation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Scaffold a new GitHub Actions CI workflow.",
+    "should_trigger": false
+  },
+  {
+    "query": "Define outcome measures, leading indicators, and guardrail measures for our strategic objectives with baseline and review cadence.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture a raw idea from a stakeholder interview into the idea inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write Gherkin acceptance criteria for a mobile app user story.",
+    "should_trigger": false
+  },
+  {
+    "query": "Provision a SharePoint top navigation menu from an Excel file.",
+    "should_trigger": false
+  },
+  {
+    "query": "This is our first time using the strategic planning tools. Where do we start?",
+    "should_trigger": true
+  },
+  {
+    "query": "Pick up our strategic plan where we stopped last week.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make a roadmap for next year.",
+    "should_trigger": true
+  },
+  {
+    "query": "Promote IDEA-9 into our work inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "We do not have enough people to take on the registry project. What is our capacity?",
+    "should_trigger": false
+  },
+  {
+    "query": "Our top objective changed from faster filing to fewer in-person visits. What does that affect?",
+    "should_trigger": true
+  },
+  {
+    "query": "What have we got in this strategy folder? I think someone imported registers without a status file.",
+    "should_trigger": true
+  },
+  {
+    "query": "Capture these 5 workshop ideas for AI and service modernization in our idea inventory without treating them as approved projects.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us stress-test the assumptions behind our idea for automated court form triage and decide if it is ready to become a candidate.",
+    "should_trigger": true
+  },
+  {
+    "query": "Compare our validated candidate ideas against our strategic objectives and recommend which ones to promote, defer, or combine.",
+    "should_trigger": true
+  },
+  {
+    "query": "Draft a high-level Strategy on a Page for our branch vision.",
+    "should_trigger": true
+  },
+  {
+    "query": "Configure an MCP stdio server in .mcp.json.",
+    "should_trigger": false
+  },
+  {
+    "query": "Catalog our team's active projects, committed initiatives, and ongoing operational responsibilities in a structured Work Inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Promote Idea IDEA-004 into our committed Work Inventory now that Chris has approved sponsorship and assigned an owner.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review this list of things our team is working on and separate true committed work from unapproved ideas or prototypes that quietly became operational.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define our branch's 5-year vision statement and operating principles.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check broken markdown links across the repository.",
+    "should_trigger": false
+  },
+  {
+    "query": "Evaluate our 5 candidate court IT projects using the weighted scoring framework and plot them on a 4-quadrant chart by Value and Delivery readiness.",
+    "should_trigger": true
+  },
+  {
+    "query": "Score this request for funding for a self-service registry portal across the Value and Ability to Deliver criteria.",
+    "should_trigger": true
+  },
+  {
+    "query": "Adjust our investment framework weights to 70% Value and 30% Ability to Deliver, and re-rank our portfolio.",
+    "should_trigger": true
+  },
+  {
+    "query": "Sequence our approved committed projects into Now, Next, and Later horizons.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check if any active work items have no assigned team members.",
+    "should_trigger": false
+  },
+  {
+    "query": "Record our monthly progress updates and new blockers across the active initiatives in our Work Inventory.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add a new risk: the central IT licence funding may not be renewed, which would stall the case-search project.",
+    "should_trigger": true
+  },
+  {
+    "query": "Review our open risks and tell me which ones are overdue for review or have no owner.",
+    "should_trigger": true
+  },
+  {
+    "query": "Rate the likelihood and impact of the privacy risk on WORK-012 and record our response.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define our branch's operating principles and strategic objectives.",
+    "should_trigger": true
+  },
+  {
+    "query": "Organize our committed initiatives into a Now/Next/Later strategic roadmap showing dependencies and decision gates.",
+    "should_trigger": true
+  },
+  {
+    "query": "Sequence our branch capability-building initiatives across Three Horizons without turning the roadmap into a detailed project schedule.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a Strategic Risk Register covering policy, privacy, judicial independence, workforce capacity, and delivery risks across our portfolio.",
+    "should_trigger": true
+  },
+  {
+    "query": "The director approved the kiosk pilot, so put it on the roadmap.",
+    "should_trigger": true
+  },
+  {
+    "query": "Define outcome, leading and guardrail measures for our objectives.",
+    "should_trigger": true
+  },
+  {
+    "query": "We are unsure whether these 20 meeting notes are ideas, projects or risks. Sort them.",
+    "should_trigger": false
+  },
+  {
+    "query": "Build an Excel tracker of who is on the team and what they are good at.",
+    "should_trigger": false
+  }
+]

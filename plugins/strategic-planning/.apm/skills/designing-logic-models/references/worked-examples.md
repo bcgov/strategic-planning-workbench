@@ -1,6 +1,6 @@
 # Worked Examples & Reference Logic Models
 
-This directory provides public-sector reference logic models and results chains tailored for the B.C. Government and Court Services Branch context. Each full model is maintained in a dedicated file in the [`examples/`](examples/) subfolder.
+This directory provides public-sector reference logic models and results chains tailored for the B.C. Government and Court Services Branch context. Each full model is maintained in a dedicated file in the `examples/` folder subfolder.
 
 ---
 

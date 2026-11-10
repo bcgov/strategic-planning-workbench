@@ -14,3 +14,7 @@
 4. **B.C. Government Design System editorial style**:
    - **Pass**: Uses sentence case for all headings and labels, plain language, zero emoji, and valid quoted Mermaid syntax.
    - **Fail**: Uses Title Case headings, emoji, or broken Mermaid syntax.
+
+4. **Capacity evidence recorded and handed off**:
+   - **Pass**: Each confirmed allocation records who confirmed it, when and the source; loads above 100% are flagged; clearing a `Capacity unconfirmed` flag is raised as a follow-up for `developing-and-managing-strategy` instead of editing its registers.
+   - **Fail**: Estimates are saved as confirmed capacity, or `08` or `10` is edited from this skill.

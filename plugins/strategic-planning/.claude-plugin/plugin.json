@@ -1,7 +1,7 @@
 {
   "name": "strategic-planning",
   "version": "0.1.0",
-  "description": "End-to-end organizational and public-sector branch strategic planning: strategic context, stakeholder analysis, target vision, logic models and results chains, capability-based planning, idea and work inventories, portfolio alignment, and horizon roadmapping.",
+  "description": "End-to-end organizational and public-sector branch strategic planning: strategic context, stakeholder analysis, target vision, logic models and results chains, capability-based planning, intake triage, idea and work inventories, risk tracking, scoring and portfolio alignment, and horizon roadmapping.",
   "author": {
     "name": "richfrem"
   },
@@ -16,6 +16,8 @@
     "portfolio-alignment",
     "idea-inventory",
     "work-inventory",
+    "risk-register",
+    "intake-triage",
     "roadmapping"
   ]
 }

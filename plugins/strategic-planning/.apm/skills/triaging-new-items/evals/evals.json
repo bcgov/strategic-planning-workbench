@@ -1,0 +1,78 @@
+[
+  {
+    "query": "Here is a list of 12 things our team is working on or talking about. Help us sort out which are ideas, which are projects and which are just operational duties.",
+    "should_trigger": true
+  },
+  {
+    "query": "Is this an idea or a project? Someone suggested we build an AI intake assistant for registry clerks.",
+    "should_trigger": true
+  },
+  {
+    "query": "Onboard these meeting notes: some problems, a pilot, and a work package for the case-search project.",
+    "should_trigger": true
+  },
+  {
+    "query": "Stress-test the riskiest assumption behind IDEA-004.",
+    "should_trigger": false
+  },
+  {
+    "query": "Score these five candidate investments on value and delivery ability.",
+    "should_trigger": false
+  },
+  {
+    "query": "Update the status and blockers on WORK-007.",
+    "should_trigger": false
+  },
+  {
+    "query": "Define our branch's 5-year vision statement and operating principles.",
+    "should_trigger": false
+  },
+  {
+    "query": "Where did we leave off in our strategic planning?",
+    "should_trigger": false
+  },
+  {
+    "query": "Update the status of WORK-12 to blocked.",
+    "should_trigger": false
+  },
+  {
+    "query": "Promote IDEA-9 into our work inventory.",
+    "should_trigger": false
+  },
+  {
+    "query": "Two of our clerks want to take a records management course next quarter.",
+    "should_trigger": true
+  },
+  {
+    "query": "We want funding for a new e-filing kiosk. Where does that go?",
+    "should_trigger": true
+  },
+  {
+    "query": "Leadership has to choose between the vendor platform and building in-house.",
+    "should_trigger": true
+  },
+  {
+    "query": "WORK-012 is stuck waiting on the privacy impact assessment.",
+    "should_trigger": true
+  },
+  {
+    "query": "Score the funding requests we have already validated.",
+    "should_trigger": false
+  },
+  {
+    "query": "The court rules changed last month and now require e-service by March.",
+    "should_trigger": true
+  },
+  {
+    "query": "We assume central IT will fund the licence, and policy requires a privacy impact assessment.",
+    "should_trigger": true
+  },
+  {
+    "query": "A new analyst starts in January and one of our leads is going on leave.",
+    "should_trigger": true
+  },
+  {
+    "query": "Follow up with finance about the invoice.",
+    "should_trigger": true
+  }
+]
