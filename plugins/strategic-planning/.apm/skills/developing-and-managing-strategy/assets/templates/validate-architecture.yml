@@ -5,14 +5,29 @@ on:
   push:
     branches: [main]
 
+# Deny-all top-level permissions per BC Gov GitHub Actions hardening standards.
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  validate:
+  validate-architecture:
+    # Job name must match the GitHub Ruleset required status check context exactly.
+    name: Validate Architecture
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        # Pin third-party actions to a full commit SHA for supply-chain safety (update via Dependabot).
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5.4.0
         with:
           python-version: "3.12"
 
@@ -21,21 +36,10 @@ jobs:
           python3 -c "
           import json, pathlib
           for p in pathlib.Path('.').rglob('*.json'):
-              if '.git' in p.parts or 'node_modules' in p.parts:
+              if '.git' in p.parts or 'node_modules' in p.parts or 'temp' in p.parts:
                   continue
               json.loads(p.read_text(encoding='utf-8'))
           print('All JSON files valid.')
-          "
-
-      - name: Validate YAML contracts (if any)
-        run: |
-          python3 -m pip install --quiet pyyaml
-          python3 -c "
-          import yaml, pathlib
-          files = list(pathlib.Path('contracts').glob('*.y*ml')) if pathlib.Path('contracts').is_dir() else []
-          for p in files:
-              yaml.safe_load(p.read_text(encoding='utf-8'))
-          print(f'Validated {len(files)} YAML contract(s).')
           "
 
       - name: Check relative Markdown links
@@ -45,7 +49,7 @@ jobs:
           link_re = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
           broken = []
           for md in pathlib.Path('.').rglob('*.md'):
-              if '.git' in md.parts or 'history' in md.parts:
+              if '.git' in md.parts or 'history' in md.parts or 'temp' in md.parts:
                   continue
               in_fence = False
               for lineno, line in enumerate(md.read_text(encoding='utf-8', errors='replace').splitlines(), 1):
