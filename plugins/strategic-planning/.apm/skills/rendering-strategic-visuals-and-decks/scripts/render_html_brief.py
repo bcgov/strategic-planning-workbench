@@ -681,13 +681,19 @@ def render_dashboard(
 
     metrics = data.get("metrics") or []
     if metrics:
-        m_cards = "".join(
-            f'<div class="card"><div class="metric-label">{esc(m["label"])}</div>'
-            f'<div class="metric-value">{esc(m["value"])}</div>'
-            f'{f"<span class=\"tag tag-{esc(m.get(\"tone\", \"neutral\"))}\">{esc(m[\"badge\"])}</span>" if m.get("badge") else ""}</div>'
-            for m in metrics
-        )
-        parts.append(f'<section class="block"><div class="grid">{m_cards}</div></section>')
+        m_list: List[str] = []
+        for m in metrics:
+            tone = m.get("tone", "neutral")
+            badge_html = (
+                f'<span class="tag tag-{esc(tone)}">{esc(m["badge"])}</span>'
+                if m.get("badge")
+                else ""
+            )
+            m_list.append(
+                f'<div class="card"><div class="metric-label">{esc(m["label"])}</div>'
+                f'<div class="metric-value">{esc(m["value"])}</div>{badge_html}</div>'
+            )
+        parts.append(f'<section class="block"><div class="grid">{"".join(m_list)}</div></section>')
 
     obj_cards = "".join(
         f'<div class="card"><span class="tag tag-info">{esc(o["id"])}</span>'
