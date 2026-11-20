@@ -1,6 +1,6 @@
 # Project Structure & Templates Guide
 
-How `developing-and-managing-strategy` scaffolds new planning/architecture repositories and validates existing ones.
+How `developing-solution-architecture` scaffolds new planning/architecture repositories and validates existing ones.
 
 ## 1. Choosing the Right Structure Profile (4 Canonical Types)
 
@@ -32,7 +32,7 @@ Additional optional architecture templates in `assets/templates/`:
 1. **Reserve `capabilities/` for Business Capability Maps; use `contracts/` for specs:**
    In TOGAF and strategic planning, *capabilities* means a **Business Capability Map** (what the organization does, independent of technology). Interface specifications—OpenAPI, AsyncAPI, JSON/YAML schemas, agent discovery manifests, and handoff envelopes—belong in **`contracts/`** (not `capabilities/`). The validator flags `capabilities/` as a legacy alias if used for contracts in `solution-architecture`.
 2. **Keep `strategy/` and `architecture/` linked, not mixed:**
-   In `strategy-and-architecture`, business registers (`00`–`11`) stay in `strategy/` while BDAT views, ADRs, and `architecture-registry.json` stay in `architecture/` and `adrs/`, linked per [architecture-artifacts-and-registry-guide.md](../shared/architecture-artifacts-and-registry-guide.md).
+   In `strategy-and-architecture`, business registers (`00`–`11`) stay in `strategy/` while BDAT views, ADRs, and `architecture-registry.json` stay in `architecture/` and `adrs/`, linked per [architecture-artifacts-and-registry-guide.md](architecture-artifacts-and-registry-guide.md).
 3. **Text-first diagrams and PR governance:**
    Prefer Mermaid (`.mmd`) or PlantUML in `diagrams/` so diffs are reviewable in Pull Requests.
 
@@ -50,7 +50,7 @@ Ask 1–2 questions per turn with recommended defaults before creating any files
    - `2. Existing repo (validate & report gaps without overwriting)` → run `validate_project_structure.py`
 3. **Include Stage 0 execution folders? *(only for profiles 2 or 3)***
    - `1. Architecture & planning only (Recommended)`
-   - `2. Include spikes/, evals/, infra/, and .github/workflows/` (`--with-execution`)
+   - `2. Include spikes/, evals/, and infra/` (`--with-execution`)
 
 ## 4. Running the Scripts
 

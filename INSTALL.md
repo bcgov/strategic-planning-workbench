@@ -12,7 +12,7 @@ The workbench is a **level 2** package that pairs with two level 1 packages:
 |---|---|---|---|
 | 1 | `bc-gov-design-system` | [`richfrem/bc-gov-design-system`](https://github.com/richfrem/bc-gov-design-system) | Official B.C. Government Design System tokens, BC Sans fonts, HTML components, and PowerPoint (`pptx`) generator |
 | 1 | `agent-plugins-skills` | [`richfrem/agent-plugins-skills`](https://github.com/richfrem/agent-plugins-skills) | Authoring, packaging, memory, and governance skills |
-| 2 | `strategic-planning` (this repo) | [`bcgov/strategic-planning-workbench`](https://github.com/bcgov/strategic-planning-workbench) | 11 interactive strategic planning, TOGAF ADM cycle orchestration, capability/value-stream mapping, idea/work/team inventory, and visual rendering skills |
+| 2 | `strategic-planning` (this repo) | [`bcgov/strategic-planning-workbench`](https://github.com/bcgov/strategic-planning-workbench) | 7 interactive and executable strategic planning, TOGAF BDAT architecture scaffolding/validation, capability/value-stream mapping, idea/work/team inventory, and visual rendering skills |
 
 `plugins/strategic-planning/apm.yml` declares no transitive dependencies, so installing that plugin alone never pulls unexpected packages. Check what is already installed globally first:
 
@@ -119,7 +119,7 @@ This records the dependency in the project's `apm.yml`, writes `apm.lock.yaml`, 
 
 ### 4. Install only specific skills (optional)
 
-All 5 skills in `strategic-planning` are designed to work together, but you can install a subset using repeatable `--skill` flags:
+All 7 skills in `strategic-planning` are designed to work together, but you can install a subset using repeatable `--skill` flags:
 
 ```powershell
 apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,codex,agy --parallel-downloads 0 --skill developing-and-managing-strategy --skill triaging-new-items
@@ -127,10 +127,12 @@ apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,c
 
 Available skills in `plugins/strategic-planning`:
 1. `developing-and-managing-strategy` *(main skill: strategy interview, registers, ideas, work, risks, scoring, roadmap)*
-2. `triaging-new-items` *(classify and route new or unclear material)*
-3. `managing-team-skills-and-allocation` *(team skills, capacity evidence)*
-4. `designing-logic-models`
-5. `rendering-strategic-visuals-and-decks`
+2. `developing-solution-architecture` *(solution/enterprise architecture scaffolding, BDAT templates, ADR/WP coherence checks)*
+3. `triaging-new-items` *(classify and route new or unclear material)*
+4. `managing-team-skills-and-allocation` *(team skills, capacity evidence)*
+5. `designing-logic-models`
+6. `rendering-strategic-visuals-and-decks`
+7. `managing-architecture-registry` *(TOGAF BDAT `architecture-registry.json` inventory)*
 
 ---
 
@@ -219,12 +221,15 @@ python "$HOME\.gemini\antigravity-cli\skills\authoring-instructions\scripts\audi
 python "$HOME\.gemini\antigravity-cli\skills\authoring-plugins\scripts\audit_plugin_structure.py" plugins\strategic-planning
 python "$HOME\.gemini\antigravity-cli\skills\authoring-plugins\scripts\audit.py" --path plugins\strategic-planning
 
-# 3. Audit all 5 skills (source and installed modes)
+# 3. Audit all 7 skills (source and installed modes)
 python "$HOME\.gemini\antigravity-cli\skills\authoring-skills\scripts\audit_skill.py" plugins\strategic-planning --all --mode source
 python "$HOME\.gemini\antigravity-cli\skills\authoring-skills\scripts\audit_skill.py" plugins\strategic-planning --all --mode installed
 
-# 3b. Run the scoring script regression checks
-python plugins\strategic-planning\.apm\skills\developing-and-managing-strategy\scripts\test_investment_scripts.py
+# 3b. Run the unit test suites
+python plugins\strategic-planning\.apm\skills\developing-and-managing-strategy\tests\test_investment_scripts.py
+python plugins\strategic-planning\.apm\skills\developing-solution-architecture\scripts\test_project_structure_scripts.py -v
+python plugins\strategic-planning\.apm\skills\rendering-strategic-visuals-and-decks\scripts\test_renderers.py -v
+python plugins\strategic-planning\.apm\skills\managing-architecture-registry\scripts\test_managing_architecture_registry.py -v
 
 # 4. Validate APM manifests and marketplace catalog
 python "$HOME\.gemini\antigravity-cli\skills\packaging-with-apm\scripts\validate_apm_package.py" --path .

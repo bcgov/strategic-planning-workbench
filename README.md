@@ -81,20 +81,22 @@ When you first use the workbench, `developing-and-managing-strategy` asks where 
 | `strategy/10-roadmap-and-success-measures.md` | Roadmap (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), and decision gates (`GATE-X`); outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments with capacity evidence, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning` (6 Skills)
+## Skills in `plugins/strategic-planning` (7 Skills)
 
 | You want to... | Use |
 |---|---|
 | Start, resume or update your strategy; or work on a named idea, project, risk, score or roadmap | `developing-and-managing-strategy` |
+| Scaffold or validate a solution/enterprise architecture workbench (BDAT, ADRs, quality/runtime scenarios) | `developing-solution-architecture` |
 | Sort a pile of notes, or log a new problem, risk, driver, training request, decision or blocker | `triaging-new-items` |
 | Record who is on the team, their skills and capacity | `managing-team-skills-and-allocation` |
 | Model how activities lead to outcomes | `designing-logic-models` |
-| Make a diagram, dashboard or leadership deck | `rendering-strategic-visuals-and-decks` |
+| Make a diagram, brief, dashboard or leadership deck | `rendering-strategic-visuals-and-decks` |
 | Maintain, query, validate, or export a TOGAF BDAT technology & architecture registry | `managing-architecture-registry` |
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
 | `developing-and-managing-strategy` | Entry point. First run asks where to save and runs the strategic interview; afterwards it resumes, revisits and updates the plan. 13 modes in four groups: **Establish direction** (Cycle, Context, Vision, Capabilities), **Change direction** (Update), **Manage items** (Ideas, Work, Risks, Score), **Review alignment and delivery** (Alignment, Measures, Roadmap, Review). | Planning Session Status, Register Update Changelog, Strategic Context Brief, Stakeholder Map, Assumptions & Evidence Register, Strategy on a Page, Vision Brief, Benefits Dependency Map, Shared Vision Model, Capability Map, Idea Inventory, Work Inventory, Risk Register, Investment Scoring Ledger (JSON/CSV) and Brief, Alignment Traceability Matrix, Transformation Readiness Assessment, Success Measures Register, Strategic Roadmap |
+| `developing-solution-architecture` | Scaffold, document, and validate `solution-architecture`, `strategy-and-architecture`, and `enterprise-architecture` workbenches with TOGAF BDAT stubs, ADR templates, quality/runtime scenarios, and ADR/WP coherence checks. | `architecture/` BDAT views, `quality-scenarios.md`, `runtime-scenarios.md`, `adrs/ADR-0001`, `contracts/`, `work-packages/` |
 | `triaging-new-items` | Classifies new, mixed or unclear material by commitment state and nature (problem, driver, risk, idea, project, training, decision, blocker, and more) and routes each item to the right mode or skill. Writes only a triage log. | Intake Triage Log |
 | `managing-team-skills-and-allocation` | Map team members, current skills, growth interests, and active `WORK-X` assignments; supply capacity evidence for commitments; detect key-person bottlenecks and export Excel/CSV & Mermaid visuals. | Team Skills & Allocation Register, Excel Work Tracker CSV, Mermaid Workload Diagrams |
 | `designing-logic-models` | Design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | Logic Model & Results Chain (`logic-model-template.md`), BC Gov Mermaid Diagrams, Logframe Measurement Matrix |
@@ -112,7 +114,7 @@ The `developing-and-managing-strategy` skill (Score mode) includes a standalone,
 - **Real-Time Weight Sliders**: Adjust the overall Value vs. Delivery balance (e.g., 50/50 vs 70/30) and individual category weights to see scatter bubbles re-plot in real time. Saved weights are reloaded on the next run.
 - **Commitment Evidence Check**: Each proposal shows `Committable`, `Capacity unconfirmed` or `Evidence incomplete`. A top-right proposal without confirmed capacity is held as a decision gate, not recommended for funding.
 - **Score History**: Changed scores or weights keep the previous scores, date, scorer and framework version in each proposal's history. Lossless JSON and CSV ledgers are saved after a confirmation step.
-- **Self-check**: `python plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/scripts/test_investment_scripts.py` runs regression checks for the scripts.
+- **Self-check**: `python3 plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/tests/test_investment_scripts.py` runs regression checks for the scripts.
 
 ## Repository Navigation & Contribution Workflow
 

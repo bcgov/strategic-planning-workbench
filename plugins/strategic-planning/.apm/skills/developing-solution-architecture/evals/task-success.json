@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Scaffold a new solution-architecture repository for Citizen Portal and validate it.",
+    "expected_behavior": [
+      "Confirms profile (solution-architecture) and whether to include Stage 0 execution folders (spikes/, evals/, infra/)",
+      "Previews with scaffold_project_structure.py --dry-run before writing files",
+      "Runs validate_project_structure.py --profile solution-architecture and reports PASS"
+    ]
+  },
+  {
+    "query": "Audit our existing architecture repo for stale Proposed ADRs and broken links.",
+    "expected_behavior": [
+      "Runs validate_project_structure.py --profile auto --strict-coherence",
+      "Reports any broken relative links, invalid JSON, or Proposed ADRs missing Owner or Target review date"
+    ]
+  }
+]

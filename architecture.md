@@ -17,7 +17,7 @@
 
 `strategic-planning-workbench` is an APM-native agentic workbench designed for **government and organizational strategic planning**. Rather than jumping prematurely from stakeholder conversations into feature backlogs or project wish lists, the workbench maintains a structured, evidence-backed chain from multi-tier leadership direction down to capabilities, candidate ideas, committed work, risks, and measurable outcomes.
 
-The plugin has six skills. One main skill, `developing-and-managing-strategy`, holds the strategy interview, the living registers, and the idea, work, risk, scoring and roadmap modes. A triage skill sorts new material, and four specialist skills handle team capacity, logic models, visuals, and architecture/technology registry management. Every skill is interactive or executable: it guides the user with menus and one or two questions at a time, and confirms a recap before saving.
+The plugin has seven skills. One main skill, `developing-and-managing-strategy`, holds the strategy interview, the living registers, and the idea, work, risk, scoring and roadmap modes. A triage skill sorts new material, and five specialist skills handle solution architecture scaffolding/validation, team capacity, logic models, visuals, and architecture/technology registry management. Every skill is interactive or executable: it guides the user with menus and one or two questions at a time, and confirms a recap before saving.
 
 ---
 
@@ -117,21 +117,25 @@ Registers `06` and `10` have fixed section headings so two owners can share a fi
 
 ## 5. Skill Set & Request Routing
 
-Six skills, with one main entry point:
+Seven skills, with one main entry point:
 
 ```mermaid
 flowchart TD
     U["User request"] --> Q{"What kind<br>of request?"}
     Q -->|"Start, resume or update the strategy;<br>name a record and act on it"| D["developing-and-managing-strategy<br>13 modes in 4 groups"]
+    Q -->|"Scaffold or validate<br>architecture workbench"| S["developing-solution-<br>architecture"]
     Q -->|"New, mixed or<br>unclear material"| T["triaging-new-items<br>classify and route"]
     Q -->|"Team skills<br>and capacity"| M["managing-team-skills-<br>and-allocation"]
     Q -->|"Logic model or<br>results chain"| L["designing-logic-models"]
-    Q -->|"Diagram, dashboard<br>or deck"| R["rendering-strategic-<br>visuals-and-decks"]
+    Q -->|"Diagram, brief,<br>dashboard or deck"| R["rendering-strategic-<br>visuals-and-decks"]
     Q -->|"Technology or architecture<br>registry (BDAT)"| A["managing-architecture-<br>registry"]
     T -->|"ideas, work, risks, drivers,<br>decisions, strategy changes"| D
     T -->|"training, team changes"| M
     M -->|"capacity evidence"| D
+    S -->|"strategy/ in hybrids"| D
+    S -->|"architecture-registry.json"| A
     D -->|"registers 00 to 10"| R
+    S -->|"architecture views"| R
     M -->|"register 11"| R
 ```
 
@@ -258,7 +262,15 @@ strategic-planning-workbench/
         │       │   ├── assets/templates/     (registers, ledgers, briefs)
         │       │   ├── evals/
         │       │   ├── references/           (one folder per mode, plus workflows/, shared/, lifecycle/)
-        │       │   └── scripts/              (scoring generator, dashboard, vision generator, tests)
+        │       │   ├── scripts/              (scoring generator, dashboard, vision generator)
+        │       │   └── tests/                (test_investment_scripts.py)
+        │       ├── developing-solution-architecture/
+        │       │   ├── SKILL.md              (router: scaffold, document, validate)
+        │       │   ├── assets/               (structure-profiles/, adr/quality/runtime templates)
+        │       │   ├── evals/
+        │       │   ├── references/           (project structure, architecture artifacts, gates)
+        │       │   └── scripts/              (scaffold, validate, test_project_structure_scripts.py)
+        │       ├── managing-architecture-registry/
         │       ├── managing-team-skills-and-allocation/
         │       ├── rendering-strategic-visuals-and-decks/
         │       └── triaging-new-items/
@@ -279,4 +291,4 @@ strategic-planning-workbench/
 `main` is branch-protected on `bcgov/strategic-planning-workbench`:
 1. **Feature-Branch PR Workflow**: All changes must be made on a dedicated branch (`feat/<topic>`, `fix/<topic>`, `docs/<topic>`, `refactor/<topic>`) and submitted via Pull Request.
 2. **Documentation Synchronization**: Any change that adds, renames, or modifies skills, living registers (`strategy/00`–`11`), or architectural invariants must update [AGENTS.md](AGENTS.md), [architecture.md](architecture.md), [README.md](README.md), and [plugins/strategic-planning/README.md](plugins/strategic-planning/README.md) in the same Pull Request.
-3. **Pre-PR Verification**: Run `audit_agents_md.py --strict`, `audit_rule.py --all --strict`, `audit_plugin_structure.py`, `audit.py`, `audit_skill.py --all --mode source` & `--mode installed`, `validate_apm_package.py`, and `audit_marketplace_sources.py` before pushing. Also run `python plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/scripts/test_investment_scripts.py` after changing the scoring scripts or ledger templates.
+3. **Pre-PR Verification**: Run `audit_agents_md.py --strict`, `audit_rule.py --all --strict`, `audit_plugin_structure.py`, `audit.py`, `audit_skill.py --all --mode source` & `--mode installed`, `validate_apm_package.py`, and `audit_marketplace_sources.py` before pushing. Also run `test_investment_scripts.py`, `test_project_structure_scripts.py`, `test_renderers.py`, and `test_managing_architecture_registry.py`.

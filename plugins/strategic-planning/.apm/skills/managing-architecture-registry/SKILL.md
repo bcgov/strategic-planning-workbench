@@ -34,6 +34,14 @@ python3 scripts/managing_architecture_registry.py summary <path/to/architecture-
 3. **Query & budget**: Run `query` (by `--domain`, `--status`, `--zone`, `--adr`, `--work-package`, or `--search`) and `summary` to check total `private_endpoint_ips` against Landing Zone `/24` limits.
 4. **Export**: Run `export-csv` when stakeholders need a spreadsheet view.
 
+## Related skills
+
+| Need | Skill |
+|---|---|
+| Repository scaffolding, BDAT docs, ADRs, quality/runtime scenarios, and coherence validation | `developing-solution-architecture` |
+| Business strategy registers (`00`–`11`) | `developing-and-managing-strategy` |
+| Audience HTML briefs, dashboards, or decks | `rendering-strategic-visuals-and-decks` |
+
 ## Verification
 
 ```bash
@@ -44,3 +52,4 @@ python3 -m unittest discover -s scripts -p "test_*.py"
 ## References
 
 - [Registry Schema](references/registry-schema.md) — JSON fields, enums, and TOGAF/ADR linkage rules.
+- [Acceptance Criteria](references/acceptance-criteria.md) — validation and registry integrity gates.

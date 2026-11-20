@@ -14,13 +14,13 @@
   ],
   "optional_files": [
     "AGENTS.md",
-    "strategy/01-strategic-context.md",
+    "strategy/01-org-hierarchy-and-context.md",
     "strategy/03-target-vision-and-objectives.md",
     "strategy/05-business-capabilities.md",
     "strategy/06-constraints-assumptions-risks.md",
     "strategy/07-idea-inventory.md",
     "strategy/08-work-inventory.md",
-    "strategy/10-success-measures-and-roadmap.md"
+    "strategy/10-roadmap-and-success-measures.md"
   ],
   "legacy_aliases": {},
   "starter_stubs": {

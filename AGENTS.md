@@ -5,7 +5,7 @@
 
 ## Architecture & Layout
 High-level architectural pointers. For full layout, multi-tier hierarchy, and living register flows, see [architecture.md](architecture.md).
-- `plugins/strategic-planning/.apm/skills/`: Five self-contained interactive skills: strategy and item management (`developing-and-managing-strategy`), triage (`triaging-new-items`), team skills and allocation, logic models, and B.C. Gov visual rendering.
+- `plugins/strategic-planning/.apm/skills/`: Seven self-contained interactive and executable skills: strategy and item management (`developing-and-managing-strategy`), solution/enterprise architecture scaffolding and validation (`developing-solution-architecture`), technology & architecture registry (`managing-architecture-registry`), triage (`triaging-new-items`), team skills and allocation (`managing-team-skills-and-allocation`), logic models (`designing-logic-models`), and B.C. Gov visual rendering (`rendering-strategic-visuals-and-decks`).
 - `plugins/strategic-planning/rules/` & `.agent/rules/`: Non-negotiable governance invariants.
 - `strategy/` (or user-selected `~/strategic-planning-outputs/<team>/strategy/`): Default workspace directory where living team strategic registers (`00`–`11`), inventories, and visual outputs are persisted.
 
@@ -13,8 +13,10 @@ High-level architectural pointers. For full layout, multi-tier hierarchy, and li
 Essential commands for validating plugins, skills, rules, and APM packaging:
 ```bash
 apm compile --validate
-python -m pytest
-python plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/scripts/test_investment_scripts.py
+python3 plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/tests/test_investment_scripts.py
+python3 plugins/strategic-planning/.apm/skills/developing-solution-architecture/scripts/test_project_structure_scripts.py -v
+python3 plugins/strategic-planning/.apm/skills/rendering-strategic-visuals-and-decks/scripts/test_renderers.py -v
+python3 plugins/strategic-planning/.apm/skills/managing-architecture-registry/scripts/test_managing_architecture_registry.py -v
 ```
 
 ## Non-Negotiable Rules / Invariants
@@ -33,4 +35,6 @@ python plugins/strategic-planning/.apm/skills/developing-and-managing-strategy/s
 - Use `triaging-new-items` when sorting a new, mixed or unclear list (meeting notes, a spreadsheet, "log this problem or risk"): it classifies by commitment state and nature (problem, driver, risk, idea, project, training, decision, blocker and more), then routes each item. Not needed for an explicit request on a named record such as "update WORK-12".
 - Use `managing-team-skills-and-allocation` when mapping team member skills (`MEM-X`), growth interests, training requests, and active `WORK-X` assignments, recording capacity evidence for commitments, or exporting Excel/CSV and Mermaid workload trackers.
 - Use `designing-logic-models` when constructing, stress-testing, or documenting program logic models, results chains, outcome chains, theories of change, or results frameworks connecting inputs and activities to outputs and progressive immediate, intermediate, and long-term public outcomes.
-- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML dashboards, Mermaid roadmaps, Gantt charts, value-stream maps, or slide decks from the registers.
+- Use `rendering-strategic-visuals-and-decks` when producing B.C. Gov Design System HTML briefs, logic-model cards, dashboards, Mermaid roadmaps, Gantt charts, value-stream maps, or slide decks from registers or architecture workbenches.
+- Use `developing-solution-architecture` when scaffolding or validating `solution-architecture`, `strategy-and-architecture`, or `enterprise-architecture` repositories (TOGAF BDAT views, ADRs, quality/runtime scenarios, and ADR/WP coherence checks).
+- Use `managing-architecture-registry` when initializing, updating, validating, querying, or exporting a project's `architecture-registry.json` (`TECH-NNN` inventory and Private Endpoint IP footprint).

@@ -1,0 +1,15 @@
+[
+  {
+    "query": "Initialize architecture-registry.json and add Azure AI Search in Zone 1 linked to ADR-005.",
+    "expected_behavior": [
+      "Runs managing_architecture_registry.py init and upsert with TECH-001, togaf_domain Data, status target, zones Zone 1, and adrs ADR-005",
+      "Validates the registry with managing_architecture_registry.py validate"
+    ]
+  },
+  {
+    "query": "Summarize Private Endpoint IP usage across the architecture registry.",
+    "expected_behavior": [
+      "Runs managing_architecture_registry.py summary without modifying JSON entries or storing secrets/IP literals"
+    ]
+  }
+]

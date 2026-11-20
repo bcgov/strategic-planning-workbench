@@ -2,7 +2,7 @@
 
 ## 1. How GrokBot and APM targets interact with this workbench
 
-The 11 skills in `strategic-planning` are authored to the **Agent Skills Open Standard** (`AGENTS.md` + self-contained `.apm/skills/<skill-name>/SKILL.md` with zero symlinks). In Microsoft APM (`0.35.0+`), all three xAI Grok targets have **full user-scope (`--global`) and project-scope primitive support**:
+The 7 skills in `strategic-planning` are authored to the **Agent Skills Open Standard** (`AGENTS.md` + self-contained `.apm/skills/<skill-name>/SKILL.md` with zero symlinks). In Microsoft APM (`0.35.0+`), all three xAI Grok targets have **full user-scope (`--global`) and project-scope primitive support**:
 
 | APM target | Runtime environment | How it loads these skills | Important APM deployment note |
 |---|---|---|---|
