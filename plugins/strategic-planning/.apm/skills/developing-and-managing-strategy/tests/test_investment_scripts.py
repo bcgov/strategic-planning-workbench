@@ -2,7 +2,7 @@
 """Regression checks for the investment scoring scripts.
 
 Run after changing generate_investment_quadrant.py, interactive_investment_app.py or the ledger templates:
-    python scripts/test_investment_scripts.py
+    python tests/test_investment_scripts.py
 Covers lossless CSV round trips, null-safe commitment evidence, the Q1 safeguard, zero scores,
 HTML escaping, JavaScript syntax (needs node) and saved scoring weights.
 """

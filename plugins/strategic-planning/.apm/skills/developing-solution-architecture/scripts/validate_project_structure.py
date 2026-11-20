@@ -203,7 +203,7 @@ def main() -> int:
     parser.add_argument(
         "--with-execution",
         action="store_true",
-        help="Also require execution folders (spikes/, evals/, infra/, .github/workflows/)",
+        help="Also require execution folders (spikes/, evals/, infra/)",
     )
     parser.add_argument(
         "--strict-coherence",
