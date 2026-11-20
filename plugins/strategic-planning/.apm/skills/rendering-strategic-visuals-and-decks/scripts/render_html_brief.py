@@ -534,6 +534,8 @@ def render_executive_brief(
     data: Dict[str, Any],
     base_dir: Optional[Path] = None,
     embed_images: bool = False,
+    convert_mmd: bool = False,
+    svg_out_dir: Optional[Path] = None,
     nav_items: Optional[List[Tuple[str, str]]] = None,
     active_href: Optional[str] = None,
 ) -> str:
@@ -546,7 +548,7 @@ def render_executive_brief(
 
     if data.get("hero_image"):
         parts.append(
-            f'<section class="block">{render_image_figure(data["hero_image"], base_dir, embed_images)}</section>'
+            f'<section class="block">{render_image_figure(data["hero_image"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir)}</section>'
         )
 
     highlights = data.get("highlights") or []
@@ -590,7 +592,7 @@ def render_executive_brief(
             sec_html.append(f'<div class="grid">{"".join(c_html)}</div>')
         if sec.get("images"):
             for img in sec["images"]:
-                sec_html.append(render_image_figure(img, base_dir, embed_images))
+                sec_html.append(render_image_figure(img, base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir))
         sec_html.append("</section>")
         parts.append("".join(sec_html))
 
@@ -1074,6 +1076,7 @@ def render_site(
         elif ptype == "executive-brief":
             html_out = render_executive_brief(
                 page_data, base_dir=in_path.parent, embed_images=embed_images,
+                convert_mmd=convert_mmd, svg_out_dir=output_dir / "images",
                 nav_items=nav_items, active_href=page["filename"],
             )
         elif ptype == "logic-model":
@@ -1138,7 +1141,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 0
 
     if args.type == "executive-brief":
-        rendered = render_executive_brief(data, base_dir=base_dir, embed_images=args.embed_images)
+        rendered = render_executive_brief(
+            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd
+        )
     elif args.type == "logic-model":
         rendered = render_logic_model(data)
     elif args.type == "architecture-on-a-page":
