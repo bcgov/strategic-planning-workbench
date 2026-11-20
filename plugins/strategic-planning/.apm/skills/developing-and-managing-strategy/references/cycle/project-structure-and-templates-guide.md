@@ -18,7 +18,7 @@ For `solution-architecture` and `strategy-and-architecture`, when the team is mo
 - `spikes/` — time-boxed technical/identity compatibility spikes
 - `evals/` — SME evaluation sets and regression harnesses
 - `infra/` — Bicep/Terraform landing-zone and gateway policies
-- `.github/workflows/` — automated JSON, YAML, and relative Markdown link validation (`validate-architecture.yml` starter workflow)
+- `.github/workflows/` — automated JSON and relative Markdown link validation (`validate-architecture.yml` starter workflow using BC Gov deny-all `permissions: {}`, pinned action SHAs, and explicit Ruleset job `name:`). For Azure OIDC/Terraform or OpenShift Emerald deployment pipelines, use the `bcgov-devops-platform-workbench` skills (`managing-github-workflows`, `delivering-azure-terraform`, `configuring-azure-github-oidc`, `deploying-bc-gov-workloads`).
 
 Additional optional architecture templates in `assets/templates/`:
 - `adr-template.md` — structured ADR with `Status`, `Owner`, `Target review date`, and `Traceability`
