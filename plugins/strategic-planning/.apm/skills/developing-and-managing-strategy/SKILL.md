@@ -62,6 +62,7 @@ One skill with two layers: the strategy (registers `00`–`05`, assumptions and 
 | Logic models and results chains | `designing-logic-models` |
 | Dashboards, roadmaps as visuals, decks | `rendering-strategic-visuals-and-decks` |
 | Optional TOGAF BDAT technology & architecture registry (`architecture-registry.json`) | `managing-architecture-registry` |
+| GitHub Actions hardening, Rulesets, Azure Landing Zones/OIDC/Terraform, or OpenShift Emerald CI/CD | `bcgov-devops-platform-workbench` (`managing-github-workflows`, `designing-bc-gov-azure-landing-zones`, `configuring-azure-github-oidc`, `delivering-azure-terraform`, `deploying-bc-gov-workloads`) — **never duplicate platform/CI/CD logic here** |
 
 ## Verification
 
