@@ -40,10 +40,6 @@ class TestProjectStructureScripts(unittest.TestCase):
                 )
                 self.assertEqual(report["profile"], profile_id)
                 self.assertEqual(report["status"], "PASS", report)
-                if profile_id in ("solution-architecture", "strategy-and-architecture"):
-                    self.assertTrue(
-                        (root / ".github" / "workflows" / "validate-architecture.yml").is_file()
-                    )
 
     def test_dry_run_writes_nothing_and_no_overwrite(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

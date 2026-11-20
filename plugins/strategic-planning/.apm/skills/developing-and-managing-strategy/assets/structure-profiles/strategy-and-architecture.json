@@ -16,8 +16,7 @@
   "execution_directories": [
     "spikes",
     "evals",
-    "infra",
-    ".github/workflows"
+    "infra"
   ],
   "optional_directories": [
     "deliverables"
@@ -58,8 +57,5 @@
     "diagrams/README.md": "# Architecture Diagrams\n",
     "implementation-plan.md": "# Implementation Plan\n",
     "work-packages/README.md": "# Work Packages\n"
-  },
-  "execution_stubs": {
-    ".github/workflows/validate-architecture.yml": "@template:validate-architecture.yml"
   }
 }

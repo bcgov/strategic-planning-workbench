@@ -27,5 +27,9 @@ Keep the **architecture model** (single source of truth) distinct from **views a
 - **Model:** `architecture/architecture-registry.json`, `contracts/`, `adrs/`, `work-packages/`, `architecture/quality-scenarios.md`, and `architecture/runtime-scenarios.md`.
 - **Views & deliverables:** Editable Mermaid/PlantUML sources in `diagrams/` and audience-ready HTML/PPTX/PDF briefings in `deliverables/` (rendered via `rendering-strategic-visuals-and-decks`).
 
-## 4. Handing off to `managing-architecture-registry`
+## 4. Informed by platform constraints (`bcgov-devops-platform-workbench`)
+
+This workbench guides **architecture structure and planning practices** (TOGAF BDAT, ADRs, quality/runtime scenarios, `work-packages/`). When real BC Gov platform or technical constraints must inform your target-state Data, Application, or Technology architecture—such as Azure Landing Zone networking/SQL/Private Endpoints, OpenShift Emerald constraints, OIDC, or GitHub Actions/Rulesets—consult **`bcgov-devops-platform-workbench`** (`designing-bc-gov-azure-landing-zones`, `delivering-azure-terraform`, `deploying-bc-gov-workloads`, `managing-github-workflows`) rather than duplicating platform details here.
+
+## 5. Handing off to `managing-architecture-registry`
 Invoke `managing-architecture-registry` whenever the user wants to initialize, upsert, validate, query, summarize Private Endpoint IP footprints, or export a CSV of technology components (`architecture-registry.json`).
