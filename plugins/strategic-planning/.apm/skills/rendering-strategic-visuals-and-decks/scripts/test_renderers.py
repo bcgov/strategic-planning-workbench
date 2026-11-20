@@ -63,8 +63,10 @@ class TestRenderers(unittest.TestCase):
         }
         out = render_html_brief.render_logic_model(payload)
         self.assertIn("Causal results chain", out)
+        self.assertIn("lm-chevron", out)
+        self.assertIn("Your planned work", out)
         self.assertIn("Published discovery contract", out)
-        self.assertIn("Assumptions and external risks", out)
+        self.assertIn("Assumptions and external factors", out)
 
     def test_emoji_rejected(self) -> None:
         with self.assertRaises(ValueError):

@@ -241,6 +241,92 @@ tr:nth-child(even) td {
   font-size: 14px;
 }
 .stage-card li { margin-bottom: 4px; }
+.lm-banner, .aoap-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.lm-banner-cell, .aoap-banner-cell {
+  background: var(--color-brand-primary);
+  color: var(--color-surface-white);
+  padding: 14px 18px;
+}
+.lm-banner-cell.objective, .aoap-banner-cell.right {
+  background: var(--color-brand-primary-hover);
+}
+.lm-banner-label, .aoap-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-border-indigenous);
+  margin-bottom: 6px;
+}
+.lm-banner-cell ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.lm-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.lm-group-bar {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-bottom: 3px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
+  background: var(--color-surface-white);
+}
+.lm-group-bar.results { border-bottom-color: var(--color-border-indigenous); }
+.lm-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+.lm-col { display: flex; flex-direction: column; gap: 8px; }
+.lm-chevron {
+  padding: 10px 14px 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 10px 50%);
+}
+.lm-chevron .lm-sub { display: block; font-size: 11px; font-weight: 400; opacity: 0.9; margin-top: 2px; }
+.lm-items { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.lm-item-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-brand-primary);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.aoap-planes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.plane-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-brand-primary);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.plane-card h3 { margin: 0 0 6px; font-size: 14px; color: var(--color-brand-primary); }
+.plane-card ul { margin: 0; padding-left: 16px; font-size: 13px; color: var(--color-text-secondary); }
+.aoap-split { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 16px; align-items: start; }
+.zone-row { border-left: 4px solid var(--color-brand-primary); background: var(--color-surface-default); padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; font-size: 13px; }
 figure.diagram-figure {
   background: var(--color-surface-white);
   border: 1px solid var(--color-border);
@@ -420,10 +506,15 @@ def render_executive_brief(
         cards = []
         for h in highlights:
             tone = h.get("tone", "neutral")
+            badge_html = (
+                f'<span class="tag tag-{esc(tone)}">{esc(h["badge"])}</span>'
+                if h.get("badge")
+                else ""
+            )
             cards.append(
                 f'<div class="card"><div class="metric-label">{esc(h["label"])}</div>'
                 f'<div class="metric-value">{esc(h["value"])}</div>'
-                f'<span class="tag tag-{esc(tone)}">{esc(tone.capitalize())}</span></div>'
+                f'{badge_html}</div>'
             )
         parts.append(f'<section class="block"><div class="grid">{"".join(cards)}</div></section>')
 
@@ -489,37 +580,61 @@ def render_logic_model(
     nav_items: Optional[List[Tuple[str, str]]] = None,
     active_href: Optional[str] = None,
 ) -> str:
-    """Render a 7-stage logic model JSON payload as a clean BC Gov HTML card chain."""
+    """Render a 7-stage logic model JSON payload with chevron headers, stacked cards, and work/results grouping."""
     for req in ("inputs", "activities", "outputs", "immediate_outcomes"):
         if not data.get(req):
             raise ValueError(f"logic-model JSON missing required stage: {req}")
 
-    stage_order = [
-        ("need", "#474543"),
-        ("inputs", "#255A90"),
-        ("activities", "#1E5189"),
-        ("outputs", "#42814A"),
-        ("immediate_outcomes", "#013366"),
-        ("intermediate_outcomes", "#2E5DD7"),
-        ("long_term_outcomes", "#252423"),
+    parts: List[str] = []
+    need_st = data.get("need")
+    lt_st = data.get("long_term_outcomes")
+    if need_st or lt_st:
+        need_items = "".join(f"<li>{esc(i)}</li>" for i in (need_st or {}).get("items", []))
+        lt_items = "".join(f"<li>{esc(i)}</li>" for i in (lt_st or {}).get("items", []))
+        parts.append(
+            '<div class="lm-banner">'
+            f'<div class="lm-banner-cell"><div class="lm-banner-label">Problem statement / need</div><ul>{need_items}</ul></div>'
+            f'<div class="lm-banner-cell objective"><div class="lm-banner-label">Program objective / ultimate impact</div><ul>{lt_items}</ul></div>'
+            "</div>"
+        )
+
+    parts.append(
+        '<div class="lm-groups">'
+        '<div class="lm-group-bar">Your planned work (direct control)</div>'
+        '<div class="lm-group-bar results">Your intended results (contribution &amp; influence)</div>'
+        "</div>"
+    )
+
+    stage_styles = [
+        ("inputs", "#EDEBE9", "#2D2D2D", "#474543"),
+        ("activities", "#D8EAFD", "#013366", "#2E5DD7"),
+        ("outputs", "#42814A", "#FFFFFF", "#42814A"),
+        ("immediate_outcomes", "#255A90", "#FFFFFF", "#255A90"),
+        ("intermediate_outcomes", "#1E5189", "#FFFFFF", "#1E5189"),
+        ("long_term_outcomes", "#013366", "#FFFFFF", "#013366"),
     ]
-    cards: List[str] = []
-    for key, accent in stage_order:
+    cols_html: List[str] = []
+    for key, bg, fg, accent in stage_styles:
         st = data.get(key)
         if not st:
             continue
-        items = "".join(f"<li>{esc(i)}</li>" for i in st.get("items", []))
-        sub = f'<div class="stage-sub">{esc(st.get("subtitle", ""))}</div>' if st.get("subtitle") else ""
-        cards.append(
-            f'<div class="stage-card" style="border-top-color: {accent};">'
-            f'<h3>{esc(st.get("title", key.replace("_", " ").capitalize()))}</h3>{sub}'
-            f"<ul>{items}</ul></div>"
+        title = st.get("title", key.replace("_", " ").capitalize())
+        sub = f'<span class="lm-sub">{esc(st["subtitle"])}</span>' if st.get("subtitle") else ""
+        item_cards = "".join(
+            f'<div class="lm-item-card" style="border-left-color: {accent};">{esc(i)}</div>'
+            for i in st.get("items", [])
+        )
+        cols_html.append(
+            f'<div class="lm-col">'
+            f'<div class="lm-chevron" style="background: {bg}; color: {fg};">{esc(title)}{sub}</div>'
+            f'<div class="lm-items">{item_cards}</div>'
+            f"</div>"
         )
 
-    parts: List[str] = [
+    parts.append(
         '<section class="block"><h2 class="section-title">Causal results chain</h2>'
-        f'<div class="stage-chain">{"".join(cards)}</div></section>'
-    ]
+        f'<div class="lm-columns">{"".join(cols_html)}</div></section>'
+    )
 
     assumptions = data.get("assumptions") or []
     risks = data.get("external_risks") or []
@@ -527,12 +642,12 @@ def render_logic_model(
         cols: List[str] = []
         if assumptions:
             a_items = "".join(f"<li>{esc(a)}</li>" for a in assumptions)
-            cols.append(f'<div class="card"><span class="tag tag-info">Assumptions</span><ul>{a_items}</ul></div>')
+            cols.append(f'<div class="card"><span class="tag tag-info">Assumptions (theory of change)</span><ul>{a_items}</ul></div>')
         if risks:
             r_items = "".join(f"<li>{esc(r)}</li>" for r in risks)
-            cols.append(f'<div class="card"><span class="tag tag-warning">External risks</span><ul>{r_items}</ul></div>')
+            cols.append(f'<div class="card"><span class="tag tag-warning">External factors and risks</span><ul>{r_items}</ul></div>')
         parts.append(
-            '<section class="block"><h2 class="section-title">Assumptions and external risks</h2>'
+            '<section class="block"><h2 class="section-title">Assumptions and external factors</h2>'
             f'<div class="grid">{"".join(cols)}</div></section>'
         )
 
@@ -569,7 +684,7 @@ def render_dashboard(
         m_cards = "".join(
             f'<div class="card"><div class="metric-label">{esc(m["label"])}</div>'
             f'<div class="metric-value">{esc(m["value"])}</div>'
-            f'<span class="tag tag-{esc(m.get("tone", "neutral"))}">{esc(m.get("tone", "neutral").capitalize())}</span></div>'
+            f'{f"<span class=\"tag tag-{esc(m.get(\"tone\", \"neutral\"))}\">{esc(m[\"badge\"])}</span>" if m.get("badge") else ""}</div>'
             for m in metrics
         )
         parts.append(f'<section class="block"><div class="grid">{m_cards}</div></section>')
