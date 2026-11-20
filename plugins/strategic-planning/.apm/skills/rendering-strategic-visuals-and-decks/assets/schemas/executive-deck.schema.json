@@ -34,6 +34,15 @@
             "type": "array",
             "items": { "type": "array", "items": { "type": "string" } }
           },
+          "image": {
+            "type": "object",
+            "required": ["src", "alt"],
+            "properties": {
+              "src": { "type": "string" },
+              "alt": { "type": "string" },
+              "caption": { "type": "string" }
+            }
+          },
           "notes": { "type": "string" }
         }
       }

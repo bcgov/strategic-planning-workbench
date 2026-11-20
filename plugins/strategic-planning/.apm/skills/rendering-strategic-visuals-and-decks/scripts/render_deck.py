@@ -91,6 +91,12 @@ style: |
                 for r in rows:
                     slide_md.append("| " + " | ".join(str(c) for c in r) + " |")
 
+        if sl.get("image"):
+            img = sl["image"]
+            slide_md.append(f"\n![{img['alt']}]({img['src']})")
+            if img.get("caption"):
+                slide_md.append(f"*{img['caption']}*")
+
         if sl.get("notes"):
             slide_md.append(f"\n<!-- {sl['notes']} -->")
         parts.append("\n".join(slide_md))

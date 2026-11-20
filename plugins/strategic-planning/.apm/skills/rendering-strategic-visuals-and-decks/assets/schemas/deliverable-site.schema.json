@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BC Gov Multi-Page Deliverable Site",
+  "description": "Manifest for rendering an index hub and linked subpages (executive-brief, logic-model, dashboard) with shared BC Gov navigation.",
+  "type": "object",
+  "required": ["title", "org_trail", "summary", "pages"],
+  "properties": {
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "org_trail": { "type": "string" },
+    "date": { "type": "string" },
+    "summary": { "type": "string" },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["label", "filename", "type", "input"],
+        "properties": {
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "filename": { "type": "string" },
+          "type": { "type": "string", "enum": ["executive-brief", "logic-model", "dashboard"] },
+          "input": { "type": "string", "description": "Path to page JSON relative to site.json" }
+        }
+      }
+    },
+    "indigenous_acknowledgment": { "type": "boolean", "default": true }
+  }
+}

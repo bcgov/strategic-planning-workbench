@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -124,6 +125,58 @@ class TestRenderers(unittest.TestCase):
         spec = json.loads(render_deck.render_pptx_spec(deck))
         self.assertEqual(spec["tokens"]["navy"], "013366")
         self.assertEqual(len(spec["slides"]), 1)
+
+    def test_executive_brief_renders_and_embeds_images(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            svg_path = tmp_path / "arch.svg"
+            svg_path.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"></svg>', encoding="utf-8")
+            payload = {
+                "title": "Brief with diagram",
+                "org_trail": "Government of British Columbia",
+                "summary": "Includes architecture diagram.",
+                "sections": [
+                    {
+                        "heading": "Overview",
+                        "images": [
+                            {"src": "arch.svg", "alt": "Architecture diagram", "caption": "Figure 1: Overview"}
+                        ],
+                    }
+                ],
+            }
+            rel_html = render_html_brief.render_executive_brief(payload, base_dir=tmp_path, embed_images=False)
+            self.assertIn('src="arch.svg"', rel_html)
+            self.assertIn("Figure 1: Overview", rel_html)
+
+            emb_html = render_html_brief.render_executive_brief(payload, base_dir=tmp_path, embed_images=True)
+            self.assertIn("data:image/svg+xml;base64,", emb_html)
+
+    def test_render_site_builds_index_and_linked_subpages(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            (tmp_path / "brief.json").write_text(
+                json.dumps({
+                    "title": "Brief",
+                    "org_trail": "Government of British Columbia",
+                    "summary": "Summary",
+                    "sections": [{"heading": "One", "body": "Body"}],
+                }),
+                encoding="utf-8",
+            )
+            site_data = {
+                "title": "Portal",
+                "org_trail": "Government of British Columbia",
+                "summary": "Hub summary",
+                "pages": [
+                    {"label": "Executive Brief", "filename": "executive-brief.html", "type": "executive-brief", "input": "brief.json"}
+                ],
+            }
+            out_dir = tmp_path / "out"
+            written = render_html_brief.render_site(site_data, site_dir=tmp_path, output_dir=out_dir)
+            self.assertEqual(len(written), 2)
+            idx = (out_dir / "index.html").read_text(encoding="utf-8")
+            self.assertIn('href="executive-brief.html"', idx)
+            self.assertIn("bc-nav", idx)
 
 
 if __name__ == "__main__":
