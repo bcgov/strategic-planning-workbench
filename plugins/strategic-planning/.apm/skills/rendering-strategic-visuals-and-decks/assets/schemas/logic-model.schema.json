@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BC Gov Logic Model",
+  "description": "Structured input compatible with designing-logic-models/scripts/generate_mermaid.py and HTML card rendering.",
+  "type": "object",
+  "required": ["inputs", "activities", "outputs", "immediate_outcomes"],
+  "properties": {
+    "title": { "type": "string" },
+    "org_trail": { "type": "string" },
+    "date": { "type": "string" },
+    "layout": { "type": "string", "enum": ["TB", "LR"], "default": "LR" },
+    "style_mode": { "type": "string", "enum": ["classDef", "style"], "default": "classDef" },
+    "need": { "$ref": "#/$defs/stage" },
+    "inputs": { "$ref": "#/$defs/stage" },
+    "activities": { "$ref": "#/$defs/stage" },
+    "outputs": { "$ref": "#/$defs/stage" },
+    "immediate_outcomes": { "$ref": "#/$defs/stage" },
+    "intermediate_outcomes": { "$ref": "#/$defs/stage" },
+    "long_term_outcomes": { "$ref": "#/$defs/stage" },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "external_risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "indigenous_acknowledgment": { "type": "boolean", "default": true }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "required": ["title", "items"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "css_class": { "type": "string" }
+      }
+    }
+  }
+}

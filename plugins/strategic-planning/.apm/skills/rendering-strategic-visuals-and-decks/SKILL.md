@@ -5,7 +5,7 @@ description: "Guides users interactively to generate B.C. Government Design Syst
 
 # Rendering strategic visuals and decks
 
-Guides users interactively to choose the right audience and format, then transforms the team's living strategic registers (`strategy/`) into **Mermaid diagrams**, **B.C. Government Design System HTML dashboards**, and **executive presentation decks** (Markdown/Marp or PowerPoint via `bc-gov-design-system`).
+Guides users interactively to choose the right audience and format, then transforms living strategic registers (`strategy/`), solution-architecture workbenches (`02-architecture.md`, `work-packages/`, `adrs/`, `04-open-questions.md`), or `designing-logic-models` JSON payloads into **Mermaid diagrams**, **B.C. Government Design System HTML briefs, logic-model cards, and dashboards**, and **executive presentation decks** (Markdown/Marp or PowerPoint via `bc-gov-design-system`).
 
 ## Contents
 
@@ -17,7 +17,7 @@ Guides users interactively to choose the right audience and format, then transfo
 
 ## Constraints
 
-1. **Interactive format negotiation**: Open with a numbered format menu (`1. Mermaid roadmap, Gantt & alignment diagrams`, `2. B.C. Gov HTML Strategy on a Page dashboard`, `3. Executive slide deck (Markdown / PowerPoint)`, `4. Complete visual package`) and ask who the audience is.
+1. **Interactive format negotiation**: Open with a numbered format menu (`1. Mermaid visual package`, `2. B.C. Gov HTML Executive Brief / Architecture One-Pager (print-to-PDF ready)`, `3. B.C. Gov HTML Strategy / Portfolio Dashboard or Logic Model Card View`, `4. Executive slide deck (Marp Markdown / PowerPoint .pptx spec)`, `5. Custom combination`) and ask who the audience is.
 1a. **Guided interaction**: Guide the user step by step with questions, following [guided-interaction.md](references/guided-interaction.md): open with a numbered menu or one question, ask 1–2 per turn with a recommended default, show progress, accept "I don't know" as an open item, and confirm a recap before every write.
 2. **B.C. Government Design System compliance**: Follow [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md) (BC Sans typography, primary navy `#013366`, gold accent `#FBD389`, off-white surface `#FAF9F8`, focus ring `#2E5DD7`, WCAG 2.1 AA contrast, sentence-case headings, zero emoji, zero gradients, and the mandatory Indigenous acknowledgment footer on full-page HTML and slide decks).
 3. **Visually separate committed work from ideas**: Committed initiatives (`WORK-X`) render as solid bars/cards; unapproved ideas (`IDEA-X`) render strictly as dashed nodes or `milestone` decision gates. A `WORK-X` item flagged `Capacity unconfirmed`, or lacking a sponsor with approval date, an owner or confirmed capacity, is not committed: render it as a decision gate and label the missing evidence.
@@ -27,13 +27,14 @@ Guides users interactively to choose the right audience and format, then transfo
 
 1. Read [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) and [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md).
 2. Ask the user to select their audience and output format from the numbered menu.
-3. Generate the chosen output using [mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md), [executive-strategy-deck.md](assets/templates/executive-strategy-deck.md), or `assets/templates/bc-gov-strategy-dashboard.html` (and delegate `.pptx` binary generation to `bc-gov-design-system` when requested).
+3. Structure the extracted content as JSON matching the appropriate schema in `assets/schemas/` (`executive-brief.schema.json`, `logic-model.schema.json`, `strategy-dashboard.schema.json`, or `executive-deck.schema.json`).
+4. Render the output using the Python scripts in `scripts/` (`render_html_brief.py`, `render_mermaid_package.py`, `render_deck.py`) or the static templates in `assets/templates/` (and delegate `.pptx` binary generation to `bc-gov-design-system` using the `--format pptx-spec` output).
 
 ## Workflow
 
-1. **Interactive Audience & Format Selection**: Present the 4-option format menu and confirm whether the output is for executive leadership (Chris/Jessica/CSB), a team workshop, or partner branches.
-2. **Extract & Confirm Register Scope**: Pull current objectives (`OBJ-X`), capabilities (`CAP-X`), committed work (`WORK-X`), decision gates (`IDEA-X`), and measures (`MSR-X`) from `strategy/` and confirm the scope via a brief recap gate.
-3. **Render Compliant Visuals**: Produce the selected Mermaid diagrams ([mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md)), B.C. Gov HTML Strategy Dashboard (`assets/templates/bc-gov-strategy-dashboard.html`), or slide deck ([executive-strategy-deck.md](assets/templates/executive-strategy-deck.md)).
+1. **Interactive Audience & Format Selection**: Present the 5-option format menu and confirm whether the output is for executive leadership, privacy/policy reviewers, a team workshop, or partner ministries/branches.
+2. **Extract & Confirm Scope**: Pull current items from `strategy/` (`OBJ-X`, `CAP-X`, `WORK-X`, `IDEA-X`, `MSR-X`), from a `solution-architecture` workbench (`02-architecture.md`, `work-packages/`, `adrs/`, `04-open-questions.md`), or from a `designing-logic-models` JSON payload, and confirm the scope via a brief recap gate.
+3. **Author Validated JSON & Render**: Write or update the structured JSON payload matching `assets/schemas/`, then run `scripts/render_html_brief.py`, `scripts/render_mermaid_package.py`, or `scripts/render_deck.py` to produce compliant B.C. Gov outputs.
 
 ## Related skills
 
@@ -55,5 +56,7 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 ## References
 
 - Methodology & brand rules: [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) • [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md)
+- JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json`
+- Renderers: `scripts/render_html_brief.py` • `scripts/render_mermaid_package.py` • `scripts/render_deck.py` • `scripts/test_renderers.py`
 - Templates: [mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md) • [executive-strategy-deck.md](assets/templates/executive-strategy-deck.md) • `assets/templates/bc-gov-strategy-dashboard.html`
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
