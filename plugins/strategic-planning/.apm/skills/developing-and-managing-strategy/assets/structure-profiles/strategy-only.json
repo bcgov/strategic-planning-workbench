@@ -1,0 +1,31 @@
+{
+  "id": "strategy-only",
+  "name": "General Strategic Planning",
+  "description": "Business and operations team strategic planning using registers 00-11, changelog, and source notes.",
+  "directories": [
+    "strategy",
+    "strategy/sources"
+  ],
+  "execution_directories": [],
+  "required_files": [
+    "README.md",
+    "strategy/00-planning-session-status.md",
+    "strategy/changelog.md"
+  ],
+  "optional_files": [
+    "AGENTS.md",
+    "strategy/01-strategic-context.md",
+    "strategy/03-target-vision-and-objectives.md",
+    "strategy/05-business-capabilities.md",
+    "strategy/06-constraints-assumptions-risks.md",
+    "strategy/07-idea-inventory.md",
+    "strategy/08-work-inventory.md",
+    "strategy/10-success-measures-and-roadmap.md"
+  ],
+  "legacy_aliases": {},
+  "starter_stubs": {
+    "README.md": "# {project_name} — Strategic Planning\n\nStrategic planning workspace using registers under `strategy/`.\n\n- [Session Status](strategy/00-planning-session-status.md)\n- [Changelog](strategy/changelog.md)\n",
+    "strategy/00-planning-session-status.md": "# Planning Session Status\n\n- **Project / Team:** {project_name}\n- **Profile:** `strategy-only`\n- **Current Stage:** Context & Vision\n\n## Open Follow-ups\n\n| ID | Owner | Item | Status |\n|---|---|---|---|\n",
+    "strategy/changelog.md": "# Register Update Changelog\n\n| Date | Mode | Summary | Affected Records |\n|---|---|---|---|\n"
+  }
+}

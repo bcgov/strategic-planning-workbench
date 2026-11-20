@@ -1,0 +1,59 @@
+{
+  "id": "strategy-and-architecture",
+  "name": "Hybrid Strategy & Solution Architecture",
+  "description": "Combines business strategy registers (00-11 under strategy/) with TOGAF BDAT architecture, ADRs, contracts, diagrams, and work packages.",
+  "directories": [
+    "strategy",
+    "strategy/sources",
+    "architecture",
+    "adrs",
+    "contracts",
+    "diagrams",
+    "work-packages",
+    "research",
+    "history"
+  ],
+  "execution_directories": [
+    "spikes",
+    "evals",
+    "infra",
+    ".github/workflows"
+  ],
+  "required_files": [
+    "README.md",
+    "strategy/00-planning-session-status.md",
+    "strategy/changelog.md",
+    "architecture.md",
+    "architecture/business-architecture.md",
+    "architecture/data-architecture.md",
+    "architecture/application-architecture.md",
+    "architecture/technology-architecture.md",
+    "adrs/README.md",
+    "contracts/README.md",
+    "diagrams/README.md",
+    "implementation-plan.md",
+    "work-packages/README.md"
+  ],
+  "optional_files": [
+    "AGENTS.md",
+    "architecture/architecture-registry.json"
+  ],
+  "legacy_aliases": {
+    "capabilities": "contracts"
+  },
+  "starter_stubs": {
+    "README.md": "# {project_name}\n\nHybrid strategic planning and solution architecture workspace.\n\n- [Strategy Status](strategy/00-planning-session-status.md)\n- [Architecture Overview](architecture.md)\n- [Implementation Plan](implementation-plan.md)\n",
+    "strategy/00-planning-session-status.md": "# Planning Session Status\n\n- **Project / Team:** {project_name}\n- **Profile:** `strategy-and-architecture`\n- **Current Stage:** Context & Vision\n",
+    "strategy/changelog.md": "# Register Update Changelog\n\n| Date | Mode | Summary | Affected Records |\n|---|---|---|---|\n",
+    "architecture.md": "# {project_name} — Architecture Overview\n\nLinks strategy registers in `strategy/` to TOGAF BDAT architecture under `architecture/`.\n",
+    "architecture/business-architecture.md": "# Business Architecture (TOGAF Phase B)\n",
+    "architecture/data-architecture.md": "# Data Architecture (TOGAF Phase C — Data)\n",
+    "architecture/application-architecture.md": "# Application Architecture (TOGAF Phase C — Application)\n",
+    "architecture/technology-architecture.md": "# Technology Architecture (TOGAF Phase D)\n",
+    "adrs/README.md": "# Architecture Decision Records\n",
+    "contracts/README.md": "# Interface & Capability Contracts\n",
+    "diagrams/README.md": "# Architecture Diagrams\n",
+    "implementation-plan.md": "# Implementation Plan\n",
+    "work-packages/README.md": "# Work Packages\n"
+  }
+}

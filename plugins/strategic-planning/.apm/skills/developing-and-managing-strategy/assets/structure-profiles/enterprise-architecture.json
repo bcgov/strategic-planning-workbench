@@ -1,0 +1,38 @@
+{
+  "id": "enterprise-architecture",
+  "name": "Enterprise Architecture Repository (Full TOGAF)",
+  "description": "Organization- or ministry-wide TOGAF Architecture Repository with metamodel, standards information base, reference library, baseline/target landscape, and ADM project cycles.",
+  "directories": [
+    "meta",
+    "standards",
+    "reference/patterns",
+    "reference/templates",
+    "landscape/current",
+    "landscape/target",
+    "adm-cycles"
+  ],
+  "execution_directories": [
+    ".github/workflows"
+  ],
+  "required_files": [
+    "README.md",
+    "meta/governance-process.md",
+    "standards/technology-standards.md",
+    "landscape/current/README.md",
+    "landscape/target/README.md",
+    "adm-cycles/README.md"
+  ],
+  "optional_files": [
+    "AGENTS.md",
+    "meta/metamodel.yaml"
+  ],
+  "legacy_aliases": {},
+  "starter_stubs": {
+    "README.md": "# {project_name} — Enterprise Architecture Repository\n\nTOGAF-aligned Architecture-as-Code repository (`meta/`, `standards/`, `reference/`, `landscape/`, `adm-cycles/`).\n",
+    "meta/governance-process.md": "# Architecture Governance Process\n\nPR review gates, Architecture Board cadence, and ADR submission rules.\n",
+    "standards/technology-standards.md": "# Standards Information Base (SIB)\n\nApproved, constrained, and deprecated platforms and protocols.\n",
+    "landscape/current/README.md": "# Baseline Architecture Landscape (Current State)\n",
+    "landscape/target/README.md": "# Target Architecture Landscape (To-Be)\n",
+    "adm-cycles/README.md": "# Active ADM Cycles\n\nPer-initiative Phase A-H folders and ADRs.\n"
+  }
+}

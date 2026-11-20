@@ -1,0 +1,61 @@
+{
+  "id": "solution-architecture",
+  "name": "Solution / Platform Architecture Workbench",
+  "description": "Single-initiative Architecture-as-Code repository combining TOGAF BDAT views, ADRs, machine-readable contracts, Mermaid diagrams, and work packages.",
+  "directories": [
+    "architecture",
+    "adrs",
+    "contracts",
+    "diagrams",
+    "work-packages",
+    "research",
+    "history"
+  ],
+  "execution_directories": [
+    "spikes",
+    "evals",
+    "infra",
+    ".github/workflows"
+  ],
+  "required_files": [
+    "README.md",
+    "architecture.md",
+    "00-start-here.md",
+    "architecture/business-architecture.md",
+    "architecture/data-architecture.md",
+    "architecture/application-architecture.md",
+    "architecture/technology-architecture.md",
+    "implementation-plan.md",
+    "diagrams/README.md",
+    "contracts/README.md",
+    "work-packages/README.md"
+  ],
+  "optional_files": [
+    "AGENTS.md",
+    "01-vision.md",
+    "02-architecture.md",
+    "04-open-questions.md",
+    "06-architecture-principles.md",
+    "architecture/architecture-registry.json",
+    "architecture/contracts-v0.md",
+    "adrs/README.md"
+  ],
+  "legacy_aliases": {
+    "capabilities": "contracts",
+    "03-architecture-decisions.md": "adrs/"
+  },
+  "starter_stubs": {
+    "README.md": "# {project_name}\n\nArchitecture workbench (`solution-architecture` profile).\n\n- [Start Here](00-start-here.md)\n- [Architecture Overview](architecture.md)\n- [Implementation Plan](implementation-plan.md)\n- [Work Packages](work-packages/README.md)\n",
+    "00-start-here.md": "# {project_name} — Start Here\n\n> **Status:** Architecture workbench — iterate rather than rewrite from scratch.\n\n- [Architecture Overview](architecture.md)\n- [TOGAF BDAT Views](architecture/business-architecture.md)\n- [ADRs](adrs/README.md)\n- [Contracts](contracts/README.md)\n- [Diagrams](diagrams/README.md)\n- [Implementation Plan](implementation-plan.md)\n",
+    "architecture.md": "# {project_name} — Architecture Overview\n\nHigh-level summary of architectural principles, planes, trust boundaries, and repository map.\n",
+    "architecture/business-architecture.md": "# Business Architecture (TOGAF Phase B)\n\nActors, value streams, business domains, and human-in-the-loop boundaries.\n",
+    "architecture/data-architecture.md": "# Data Architecture (TOGAF Phase C — Data)\n\nCanonical data stores, schemas, retention, and telemetry boundaries.\n",
+    "architecture/application-architecture.md": "# Application Architecture (TOGAF Phase C — Application)\n\nServices, APIs, agent/orchestration runtimes, and integration contracts.\n",
+    "architecture/technology-architecture.md": "# Technology Architecture (TOGAF Phase D)\n\nLanding zone topology, identity, network boundaries, and security controls.\n",
+    "adrs/README.md": "# Architecture Decision Records\n\nRecord durable architectural decisions as `ADR-NNN-<slug>.md`.\n",
+    "contracts/README.md": "# Interface & Capability Contracts\n\nMachine-readable schemas (OpenAPI, AsyncAPI, JSON/YAML manifests, handoff envelopes).\n",
+    "diagrams/README.md": "# Architecture Diagrams\n\nEditable text-first Mermaid (`.mmd`) or PlantUML source diagrams.\n",
+    "implementation-plan.md": "# Implementation Plan (TOGAF ADM Aligned)\n\nSequences delivery stages and maps them to [Work Packages](work-packages/README.md).\n",
+    "work-packages/README.md": "# Work Packages\n\nConcrete delivery work packages (`WP-01`, `WP-02`, ...) with entry/exit gates.\n"
+  }
+}
