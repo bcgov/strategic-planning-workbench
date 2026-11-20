@@ -14,8 +14,7 @@
   "execution_directories": [
     "spikes",
     "evals",
-    "infra",
-    ".github/workflows"
+    "infra"
   ],
   "optional_directories": [
     "deliverables"
@@ -65,8 +64,5 @@
     "diagrams/README.md": "# Architecture Diagrams\n\nEditable text-first Mermaid (`.mmd`) or PlantUML source diagrams.\n",
     "implementation-plan.md": "# Implementation Plan (TOGAF ADM Aligned)\n\nSequences delivery stages and maps them to [Work Packages](work-packages/README.md).\n",
     "work-packages/README.md": "# Work Packages\n\nConcrete delivery work packages (`WP-01`, `WP-02`, ...) with entry/exit gates.\n"
-  },
-  "execution_stubs": {
-    ".github/workflows/validate-architecture.yml": "@template:validate-architecture.yml"
   }
 }

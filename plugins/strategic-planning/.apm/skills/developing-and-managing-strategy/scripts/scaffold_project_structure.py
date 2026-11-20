@@ -56,11 +56,7 @@ def scaffold(
             if not dry_run:
                 dest.mkdir(parents=True, exist_ok=True)
 
-    stubs = dict(profile.get("starter_stubs", {}))
-    if with_execution:
-        stubs.update(profile.get("execution_stubs", {}))
-
-    for rel_file, template in stubs.items():
+    for rel_file, template in profile.get("starter_stubs", {}).items():
         dest = target / rel_file
         if dest.exists() and not force:
             skipped_files.append(rel_file)
