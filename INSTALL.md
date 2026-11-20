@@ -73,7 +73,7 @@ git checkout <tag-or-commit>      # optional: pin a release
 
 > **Note for GrokBot (`grok-bot`, `grok-build`, `grok-cloud`) and Antigravity (`agy`)**: In APM `0.35.0+`, `--target all` explicitly excludes `grok-bot` and `agy`. Include `grok-bot,grok-build,grok-cloud` explicitly in `--target` when deploying to GrokBot environments (`apm install "$PWD\plugins\strategic-planning" --global --target claude,copilot,codex,agy,grok-bot,grok-build,grok-cloud --parallel-downloads 0`).
 
-Make all 5 strategic planning skills available across every workspace. Global installs require the **absolute path** to the plugin folder; a relative path such as `./plugins/strategic-planning` is rejected by APM.
+Make all 7 strategic planning and architecture skills available across every workspace. Global installs require the **absolute path** to the plugin folder; a relative path such as `./plugins/strategic-planning` is rejected by APM.
 
 **Windows (PowerShell):**
 ```powershell
