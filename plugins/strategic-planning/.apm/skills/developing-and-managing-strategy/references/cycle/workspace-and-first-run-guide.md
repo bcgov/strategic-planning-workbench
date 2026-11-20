@@ -34,13 +34,10 @@ Resolve the workspace fully before creating anything. Never create a new strateg
 
 ## 2. First run
 
-1. **Ask the engagement & structure profile** (see [project-structure-and-templates-guide.md](project-structure-and-templates-guide.md)):
-   - `1. General strategic planning (Recommended)` (`strategy-only`)
-   - `2. Solution / platform architecture workbench` (`solution-architecture`)
-   - `3. Hybrid: Business strategy + Solution architecture` (`strategy-and-architecture`)
-   - `4. Org-wide Enterprise Architecture repository (TOGAF)` (`enterprise-architecture`)
-   For profiles 2 or 3, ask whether to include Stage 0 execution folders (`spikes/`, `evals/`, `infra/`, `.github/workflows/`).
-2. **Ask where to save** (or whether this is an existing repository to validate with `scripts/validate_project_structure.py` rather than scaffold with `scripts/scaffold_project_structure.py`): `1. ~/strategic-planning-outputs/<team>/strategy/ (Recommended for strategy-only)`, `2. ./` (current repo), `3. Custom path`. Ask where existing source documents and notes live.
+1. **Confirm engagement scope**:
+   - If the team is doing **general strategic planning** (`strategy/` registers `00`–`11`), continue here.
+   - If the user wants a `solution-architecture`, `enterprise-architecture`, or the `architecture/` / `adrs/` / `contracts/` half of a `strategy-and-architecture` repository, hand off to `developing-solution-architecture` (and coordinate on `strategy/` for hybrids).
+2. **Ask where to save**: `1. ~/strategic-planning-outputs/<team>/strategy/ (Recommended)`, `2. ./strategy/` (current repo), `3. Custom path`. Ask where existing source documents and notes live.
 3. **Ask the team or project name** if the folder or stubs use one.
 4. **Offer the starting path**:
 

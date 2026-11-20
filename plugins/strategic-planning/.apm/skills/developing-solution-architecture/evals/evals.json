@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Scaffold a new solution-architecture repository for our AI Front Door initiative with Stage 0 execution folders.",
+    "should_trigger": true
+  },
+  {
+    "query": "Validate our existing architecture workbench links, JSON, and ADR coherence.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a new ADR and quality attribute scenarios for latency and FOIPPA data residency.",
+    "should_trigger": true
+  },
+  {
+    "query": "Help us build our team's strategic plan and score these five funding ideas.",
+    "should_trigger": false
+  },
+  {
+    "query": "Build a logic model connecting our inputs and activities to public outcomes.",
+    "should_trigger": false
+  },
+  {
+    "query": "Configure GitHub Actions OIDC and Terraform for our Azure Landing Zone.",
+    "should_trigger": false
+  }
+]

@@ -22,7 +22,7 @@ Steps, templates and gates for the strategy layer: Cycle, Context, Vision, Capab
 ## Context
 
 Offer the 3-option intake menu (paste notes, guided interview, review existing context). Capture leadership direction by tier, map stakeholders and where views conflict, then walk current state one topic at a time, tagging points `Evidence-Backed` or `Anecdotal`.
-Templates: [strategic-context-brief](../../assets/templates/strategic-context-brief.md), [stakeholder-map](../../assets/templates/stakeholder-map.md), [assumptions-and-evidence-register](../../assets/templates/assumptions-and-evidence-register.md). Guides: [context](../context/context-and-stakeholder-guide.md), [public-sector lens](../context/public-sector-context-lens.md). Gate: [acceptance criteria](../context/acceptance-criteria.md).
+Templates: [strategic-context-brief](../../assets/templates/strategic-context-brief.md), [stakeholder-map](../../assets/templates/stakeholder-map.md), [assumptions-and-evidence-register](../../assets/templates/assumptions-and-evidence-register.md). Gate: [cycle acceptance criteria](../cycle/acceptance-criteria.md).
 
 ## Vision
 

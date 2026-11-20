@@ -44,6 +44,8 @@ Guides users interactively to choose the right audience and format, then transfo
 | New or unclear items to show | `triaging-new-items` |
 | Allocation or capacity visuals from register `11` | `managing-team-skills-and-allocation` |
 | Logic model diagrams | `designing-logic-models` |
+| Scaffolding or validating `solution-architecture` / `enterprise-architecture` workbenches | `developing-solution-architecture` |
+| Technology & architecture registry (`architecture-registry.json`) | `managing-architecture-registry` |
 
 This skill reads the registers and writes no register content; if something is missing, ask or hand off instead of inventing it.
 
@@ -56,7 +58,7 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 ## Dependencies
 
 - **HTML, Mermaid, Marp Markdown, and `pptx-spec` JSON rendering (`scripts/render_*.py`):** Python 3.10+ standard library only (zero third-party `pip` packages).
-- **Binary PowerPoint (`.pptx`) generation:** Delegates to `bc-gov-design-system` (`assets/generate.js` and `assets/icons/bc-logo.png`), which requires **Node.js** and **`pptxgenjs`** (`npm install pptxgenjs`).
+- **Binary PowerPoint (`.pptx`) generation:** Delegates to `bc-gov-design-system` (`generate.js` and `bc-logo.png` in that skill), which requires **Node.js** and **`pptxgenjs`** (`npm install pptxgenjs`).
 - **Optional Marp HTML/PDF export:** Requires `@marp-team/marp-cli` (`npx @marp-team/marp-cli`).
 
 ## References

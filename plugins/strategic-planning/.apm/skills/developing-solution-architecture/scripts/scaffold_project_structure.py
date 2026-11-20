@@ -89,6 +89,12 @@ def scaffold(
                     ],
                     check=True,
                 )
+        else:
+            print(
+                "Warning: managing-architecture-registry not found beside this skill; "
+                "initialize architecture/architecture-registry.json via managing-architecture-registry.",
+                file=sys.stderr,
+            )
 
     return {
         "created_dirs": created_dirs,
@@ -121,7 +127,7 @@ def main() -> int:
     parser.add_argument(
         "--with-execution",
         action="store_true",
-        help="Also create execution folders (spikes/, evals/, infra/, .github/workflows/)",
+        help="Also create execution folders (spikes/, evals/, infra/)",
     )
     parser.add_argument(
         "--init-registry",

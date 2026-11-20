@@ -18,6 +18,9 @@
     "work-inventory",
     "risk-register",
     "intake-triage",
-    "roadmapping"
+    "roadmapping",
+    "solution-architecture",
+    "togaf-bdat",
+    "architecture-decisions"
   ]
 }
