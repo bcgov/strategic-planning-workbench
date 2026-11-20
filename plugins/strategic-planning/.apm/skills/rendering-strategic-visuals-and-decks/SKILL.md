@@ -65,7 +65,7 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 ## References
 
 - Methodology & brand rules: [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) • [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md)
-- JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json` • `assets/schemas/deliverable-site.schema.json`
+- JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json` • `assets/schemas/architecture-on-a-page.schema.json` • `assets/schemas/diagram-gallery.schema.json` • `assets/schemas/deliverable-site.schema.json`
 - Renderers: `scripts/render_html_brief.py` • `scripts/render_mermaid_package.py` • `scripts/render_deck.py` • `scripts/test_renderers.py`
 - Templates: [mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md) • [executive-strategy-deck.md](assets/templates/executive-strategy-deck.md) • `assets/templates/bc-gov-strategy-dashboard.html`
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)

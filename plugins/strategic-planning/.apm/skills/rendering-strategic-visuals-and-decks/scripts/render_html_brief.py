@@ -15,6 +15,8 @@ import html
 import json
 import mimetypes
 import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -327,6 +329,16 @@ tr:nth-child(even) td {
 .plane-card ul { margin: 0; padding-left: 16px; font-size: 13px; color: var(--color-text-secondary); }
 .aoap-split { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 16px; align-items: start; }
 .zone-row { border-left: 4px solid var(--color-brand-primary); background: var(--color-surface-default); padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; font-size: 13px; }
+.wp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-bottom: 16px; }
+.wp-pill { background: var(--color-warning-bg); border: 1px dashed var(--color-warning); border-radius: 4px; padding: 8px 10px; font-size: 12px; }
+.wp-pill.committed { border: 1px solid var(--color-success); background: var(--color-success-bg); }
+.wp-pill strong { display: block; color: var(--color-brand-primary); margin-bottom: 2px; }
+.thumb { background: var(--color-surface-default); border: 1px solid var(--color-border); border-radius: 4px; padding: 8px; margin-bottom: 12px; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.thumb img { max-width: 100%; max-height: 164px; width: auto; height: auto; }
+.btn-link { display: inline-block; font-size: 13px; font-weight: 600; color: #FFF; background: var(--color-brand-primary); padding: 7px 12px; border-radius: 4px; text-decoration: none; align-self: flex-start; margin-top: 8px; }
+.btn-link:hover { background: var(--color-brand-primary-hover); }
+.breadcrumb { margin-bottom: 14px; font-size: 14px; }
+.breadcrumb a { color: var(--color-brand-link); font-weight: 600; text-decoration: none; }
 figure.diagram-figure {
   background: var(--color-surface-white);
   border: 1px solid var(--color-border);
@@ -447,13 +459,45 @@ def render_shell(
 """
 
 
-def resolve_image_src(src: str, base_dir: Optional[Path], embed: bool) -> str:
-    """Resolve an image path, optionally embedding it as a base64 data URI."""
-    if not embed or src.startswith(("http://", "https://", "data:")):
+def convert_mmd_to_svg(mmd_path: Path, svg_path: Path) -> Path:
+    """Deterministically convert a .mmd Mermaid file to .svg using mmdc or npx @mermaid-js/mermaid-cli."""
+    if svg_path.is_file() and svg_path.stat().st_mtime >= mmd_path.stat().st_mtime:
+        return svg_path
+    svg_path.parent.mkdir(parents=True, exist_ok=True)
+    mmdc = shutil.which("mmdc")
+    if mmdc:
+        cmd = [mmdc, "-i", str(mmd_path), "-o", str(svg_path)]
+    else:
+        npx = shutil.which("npx")
+        if not npx:
+            raise RuntimeError("Neither 'mmdc' nor 'npx' found on PATH to convert .mmd diagrams.")
+        cmd = [npx, "-y", "@mermaid-js/mermaid-cli", "-i", str(mmd_path), "-o", str(svg_path)]
+    subprocess.run(cmd, check=True)
+    return svg_path
+
+
+def resolve_image_src(
+    src: str,
+    base_dir: Optional[Path],
+    embed: bool,
+    convert_mmd: bool = False,
+    svg_out_dir: Optional[Path] = None,
+) -> str:
+    """Resolve an image path (optionally converting .mmd -> .svg and/or embedding as base64)."""
+    if src.startswith(("http://", "https://", "data:")):
         return src
     candidate = Path(src)
     if not candidate.is_absolute() and base_dir is not None:
         candidate = (base_dir / candidate).resolve()
+    if candidate.suffix.lower() == ".mmd":
+        if not convert_mmd:
+            raise ValueError(f"Mermaid source '{src}' requires --convert-mmd to render to SVG.")
+        target_dir = svg_out_dir or (candidate.parent / "rendered")
+        candidate = convert_mmd_to_svg(candidate, target_dir / f"{candidate.stem}.svg")
+        if not embed:
+            return str(candidate)
+    if not embed:
+        return src
     if not candidate.is_file():
         raise FileNotFoundError(f"Image file not found for embedding: {src} (resolved: {candidate})")
     mime, _ = mimetypes.guess_type(str(candidate))
@@ -466,13 +510,17 @@ def resolve_image_src(src: str, base_dir: Optional[Path], embed: bool) -> str:
 
 
 def render_image_figure(
-    img: Dict[str, Any], base_dir: Optional[Path] = None, embed_all: bool = False
+    img: Dict[str, Any],
+    base_dir: Optional[Path] = None,
+    embed_all: bool = False,
+    convert_mmd: bool = False,
+    svg_out_dir: Optional[Path] = None,
 ) -> str:
     """Render a BC Gov styled <figure> block for a diagram or image."""
     src = img["src"]
     alt = img["alt"]
     embed = embed_all or bool(img.get("embed", False))
-    resolved_src = resolve_image_src(src, base_dir, embed)
+    resolved_src = resolve_image_src(src, base_dir, embed, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir)
     style_attr = f' style="width: {esc(img["width"])};"' if img.get("width") else ""
     caption_html = f"<figcaption>{esc(img['caption'])}</figcaption>" if img.get("caption") else ""
     return (
@@ -765,11 +813,202 @@ def render_dashboard(
     )
 
 
+def render_architecture_on_a_page(
+    data: Dict[str, Any],
+    base_dir: Optional[Path] = None,
+    embed_images: bool = False,
+    convert_mmd: bool = False,
+    svg_out_dir: Optional[Path] = None,
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> str:
+    """Render a single-screen BC Gov Architecture on a Page HTML summary."""
+    for req in ("title", "org_trail", "hypothesis", "invariants", "planes"):
+        if not data.get(req):
+            raise ValueError(f"architecture-on-a-page JSON missing required field: {req}")
+
+    parts: List[str] = [
+        '<div class="aoap-banner">'
+        f'<div class="aoap-banner-cell"><div class="aoap-label">Core hypothesis and flow</div><div>{esc(data["hypothesis"])}</div></div>'
+        f'<div class="aoap-banner-cell right"><div class="aoap-label">Non-negotiable invariants</div><div>{esc(data["invariants"])}</div></div>'
+        "</div>"
+    ]
+
+    plane_cards = []
+    for p in data["planes"]:
+        accent = p.get("color", "#013366")
+        bullets = "".join(f"<li>{esc(i)}</li>" for i in p.get("items", []))
+        plane_cards.append(
+            f'<div class="plane-card" style="border-top-color: {esc(accent)};">'
+            f'<h3>{esc(p["title"])}</h3><ul>{bullets}</ul></div>'
+        )
+    parts.append(f'<div class="aoap-planes">{"".join(plane_cards)}</div>')
+
+    diag = data.get("diagram")
+    zones = data.get("trust_zones") or []
+    if diag or zones:
+        left_panel = ""
+        if diag:
+            src = resolve_image_src(
+                diag["src"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir
+            )
+            gallery_link = (
+                f' &bull; <a href="{esc(diag["gallery_href"])}" style="color: var(--color-brand-link);">View full-size diagrams</a>'
+                if diag.get("gallery_href")
+                else ""
+            )
+            cap = f'<div style="margin-top:8px;font-size:12px;color:var(--color-text-secondary);text-align:center;">{esc(diag.get("caption", ""))}{gallery_link}</div>'
+            left_panel = (
+                f'<div class="card"><h2 class="section-title">{esc(diag.get("title", "Architecture diagram"))}</h2>'
+                f'<img src="{esc(src)}" alt="{esc(diag["alt"])}" style="max-width:100%;max-height:360px;width:auto;height:auto;display:block;margin:0 auto;">'
+                f"{cap}</div>"
+            )
+        right_panel = ""
+        if zones or data.get("adr_summary"):
+            z_html = "".join(
+                f'<div class="zone-row" style="border-left-color:{esc(z.get("color", "#013366"))};">'
+                f'<strong>{esc(z["name"])}:</strong> {esc(z["summary"])}</div>'
+                for z in zones
+            )
+            adr_html = (
+                f'<h2 class="section-title" style="margin-top:14px;">Key ADRs</h2><p style="font-size:13px;">{esc(data["adr_summary"])}</p>'
+                if data.get("adr_summary")
+                else ""
+            )
+            right_panel = f'<div class="card"><h2 class="section-title">Trust boundaries</h2>{z_html}{adr_html}</div>'
+        parts.append(f'<div class="aoap-split">{left_panel}{right_panel}</div>')
+
+    wps = data.get("work_packages") or []
+    if wps:
+        wp_html = "".join(
+            f'<div class="wp-pill{" committed" if w.get("committed") else ""}">'
+            f'<strong>{esc(w["id"])}</strong>{esc(w["summary"])}</div>'
+            for w in wps
+        )
+        parts.append(f'<div class="wp-grid">{wp_html}</div>')
+
+    spikes = data.get("spikes") or []
+    decisions = data.get("decisions") or []
+    if spikes or decisions:
+        b_cols = []
+        if spikes:
+            s_li = "".join(f"<li>{esc(s)}</li>" for s in spikes)
+            b_cols.append(f'<div class="card"><span class="tag tag-info">Compatibility spikes</span><ul>{s_li}</ul></div>')
+        if decisions:
+            d_li = "".join(f"<li>{esc(d)}</li>" for d in decisions)
+            b_cols.append(f'<div class="card"><span class="tag tag-warning">Decisions needed</span><ul>{d_li}</ul></div>')
+        parts.append(f'<div class="grid">{"".join(b_cols)}</div>')
+
+    meta = [
+        f"Status: {data['status']}" if data.get("status") else "",
+        f"Date: {data['date']}" if data.get("date") else "",
+    ]
+    return render_shell(
+        data["title"],
+        data["org_trail"],
+        meta,
+        "\n".join(parts),
+        data.get("indigenous_acknowledgment", True),
+        nav_items=nav_items,
+        active_href=active_href,
+    )
+
+
+def render_diagram_gallery(
+    data: Dict[str, Any],
+    base_dir: Path,
+    output_dir: Path,
+    embed_images: bool = True,
+    convert_mmd: bool = False,
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> List[Path]:
+    """Render a domain-grouped architecture diagrams gallery and individual subpages."""
+    for req in ("title", "org_trail", "summary", "domains"):
+        if not data.get(req):
+            raise ValueError(f"diagram-gallery JSON missing required field: {req}")
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    sub_dir = output_dir / "diagrams"
+    sub_dir.mkdir(parents=True, exist_ok=True)
+    svg_cache = output_dir / "images"
+    gallery_filename = data.get("gallery_filename", "architecture-diagrams.html")
+    written: List[Path] = []
+
+    sub_nav: Optional[List[Tuple[str, str]]] = None
+    if nav_items:
+        sub_nav = [(lbl, f"../{href}" if not href.startswith(("../", "http")) else href) for lbl, href in nav_items]
+
+    sections_html: List[str] = [
+        f'<div class="summary-box"><strong>Overview:</strong> {esc(data["summary"])}</div>'
+    ]
+    for dom in data["domains"]:
+        cards: List[str] = []
+        for item in dom["items"]:
+            slug = item["slug"]
+            src_resolved = resolve_image_src(
+                item["src"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_cache
+            )
+            sub_rel = f"diagrams/{slug}.html"
+            cards.append(
+                f'<div class="card"><div><h3>{esc(item["title"])}</h3>'
+                f'<div class="thumb"><img src="{esc(src_resolved)}" alt="{esc(item["title"])}"></div>'
+                f'<p>{esc(item["intro"])}</p></div>'
+                f'<a class="btn-link" href="{esc(sub_rel)}">Open full diagram &amp; overview &rarr;</a></div>'
+            )
+
+            pts = "".join(f"<li>{esc(p)}</li>" for p in item.get("points", []))
+            pts_block = f'<ul style="margin:8px 0 0;padding-left:20px;">{pts}</ul>' if pts else ""
+            sub_body = (
+                f'<div class="breadcrumb"><a href="../{esc(gallery_filename)}">&larr; Back to all architecture diagrams</a></div>'
+                f'<div class="summary-box"><strong>Overview:</strong> {esc(item["intro"])}{pts_block}</div>'
+                f'<div class="card" style="text-align:center;"><img src="{esc(src_resolved)}" alt="{esc(item["title"])}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></div>'
+            )
+            sub_path = sub_dir / f"{slug}.html"
+            sub_path.write_text(
+                render_shell(
+                    item["title"],
+                    f"{data['org_trail']} • {dom['name']}",
+                    [f"Source: {item['src']}"],
+                    sub_body,
+                    data.get("indigenous_acknowledgment", True),
+                    nav_items=sub_nav,
+                    active_href=f"../{active_href}" if active_href else None,
+                ),
+                encoding="utf-8",
+            )
+            written.append(sub_path)
+
+        sections_html.append(
+            f'<section class="block"><h2 class="section-title">{esc(dom["name"])}</h2>'
+            f'<p style="margin:0 0 12px;color:var(--color-text-secondary);font-size:14px;">{esc(dom["description"])}</p>'
+            f'<div class="grid">{"".join(cards)}</div></section>'
+        )
+
+    gallery_path = output_dir / gallery_filename
+    meta = [data["subtitle"]] if data.get("subtitle") else []
+    gallery_path.write_text(
+        render_shell(
+            data["title"],
+            data["org_trail"],
+            meta,
+            "\n".join(sections_html),
+            data.get("indigenous_acknowledgment", True),
+            nav_items=nav_items,
+            active_href=active_href,
+        ),
+        encoding="utf-8",
+    )
+    written.insert(0, gallery_path)
+    return written
+
+
 def render_site(
     site_data: Dict[str, Any],
     site_dir: Path,
     output_dir: Path,
     embed_images: bool = False,
+    convert_mmd: bool = False,
 ) -> List[Path]:
     """Render an index.html hub and all linked subpages with shared BC Gov navigation."""
     for req in ("title", "org_trail", "summary", "pages"):
@@ -818,7 +1057,21 @@ def render_site(
         page_data = json.loads(in_path.read_text(encoding="utf-8"))
         check_no_emoji(page_data)
         ptype = page["type"]
-        if ptype == "executive-brief":
+        if ptype == "diagram-gallery":
+            page_data["gallery_filename"] = page["filename"]
+            written.extend(
+                render_diagram_gallery(
+                    page_data,
+                    base_dir=in_path.parent,
+                    output_dir=output_dir,
+                    embed_images=embed_images,
+                    convert_mmd=convert_mmd,
+                    nav_items=nav_items,
+                    active_href=page["filename"],
+                )
+            )
+            continue
+        elif ptype == "executive-brief":
             html_out = render_executive_brief(
                 page_data, base_dir=in_path.parent, embed_images=embed_images,
                 nav_items=nav_items, active_href=page["filename"],
@@ -826,6 +1079,12 @@ def render_site(
         elif ptype == "logic-model":
             html_out = render_logic_model(
                 page_data, nav_items=nav_items, active_href=page["filename"],
+            )
+        elif ptype == "architecture-on-a-page":
+            html_out = render_architecture_on_a_page(
+                page_data, base_dir=in_path.parent, embed_images=embed_images,
+                convert_mmd=convert_mmd, svg_out_dir=output_dir / "images",
+                nav_items=nav_items, active_href=page["filename"],
             )
         else:
             html_out = render_dashboard(
@@ -842,11 +1101,12 @@ def render_site(
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Render B.C. Gov Design System HTML briefs, dashboards, and multi-page sites from JSON.")
-    parser.add_argument("--type", required=True, choices=["executive-brief", "logic-model", "dashboard", "site"], help="Output template type.")
+    parser.add_argument("--type", required=True, choices=["executive-brief", "logic-model", "dashboard", "architecture-on-a-page", "diagram-gallery", "site"], help="Output template type.")
     parser.add_argument("--input", required=True, type=Path, help="Path to input JSON file.")
     parser.add_argument("--output", type=Path, help="Path to write HTML output (for single-page types).")
-    parser.add_argument("--output-dir", type=Path, help="Directory to write index.html and subpages (for --type site).")
+    parser.add_argument("--output-dir", type=Path, help="Directory to write index.html and subpages (for --type site or diagram-gallery).")
     parser.add_argument("--embed-images", action="store_true", help="Embed local .svg/.png images as base64 data URIs for self-contained HTML.")
+    parser.add_argument("--convert-mmd", action="store_true", help="Deterministically convert referenced .mmd Mermaid files to .svg via mmdc/mermaid-cli.")
     parser.add_argument("--validate-only", action="store_true", help="Validate input JSON without writing HTML.")
     args = parser.parse_args(argv)
 
@@ -859,7 +1119,20 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(f"OK: {args.input} passed site validation.")
             return 0
         out_dir = args.output_dir or base_dir
-        written = render_site(data, site_dir=base_dir, output_dir=out_dir, embed_images=args.embed_images)
+        written = render_site(data, site_dir=base_dir, output_dir=out_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd)
+        for p in written:
+            print(f"Wrote {p}")
+        return 0
+
+    if args.type == "diagram-gallery":
+        if args.validate_only:
+            print(f"OK: {args.input} passed diagram-gallery validation.")
+            return 0
+        out_dir = args.output_dir or (args.output.parent if args.output else base_dir)
+        written = render_diagram_gallery(
+            data, base_dir=base_dir, output_dir=out_dir,
+            embed_images=args.embed_images, convert_mmd=args.convert_mmd,
+        )
         for p in written:
             print(f"Wrote {p}")
         return 0
@@ -868,6 +1141,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         rendered = render_executive_brief(data, base_dir=base_dir, embed_images=args.embed_images)
     elif args.type == "logic-model":
         rendered = render_logic_model(data)
+    elif args.type == "architecture-on-a-page":
+        rendered = render_architecture_on_a_page(
+            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd
+        )
     else:
         rendered = render_dashboard(data, base_dir=base_dir, embed_images=args.embed_images)
 
