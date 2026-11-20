@@ -20,6 +20,11 @@ strategic-planning/
 │       │   ├── evals/
 │       │   ├── references/
 │       │   └── scripts/
+│       ├── managing-architecture-registry/
+│       │   ├── SKILL.md
+│       │   ├── evals/
+│       │   ├── references/
+│       │   └── scripts/
 │       ├── managing-team-skills-and-allocation/
 │       │   ├── SKILL.md
 │       │   ├── assets/templates/
@@ -54,6 +59,7 @@ strategic-planning/
 | `managing-team-skills-and-allocation` | Mapping team members (`MEM-X`), skills and proficiency, growth interests, training requests, and active `WORK-X` assignments; recording capacity evidence for commitments; exporting Excel CSV trackers and Mermaid workload charts. Owns register `11`. | `team-skills-and-allocation-register.md`, `team-work-tracker.csv` |
 | `designing-logic-models` | Designing, reviewing, and documenting program logic models, results chains, outcome chains, theories of change, and results frameworks. Produces an artifact; writes no registers. | `logic-model-template.md` |
 | `rendering-strategic-visuals-and-decks` | Generating Mermaid alignment diagrams, value-stream maps, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive decks from the registers. Work without commitment evidence is drawn as a decision gate. | `mermaid-strategy-visuals.md`, `bc-gov-strategy-dashboard.html`, `executive-strategy-deck.md` |
+| `managing-architecture-registry` | Initializing, updating, validating, querying, and exporting a project's TOGAF BDAT architecture & technology registry (`architecture-registry.json` + CSV), including trust zones, ADRs, work packages, and Private Endpoint IP footprint. | `architecture-registry.json`, `architecture-registry.csv` |
 
 **Shared files and ownership.** `developing-and-managing-strategy` and `managing-team-skills-and-allocation` carry the same `references/shared/bookkeeping-contract.md`: each mode edits only its own register sections, changes touching another owner become `Open follow-ups` in `00`, and every confirmed change is appended to `changelog.md`. Every skill also carries `references/guided-interaction.md`.
 

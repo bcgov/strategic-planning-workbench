@@ -17,7 +17,7 @@
 
 `strategic-planning-workbench` is an APM-native agentic workbench designed for **government and organizational strategic planning**. Rather than jumping prematurely from stakeholder conversations into feature backlogs or project wish lists, the workbench maintains a structured, evidence-backed chain from multi-tier leadership direction down to capabilities, candidate ideas, committed work, risks, and measurable outcomes.
 
-The plugin has five skills. One main skill, `developing-and-managing-strategy`, holds the strategy interview, the living registers, and the idea, work, risk, scoring and roadmap modes. A triage skill sorts new material, and three specialist skills handle team capacity, logic models, and visuals. Every skill is interactive: it guides the user with menus and one or two questions at a time, and confirms a recap before saving.
+The plugin has six skills. One main skill, `developing-and-managing-strategy`, holds the strategy interview, the living registers, and the idea, work, risk, scoring and roadmap modes. A triage skill sorts new material, and four specialist skills handle team capacity, logic models, visuals, and architecture/technology registry management. Every skill is interactive or executable: it guides the user with menus and one or two questions at a time, and confirms a recap before saving.
 
 ---
 
@@ -117,7 +117,7 @@ Registers `06` and `10` have fixed section headings so two owners can share a fi
 
 ## 5. Skill Set & Request Routing
 
-Five skills, with one main entry point:
+Six skills, with one main entry point:
 
 ```mermaid
 flowchart TD
@@ -127,6 +127,7 @@ flowchart TD
     Q -->|"Team skills<br>and capacity"| M["managing-team-skills-<br>and-allocation"]
     Q -->|"Logic model or<br>results chain"| L["designing-logic-models"]
     Q -->|"Diagram, dashboard<br>or deck"| R["rendering-strategic-<br>visuals-and-decks"]
+    Q -->|"Technology or architecture<br>registry (BDAT)"| A["managing-architecture-<br>registry"]
     T -->|"ideas, work, risks, drivers,<br>decisions, strategy changes"| D
     T -->|"training, team changes"| M
     M -->|"capacity evidence"| D

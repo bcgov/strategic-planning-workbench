@@ -81,7 +81,7 @@ When you first use the workbench, `developing-and-managing-strategy` asks where 
 | `strategy/10-roadmap-and-success-measures.md` | Roadmap (`Now / Next / Later`), TOGAF Transition State plateaus (`PLT-X`), and decision gates (`GATE-X`); outcome/leading/guardrail measures (`MSR-X`) |
 | `strategy/11-team-skills-and-allocation.md` | Team member roster (`MEM-X`), skills, growth interests, active `WORK-X` assignments with capacity evidence, key-person risk diagnostics, Mermaid workload charts, and Excel CSV tracker |
 
-## Skills in `plugins/strategic-planning` (5 Skills)
+## Skills in `plugins/strategic-planning` (6 Skills)
 
 | You want to... | Use |
 |---|---|
@@ -90,6 +90,7 @@ When you first use the workbench, `developing-and-managing-strategy` asks where 
 | Record who is on the team, their skills and capacity | `managing-team-skills-and-allocation` |
 | Model how activities lead to outcomes | `designing-logic-models` |
 | Make a diagram, dashboard or leadership deck | `rendering-strategic-visuals-and-decks` |
+| Maintain, query, validate, or export a TOGAF BDAT technology & architecture registry | `managing-architecture-registry` |
 
 | Skill | Purpose | Primary Outputs |
 |---|---|---|
@@ -98,6 +99,7 @@ When you first use the workbench, `developing-and-managing-strategy` asks where 
 | `managing-team-skills-and-allocation` | Map team members, current skills, growth interests, and active `WORK-X` assignments; supply capacity evidence for commitments; detect key-person bottlenecks and export Excel/CSV & Mermaid visuals. | Team Skills & Allocation Register, Excel Work Tracker CSV, Mermaid Workload Diagrams |
 | `designing-logic-models` | Design, review, and document program logic models, results chains, outcome chains, theories of change, and results frameworks connecting inputs and activities to outputs and successive outcomes. | Logic Model & Results Chain (`logic-model-template.md`), BC Gov Mermaid Diagrams, Logframe Measurement Matrix |
 | `rendering-strategic-visuals-and-decks` | Render Mermaid alignment trees, value-stream maps, capability charts, horizon/Gantt roadmaps, B.C. Gov HTML dashboards, and executive slide decks from the registers. Work that is not fully evidenced is drawn as a decision gate, not a committed bar. | Visual Strategy Package (Mermaid), B.C. Gov HTML Dashboard, Executive Strategy Deck |
+| `managing-architecture-registry` | Initialize, update, validate, query, and export a TOGAF BDAT architecture & technology registry (`architecture-registry.json` + CSV) with trust-zone, ADR, work-package, and Private Endpoint IP tracking. | `architecture-registry.json`, `architecture-registry.csv` |
 
 ## Interactive Investment Prioritization & 4-Quadrant Workbench
 
