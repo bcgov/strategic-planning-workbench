@@ -20,7 +20,7 @@
           "label": { "type": "string" },
           "description": { "type": "string" },
           "filename": { "type": "string" },
-          "type": { "type": "string", "enum": ["executive-brief", "logic-model", "dashboard"] },
+          "type": { "type": "string", "enum": ["executive-brief", "logic-model", "dashboard", "architecture-on-a-page", "diagram-gallery"] },
           "input": { "type": "string", "description": "Path to page JSON relative to site.json" }
         }
       }

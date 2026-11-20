@@ -180,6 +180,40 @@ class TestRenderers(unittest.TestCase):
             self.assertIn('href="executive-brief.html"', idx)
             self.assertIn("bc-nav", idx)
 
+    def test_architecture_on_a_page_and_diagram_gallery(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            svg_path = tmp_path / "c.svg"
+            svg_path.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"></svg>', encoding="utf-8")
+            aoap = {
+                "title": "Arch on a Page",
+                "org_trail": "Government of British Columbia",
+                "hypothesis": "Federated discovery",
+                "invariants": "APIM /mcp",
+                "planes": [{"title": "Experience", "items": ["Web App"]}],
+                "diagram": {"src": "c.svg", "alt": "Conceptual"},
+                "work_packages": [{"id": "WP-01", "summary": "Contracts", "committed": True}],
+            }
+            aoap_html = render_html_brief.render_architecture_on_a_page(aoap, base_dir=tmp_path, embed_images=True)
+            self.assertIn("Core hypothesis and flow", aoap_html)
+            self.assertIn("WP-01", aoap_html)
+
+            gal = {
+                "title": "Diagrams",
+                "org_trail": "Government of British Columbia",
+                "summary": "All views",
+                "domains": [
+                    {
+                        "name": "Conceptual",
+                        "description": "Core",
+                        "items": [{"slug": "c", "title": "Conceptual", "src": "c.svg", "intro": "Intro"}],
+                    }
+                ],
+            }
+            written = render_html_brief.render_diagram_gallery(gal, base_dir=tmp_path, output_dir=tmp_path / "out", embed_images=True)
+            self.assertEqual(len(written), 2)
+            self.assertTrue((tmp_path / "out" / "diagrams" / "c.html").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()

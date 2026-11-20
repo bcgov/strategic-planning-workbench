@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BC Gov Architecture on a Page",
+  "description": "Single-screen executive architecture summary with hypothesis/invariants banner, 4 planes, diagram preview, trust zones, work packages, spikes, and decisions.",
+  "type": "object",
+  "required": ["title", "org_trail", "hypothesis", "invariants", "planes"],
+  "properties": {
+    "title": { "type": "string" },
+    "org_trail": { "type": "string" },
+    "status": { "type": "string" },
+    "date": { "type": "string" },
+    "hypothesis": { "type": "string" },
+    "invariants": { "type": "string" },
+    "planes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "items"],
+        "properties": {
+          "title": { "type": "string" },
+          "color": { "type": "string" },
+          "items": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "diagram": {
+      "type": "object",
+      "required": ["src", "alt"],
+      "properties": {
+        "title": { "type": "string" },
+        "src": { "type": "string", "description": "Path to .svg/.png or .mmd (auto-converted when --convert-mmd is set)" },
+        "alt": { "type": "string" },
+        "caption": { "type": "string" },
+        "gallery_href": { "type": "string" }
+      }
+    },
+    "trust_zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "summary"],
+        "properties": {
+          "name": { "type": "string" },
+          "summary": { "type": "string" },
+          "color": { "type": "string" }
+        }
+      }
+    },
+    "adr_summary": { "type": "string" },
+    "work_packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "summary": { "type": "string" },
+          "committed": { "type": "boolean" }
+        }
+      }
+    },
+    "spikes": { "type": "array", "items": { "type": "string" } },
+    "decisions": { "type": "array", "items": { "type": "string" } },
+    "indigenous_acknowledgment": { "type": "boolean", "default": true }
+  }
+}
