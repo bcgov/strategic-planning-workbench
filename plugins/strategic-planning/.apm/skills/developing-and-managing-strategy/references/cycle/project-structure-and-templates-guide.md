@@ -18,7 +18,13 @@ For `solution-architecture` and `strategy-and-architecture`, when the team is mo
 - `spikes/` — time-boxed technical/identity compatibility spikes
 - `evals/` — SME evaluation sets and regression harnesses
 - `infra/` — Bicep/Terraform landing-zone and gateway policies
-- `.github/workflows/` — automated YAML, Mermaid, and link validation
+- `.github/workflows/` — automated JSON, YAML, and relative Markdown link validation (`validate-architecture.yml` starter workflow)
+
+Additional optional architecture templates in `assets/templates/`:
+- `adr-template.md` — structured ADR with `Status`, `Owner`, `Target review date`, and `Traceability`
+- `quality-scenarios.md` — testable non-functional / quality attribute scenarios
+- `runtime-scenarios.md` — end-to-end runtime & trust-boundary flows
+- `deliverables/` — optional root folder for rendered audience briefings (HTML, PDF, PPTX)
 
 ## 2. Key Naming & Separation Rules
 

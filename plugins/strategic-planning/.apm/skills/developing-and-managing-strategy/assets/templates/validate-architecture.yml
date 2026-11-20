@@ -1,0 +1,67 @@
+name: Validate Architecture Workbench
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate JSON files
+        run: |
+          python3 -c "
+          import json, pathlib
+          for p in pathlib.Path('.').rglob('*.json'):
+              if '.git' in p.parts or 'node_modules' in p.parts:
+                  continue
+              json.loads(p.read_text(encoding='utf-8'))
+          print('All JSON files valid.')
+          "
+
+      - name: Validate YAML contracts (if any)
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 -c "
+          import yaml, pathlib
+          files = list(pathlib.Path('contracts').glob('*.y*ml')) if pathlib.Path('contracts').is_dir() else []
+          for p in files:
+              yaml.safe_load(p.read_text(encoding='utf-8'))
+          print(f'Validated {len(files)} YAML contract(s).')
+          "
+
+      - name: Check relative Markdown links
+        run: |
+          python3 -c "
+          import pathlib, re, sys
+          link_re = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
+          broken = []
+          for md in pathlib.Path('.').rglob('*.md'):
+              if '.git' in md.parts or 'history' in md.parts:
+                  continue
+              in_fence = False
+              for lineno, line in enumerate(md.read_text(encoding='utf-8', errors='replace').splitlines(), 1):
+                  if line.strip().startswith('\`\`\`'):
+                      in_fence = not in_fence
+                      continue
+                  if in_fence:
+                      continue
+                  for m in link_re.finditer(line):
+                      target = m.group(1).strip().split('#')[0]
+                      if not target or target.startswith(('http://', 'https://', 'mailto:', 'file://', '#')):
+                          continue
+                      if not (md.parent / target).resolve().exists():
+                          broken.append(f'{md}:{lineno} -> {target}')
+          if broken:
+              print('Broken links:\n' + '\n'.join(broken))
+              sys.exit(1)
+          print('All relative Markdown links valid.')
+          "

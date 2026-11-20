@@ -11,6 +11,8 @@ from pathlib import Path
 SKILL_DIR = Path(__file__).resolve().parent.parent
 PROFILES_DIR = SKILL_DIR / "assets" / "structure-profiles"
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+ADR_REF_RE = re.compile(r"\b(ADR-\d{3,4})\b")
+WP_REF_RE = re.compile(r"\b(WP-\d{2,3})\b")
 IGNORED_PREFIXES = ("http://", "https://", "mailto:", "file://", "#")
 
 
@@ -69,8 +71,59 @@ def check_markdown_links(target: Path) -> list[str]:
     return broken
 
 
+def check_architecture_coherence(target: Path) -> list[str]:
+    """Check ADR/WP cross-references and flag forgotten Proposed ADRs without owner/review date."""
+    coherence_warnings: list[str] = []
+
+    adrs_dir = target / "adrs"
+    known_adrs: set[str] = set()
+    if adrs_dir.is_dir():
+        for adr_file in adrs_dir.glob("*.md"):
+            text = adr_file.read_text(encoding="utf-8", errors="replace")
+            known_adrs.update(ADR_REF_RE.findall(adr_file.stem.upper()))
+            known_adrs.update(ADR_REF_RE.findall(text))
+            if re.search(r"(?im)^\s*[-*]?\s*\*\*Status:\*\*\s*Proposed\b", text):
+                has_owner = bool(re.search(r"(?im)^\s*[-*]?\s*\*\*Owner:\*\*\s*\S+", text))
+                has_review = bool(
+                    re.search(r"(?im)^\s*[-*]?\s*\*\*Target review date:\*\*\s*\S+", text)
+                )
+                if not has_owner or not has_review:
+                    coherence_warnings.append(
+                        f"{adr_file.relative_to(target)}: 'Proposed' ADR is missing Owner or Target review date."
+                    )
+
+    wp_dir = target / "work-packages"
+    known_wps: set[str] = set()
+    if wp_dir.is_dir():
+        for wp_file in wp_dir.glob("*.md"):
+            text = wp_file.read_text(encoding="utf-8", errors="replace")
+            known_wps.update(WP_REF_RE.findall(wp_file.stem.upper()))
+            known_wps.update(WP_REF_RE.findall(text))
+
+    registry_path = target / "architecture" / "architecture-registry.json"
+    if registry_path.is_file():
+        reg_text = registry_path.read_text(encoding="utf-8", errors="replace")
+        if known_adrs:
+            for ref in sorted(set(ADR_REF_RE.findall(reg_text))):
+                if ref not in known_adrs:
+                    coherence_warnings.append(
+                        f"architecture/architecture-registry.json references '{ref}', which was not found in adrs/."
+                    )
+        if known_wps:
+            for ref in sorted(set(WP_REF_RE.findall(reg_text))):
+                if ref not in known_wps:
+                    coherence_warnings.append(
+                        f"architecture/architecture-registry.json references '{ref}', which was not found in work-packages/."
+                    )
+
+    return coherence_warnings
+
+
 def validate_repo(
-    target: Path, profile_id: str, with_execution: bool = False
+    target: Path,
+    profile_id: str,
+    with_execution: bool = False,
+    strict_coherence: bool = False,
 ) -> dict:
     """Validate directories, required files, legacy aliases, JSON syntax, and links."""
     profiles = load_profiles()
@@ -109,7 +162,14 @@ def validate_repo(
             invalid_json.append(f"{json_file.relative_to(target)}: {exc}")
 
     broken_links = check_markdown_links(target)
-    passed = not missing_dirs and not missing_files and not invalid_json and not broken_links
+    coherence_warnings = check_architecture_coherence(target)
+    passed = (
+        not missing_dirs
+        and not missing_files
+        and not invalid_json
+        and not broken_links
+        and (not strict_coherence or not coherence_warnings)
+    )
 
     return {
         "profile": resolved_id,
@@ -118,6 +178,7 @@ def validate_repo(
         "missing_directories": missing_dirs,
         "missing_files": missing_files,
         "warnings": warnings,
+        "coherence_warnings": coherence_warnings,
         "invalid_json": invalid_json,
         "broken_links": broken_links,
     }
@@ -145,6 +206,11 @@ def main() -> int:
         help="Also require execution folders (spikes/, evals/, infra/, .github/workflows/)",
     )
     parser.add_argument(
+        "--strict-coherence",
+        action="store_true",
+        help="Fail validation if architecture coherence warnings are found",
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="Emit machine-readable JSON output",
@@ -155,6 +221,7 @@ def main() -> int:
         target=args.target.resolve(),
         profile_id=args.profile,
         with_execution=args.with_execution,
+        strict_coherence=args.strict_coherence,
     )
     if args.json:
         print(json.dumps(report, indent=2))
@@ -164,6 +231,7 @@ def main() -> int:
             ("Missing directories", "missing_directories"),
             ("Missing required files", "missing_files"),
             ("Warnings", "warnings"),
+            ("Architecture coherence warnings", "coherence_warnings"),
             ("Invalid JSON", "invalid_json"),
             ("Broken relative links", "broken_links"),
         ):

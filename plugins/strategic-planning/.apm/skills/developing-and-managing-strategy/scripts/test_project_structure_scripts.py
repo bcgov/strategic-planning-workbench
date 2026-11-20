@@ -40,6 +40,10 @@ class TestProjectStructureScripts(unittest.TestCase):
                 )
                 self.assertEqual(report["profile"], profile_id)
                 self.assertEqual(report["status"], "PASS", report)
+                if profile_id in ("solution-architecture", "strategy-and-architecture"):
+                    self.assertTrue(
+                        (root / ".github" / "workflows" / "validate-architecture.yml").is_file()
+                    )
 
     def test_dry_run_writes_nothing_and_no_overwrite(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -70,6 +74,31 @@ class TestProjectStructureScripts(unittest.TestCase):
             self.assertTrue(
                 any("does-not-exist.md" in b for b in report["broken_links"]),
                 report["broken_links"],
+            )
+
+    def test_coherence_warnings_for_forgotten_adr_and_broken_registry_ref(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            profile = load_profile("solution-architecture")
+            scaffold(target=root, profile=profile, project_name="Coherence Test")
+            (root / "adrs" / "ADR-0002-pending.md").write_text(
+                "# ADR-0002: Pending\n\n- **Status:** Proposed\n", encoding="utf-8"
+            )
+            (root / "architecture" / "architecture-registry.json").write_text(
+                '{"components": [{"id": "TECH-001", "adrs": ["ADR-9999"]}]}',
+                encoding="utf-8",
+            )
+            report = validate_repo(
+                target=root, profile_id="solution-architecture", strict_coherence=True
+            )
+            self.assertEqual(report["status"], "FAIL")
+            self.assertTrue(
+                any("ADR-0002-pending.md" in w for w in report["coherence_warnings"]),
+                report["coherence_warnings"],
+            )
+            self.assertTrue(
+                any("ADR-9999" in w for w in report["coherence_warnings"]),
+                report["coherence_warnings"],
             )
 
 

@@ -21,5 +21,11 @@ On first run—or when the engagement scope is unclear—ask which path applies 
 | `07-idea-inventory.md` / `08-work-inventory.md` | `implementation-plan.md` & `work-packages/` (`WP-NN`) | Approved work packages trace to `WORK-X`; unapproved proposals remain `IDEA-X`. |
 | Technical components & dependencies | `architecture-registry.json` (+ CSV export) | Managed by the **`managing-architecture-registry`** skill (`TECH-NNN` IDs, TOGAF domain, trust zones, ADRs, work packages, and Private Endpoint IP counts). |
 
-## 3. Handing off to `managing-architecture-registry`
+## 3. Model vs. views separation
+
+Keep the **architecture model** (single source of truth) distinct from **views and audience deliverables**:
+- **Model:** `architecture/architecture-registry.json`, `contracts/`, `adrs/`, `work-packages/`, `architecture/quality-scenarios.md`, and `architecture/runtime-scenarios.md`.
+- **Views & deliverables:** Editable Mermaid/PlantUML sources in `diagrams/` and audience-ready HTML/PPTX/PDF briefings in `deliverables/` (rendered via `rendering-strategic-visuals-and-decks`).
+
+## 4. Handing off to `managing-architecture-registry`
 Invoke `managing-architecture-registry` whenever the user wants to initialize, upsert, validate, query, summarize Private Endpoint IP footprints, or export a CSV of technology components (`architecture-registry.json`).

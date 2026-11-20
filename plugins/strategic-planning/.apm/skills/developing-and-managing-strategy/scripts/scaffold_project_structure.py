@@ -11,6 +11,7 @@ from pathlib import Path
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
 PROFILES_DIR = SKILL_DIR / "assets" / "structure-profiles"
+TEMPLATES_DIR = SKILL_DIR / "assets" / "templates"
 REGISTRY_SCRIPT = (
     SKILL_DIR.parent
     / "managing-architecture-registry"
@@ -55,7 +56,11 @@ def scaffold(
             if not dry_run:
                 dest.mkdir(parents=True, exist_ok=True)
 
-    for rel_file, template in profile.get("starter_stubs", {}).items():
+    stubs = dict(profile.get("starter_stubs", {}))
+    if with_execution:
+        stubs.update(profile.get("execution_stubs", {}))
+
+    for rel_file, template in stubs.items():
         dest = target / rel_file
         if dest.exists() and not force:
             skipped_files.append(rel_file)
@@ -63,9 +68,12 @@ def scaffold(
         created_files.append(rel_file)
         if not dry_run:
             dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_text(
-                template.format(project_name=project_name), encoding="utf-8"
-            )
+            if template.startswith("@template:"):
+                tpl_name = template.split(":", 1)[1].strip()
+                content = (TEMPLATES_DIR / tpl_name).read_text(encoding="utf-8")
+            else:
+                content = template.format(project_name=project_name)
+            dest.write_text(content, encoding="utf-8")
 
     if init_registry and "architecture" in profile.get("directories", []):
         registry_path = target / "architecture" / "architecture-registry.json"
