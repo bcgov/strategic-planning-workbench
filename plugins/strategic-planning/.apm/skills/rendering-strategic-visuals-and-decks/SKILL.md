@@ -53,6 +53,12 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 - Follows B.C. Government Design System tokens, sentence case, zero emoji, and Indigenous acknowledgment rules.
 - Separates `WORK-X` commitments from `IDEA-X` decision gates in all charts and slides.
 
+## Dependencies
+
+- **HTML, Mermaid, Marp Markdown, and `pptx-spec` JSON rendering (`scripts/render_*.py`):** Python 3.10+ standard library only (zero third-party `pip` packages).
+- **Binary PowerPoint (`.pptx`) generation:** Delegates to `bc-gov-design-system` (`assets/generate.js` and `assets/icons/bc-logo.png`), which requires **Node.js** and **`pptxgenjs`** (`npm install pptxgenjs`).
+- **Optional Marp HTML/PDF export:** Requires `@marp-team/marp-cli` (`npx @marp-team/marp-cli`).
+
 ## References
 
 - Methodology & brand rules: [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) • [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md)
