@@ -57,14 +57,15 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 
 ## Dependencies
 
-- **HTML, Mermaid, Marp Markdown, and `pptx-spec` JSON rendering (`scripts/render_*.py`):** Python 3.10+ standard library only (zero third-party `pip` packages).
+- **HTML, Mermaid, Marp Markdown, and `pptx-spec` JSON rendering (`scripts/render_*.py`):** Python 3.10+ standard library only (zero third-party `pip` packages). Supports `--embed-images` in `render_html_brief.py` to inline `.svg`/`.png` diagrams as self-contained data URIs.
+- **Mermaid `.mmd` to `.svg`/`.png` image conversion (optional, for embedding diagrams in HTML/decks):** Node.js with `@mermaid-js/mermaid-cli` (`npx -y @mermaid-js/mermaid-cli -i <diagram.mmd> -o <out.svg>`).
 - **Binary PowerPoint (`.pptx`) generation:** Delegates to `bc-gov-design-system` (`generate.js` and `bc-logo.png` in that skill), which requires **Node.js** and **`pptxgenjs`** (`npm install pptxgenjs`).
 - **Optional Marp HTML/PDF export:** Requires `@marp-team/marp-cli` (`npx @marp-team/marp-cli`).
 
 ## References
 
 - Methodology & brand rules: [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) • [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md)
-- JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json`
+- JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json` • `assets/schemas/deliverable-site.schema.json`
 - Renderers: `scripts/render_html_brief.py` • `scripts/render_mermaid_package.py` • `scripts/render_deck.py` • `scripts/test_renderers.py`
 - Templates: [mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md) • [executive-strategy-deck.md](assets/templates/executive-strategy-deck.md) • `assets/templates/bc-gov-strategy-dashboard.html`
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)

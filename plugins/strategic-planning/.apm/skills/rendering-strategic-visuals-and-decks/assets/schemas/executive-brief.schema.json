@@ -52,10 +52,15 @@
           "bullets": {
             "type": "array",
             "items": { "type": "string" }
+          },
+          "images": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/image" }
           }
         }
       }
     },
+    "hero_image": { "$ref": "#/$defs/image" },
     "decisions_needed": {
       "type": "array",
       "items": {
@@ -70,5 +75,18 @@
       }
     },
     "indigenous_acknowledgment": { "type": "boolean", "default": true }
+  },
+  "$defs": {
+    "image": {
+      "type": "object",
+      "required": ["src", "alt"],
+      "properties": {
+        "src": { "type": "string", "description": "Path to .svg, .png, .jpg, or .webp diagram/image (relative to JSON file or output)" },
+        "alt": { "type": "string", "minLength": 1 },
+        "caption": { "type": "string" },
+        "width": { "type": "string", "description": "Optional CSS width, e.g., 100% or 720px" },
+        "embed": { "type": "boolean", "description": "Inline/base64-encode this image into the HTML" }
+      }
+    }
   }
 }

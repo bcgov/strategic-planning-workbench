@@ -10,8 +10,10 @@ Supports three output types:
 from __future__ import annotations
 
 import argparse
+import base64
 import html
 import json
+import mimetypes
 import re
 import sys
 from pathlib import Path
@@ -92,6 +94,31 @@ header.bc-header .meta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+nav.bc-nav {
+  background: var(--color-surface-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+nav.bc-nav a {
+  display: inline-block;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-brand-link);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+nav.bc-nav a:hover {
+  color: var(--color-brand-primary);
+  border-bottom-color: var(--color-border);
+}
+nav.bc-nav a.active {
+  color: var(--color-brand-primary);
+  border-bottom-color: var(--color-brand-primary);
 }
 main.container {
   max-width: 1120px;
@@ -214,6 +241,25 @@ tr:nth-child(even) td {
   font-size: 14px;
 }
 .stage-card li { margin-bottom: 4px; }
+figure.diagram-figure {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 16px;
+  margin: 14px 0 0;
+  text-align: center;
+}
+figure.diagram-figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+figure.diagram-figure figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
 footer.bc-indigenous-footer {
   background: var(--color-surface-dark);
   color: var(--color-surface-white);
@@ -224,9 +270,10 @@ footer.bc-indigenous-footer {
 }
 @media print {
   body { background: #FFFFFF; font-size: 12px; }
+  nav.bc-nav { display: none; }
   header.bc-header { padding: 14px 20px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   main.container { padding: 14px 20px; }
-  .card, .stage-card, .summary-box { break-inside: avoid; }
+  .card, .stage-card, .summary-box, figure.diagram-figure { break-inside: avoid; }
   footer.bc-indigenous-footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 """
@@ -267,9 +314,24 @@ def evaluate_commitment(item: Dict[str, Any]) -> Tuple[bool, str]:
     return True, "Committed work"
 
 
-def render_shell(title: str, org_trail: str, meta_items: List[str], body_html: str, include_footer: bool) -> str:
+def render_shell(
+    title: str,
+    org_trail: str,
+    meta_items: List[str],
+    body_html: str,
+    include_footer: bool,
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> str:
     """Wrap body HTML in a compliant B.C. Government Design System page."""
     meta_html = "".join(f"<span>{esc(m)}</span>" for m in meta_items if m)
+    nav_html = ""
+    if nav_items:
+        links = []
+        for label, href in nav_items:
+            cls = ' class="active"' if href == active_href else ""
+            links.append(f'<a href="{esc(href)}"{cls}>{esc(label)}</a>')
+        nav_html = f'<nav class="bc-nav" aria-label="Deliverable sections">{"".join(links)}</nav>'
     footer_html = (
         f'<footer class="bc-indigenous-footer" role="contentinfo">{esc(INDIGENOUS_TEXT)}</footer>'
         if include_footer
@@ -289,6 +351,7 @@ def render_shell(title: str, org_trail: str, meta_items: List[str], body_html: s
     <h1>{esc(title)}</h1>
     {f'<div class="meta-row">{meta_html}</div>' if meta_html else ''}
   </header>
+  {nav_html}
   <main class="container">
     {body_html}
   </main>
@@ -298,13 +361,59 @@ def render_shell(title: str, org_trail: str, meta_items: List[str], body_html: s
 """
 
 
-def render_executive_brief(data: Dict[str, Any]) -> str:
+def resolve_image_src(src: str, base_dir: Optional[Path], embed: bool) -> str:
+    """Resolve an image path, optionally embedding it as a base64 data URI."""
+    if not embed or src.startswith(("http://", "https://", "data:")):
+        return src
+    candidate = Path(src)
+    if not candidate.is_absolute() and base_dir is not None:
+        candidate = (base_dir / candidate).resolve()
+    if not candidate.is_file():
+        raise FileNotFoundError(f"Image file not found for embedding: {src} (resolved: {candidate})")
+    mime, _ = mimetypes.guess_type(str(candidate))
+    if candidate.suffix.lower() == ".svg":
+        mime = "image/svg+xml"
+    if not mime:
+        mime = "application/octet-stream"
+    encoded = base64.b64encode(candidate.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{encoded}"
+
+
+def render_image_figure(
+    img: Dict[str, Any], base_dir: Optional[Path] = None, embed_all: bool = False
+) -> str:
+    """Render a BC Gov styled <figure> block for a diagram or image."""
+    src = img["src"]
+    alt = img["alt"]
+    embed = embed_all or bool(img.get("embed", False))
+    resolved_src = resolve_image_src(src, base_dir, embed)
+    style_attr = f' style="width: {esc(img["width"])};"' if img.get("width") else ""
+    caption_html = f"<figcaption>{esc(img['caption'])}</figcaption>" if img.get("caption") else ""
+    return (
+        f'<figure class="diagram-figure">'
+        f'<img src="{esc(resolved_src)}" alt="{esc(alt)}"{style_attr}>'
+        f"{caption_html}</figure>"
+    )
+
+
+def render_executive_brief(
+    data: Dict[str, Any],
+    base_dir: Optional[Path] = None,
+    embed_images: bool = False,
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> str:
     """Render an audience-tailored executive or architecture brief."""
     for req in ("title", "org_trail", "summary", "sections"):
         if not data.get(req):
             raise ValueError(f"executive-brief JSON missing required field: {req}")
 
     parts: List[str] = [f'<div class="summary-box"><strong>Executive summary:</strong> {esc(data["summary"])}</div>']
+
+    if data.get("hero_image"):
+        parts.append(
+            f'<section class="block">{render_image_figure(data["hero_image"], base_dir, embed_images)}</section>'
+        )
 
     highlights = data.get("highlights") or []
     if highlights:
@@ -340,6 +449,9 @@ def render_executive_brief(data: Dict[str, Any]) -> str:
                     f'<h3>{esc(title_prefix + c["title"])}</h3><p>{esc(c["description"])}</p></div>'
                 )
             sec_html.append(f'<div class="grid">{"".join(c_html)}</div>')
+        if sec.get("images"):
+            for img in sec["images"]:
+                sec_html.append(render_image_figure(img, base_dir, embed_images))
         sec_html.append("</section>")
         parts.append("".join(sec_html))
 
@@ -367,10 +479,16 @@ def render_executive_brief(data: Dict[str, Any]) -> str:
         meta,
         "\n".join(parts),
         data.get("indigenous_acknowledgment", True),
+        nav_items=nav_items,
+        active_href=active_href,
     )
 
 
-def render_logic_model(data: Dict[str, Any]) -> str:
+def render_logic_model(
+    data: Dict[str, Any],
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> str:
     """Render a 7-stage logic model JSON payload as a clean BC Gov HTML card chain."""
     for req in ("inputs", "activities", "outputs", "immediate_outcomes"):
         if not data.get(req):
@@ -425,10 +543,18 @@ def render_logic_model(data: Dict[str, Any]) -> str:
         meta,
         "\n".join(parts),
         data.get("indigenous_acknowledgment", True),
+        nav_items=nav_items,
+        active_href=active_href,
     )
 
 
-def render_dashboard(data: Dict[str, Any]) -> str:
+def render_dashboard(
+    data: Dict[str, Any],
+    base_dir: Optional[Path] = None,
+    embed_images: bool = False,
+    nav_items: Optional[List[Tuple[str, str]]] = None,
+    active_href: Optional[str] = None,
+) -> str:
     """Render a Strategy on a Page / Portfolio Dashboard with WORK vs IDEA gating."""
     for req in ("title", "org_trail", "objectives", "work_items"):
         if not data.get(req):
@@ -496,6 +622,16 @@ def render_dashboard(data: Dict[str, Any]) -> str:
             f"<tbody>{rows}</tbody></table></section>"
         )
 
+    diagrams = data.get("diagrams") or []
+    if diagrams:
+        diag_blocks = []
+        for d in diagrams:
+            heading = f"<h3>{esc(d['title'])}</h3>" if d.get("title") else ""
+            diag_blocks.append(f"{heading}{render_image_figure(d, base_dir, embed_images)}")
+        parts.append(
+            f'<section class="block"><h2 class="section-title">Architecture and strategy diagrams</h2>{"".join(diag_blocks)}</section>'
+        )
+
     meta = [f"Date: {data['date']}" if data.get("date") else ""]
     return render_shell(
         data["title"],
@@ -503,26 +639,116 @@ def render_dashboard(data: Dict[str, Any]) -> str:
         meta,
         "\n".join(parts),
         data.get("indigenous_acknowledgment", True),
+        nav_items=nav_items,
+        active_href=active_href,
     )
 
 
+def render_site(
+    site_data: Dict[str, Any],
+    site_dir: Path,
+    output_dir: Path,
+    embed_images: bool = False,
+) -> List[Path]:
+    """Render an index.html hub and all linked subpages with shared BC Gov navigation."""
+    for req in ("title", "org_trail", "summary", "pages"):
+        if not site_data.get(req):
+            raise ValueError(f"deliverable-site JSON missing required field: {req}")
+
+    nav_items: List[Tuple[str, str]] = [("Overview", "index.html")] + [
+        (p["label"], p["filename"]) for p in site_data["pages"]
+    ]
+    output_dir.mkdir(parents=True, exist_ok=True)
+    written: List[Path] = []
+
+    cards_html = "".join(
+        f'<div class="card"><span class="tag tag-info">{esc(p["type"])}</span>'
+        f'<h3><a href="{esc(p["filename"])}" style="color: var(--color-brand-primary); text-decoration: none;">'
+        f'{esc(p["label"])}</a></h3>'
+        f'<p>{esc(p.get("description", ""))}</p></div>'
+        for p in site_data["pages"]
+    )
+    index_body = (
+        f'<div class="summary-box"><strong>Overview:</strong> {esc(site_data["summary"])}</div>'
+        f'<section class="block"><h2 class="section-title">Architecture and strategy deliverables</h2>'
+        f'<div class="grid">{cards_html}</div></section>'
+    )
+    meta = [
+        f"Subtitle: {site_data['subtitle']}" if site_data.get("subtitle") else "",
+        f"Date: {site_data['date']}" if site_data.get("date") else "",
+    ]
+    index_path = output_dir / "index.html"
+    index_path.write_text(
+        render_shell(
+            site_data["title"],
+            site_data["org_trail"],
+            meta,
+            index_body,
+            site_data.get("indigenous_acknowledgment", True),
+            nav_items=nav_items,
+            active_href="index.html",
+        ),
+        encoding="utf-8",
+    )
+    written.append(index_path)
+
+    for page in site_data["pages"]:
+        in_path = (site_dir / page["input"]).resolve()
+        page_data = json.loads(in_path.read_text(encoding="utf-8"))
+        check_no_emoji(page_data)
+        ptype = page["type"]
+        if ptype == "executive-brief":
+            html_out = render_executive_brief(
+                page_data, base_dir=in_path.parent, embed_images=embed_images,
+                nav_items=nav_items, active_href=page["filename"],
+            )
+        elif ptype == "logic-model":
+            html_out = render_logic_model(
+                page_data, nav_items=nav_items, active_href=page["filename"],
+            )
+        else:
+            html_out = render_dashboard(
+                page_data, base_dir=in_path.parent, embed_images=embed_images,
+                nav_items=nav_items, active_href=page["filename"],
+            )
+        dest = output_dir / page["filename"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(html_out, encoding="utf-8")
+        written.append(dest)
+
+    return written
+
+
 def main(argv: Optional[List[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description="Render B.C. Gov Design System HTML briefs and dashboards from JSON.")
-    parser.add_argument("--type", required=True, choices=["executive-brief", "logic-model", "dashboard"], help="Output template type.")
+    parser = argparse.ArgumentParser(description="Render B.C. Gov Design System HTML briefs, dashboards, and multi-page sites from JSON.")
+    parser.add_argument("--type", required=True, choices=["executive-brief", "logic-model", "dashboard", "site"], help="Output template type.")
     parser.add_argument("--input", required=True, type=Path, help="Path to input JSON file.")
-    parser.add_argument("--output", type=Path, help="Path to write HTML output (defaults to stdout).")
+    parser.add_argument("--output", type=Path, help="Path to write HTML output (for single-page types).")
+    parser.add_argument("--output-dir", type=Path, help="Directory to write index.html and subpages (for --type site).")
+    parser.add_argument("--embed-images", action="store_true", help="Embed local .svg/.png images as base64 data URIs for self-contained HTML.")
     parser.add_argument("--validate-only", action="store_true", help="Validate input JSON without writing HTML.")
     args = parser.parse_args(argv)
 
     data = json.loads(args.input.read_text(encoding="utf-8"))
     check_no_emoji(data)
+    base_dir = args.input.resolve().parent
+
+    if args.type == "site":
+        if args.validate_only:
+            print(f"OK: {args.input} passed site validation.")
+            return 0
+        out_dir = args.output_dir or base_dir
+        written = render_site(data, site_dir=base_dir, output_dir=out_dir, embed_images=args.embed_images)
+        for p in written:
+            print(f"Wrote {p}")
+        return 0
 
     if args.type == "executive-brief":
-        rendered = render_executive_brief(data)
+        rendered = render_executive_brief(data, base_dir=base_dir, embed_images=args.embed_images)
     elif args.type == "logic-model":
         rendered = render_logic_model(data)
     else:
-        rendered = render_dashboard(data)
+        rendered = render_dashboard(data, base_dir=base_dir, embed_images=args.embed_images)
 
     if args.validate_only:
         print(f"OK: {args.input} passed {args.type} validation.")

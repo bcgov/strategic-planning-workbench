@@ -80,6 +80,21 @@
         }
       }
     },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["src", "alt"],
+        "properties": {
+          "title": { "type": "string" },
+          "src": { "type": "string" },
+          "alt": { "type": "string", "minLength": 1 },
+          "caption": { "type": "string" },
+          "width": { "type": "string" },
+          "embed": { "type": "boolean" }
+        }
+      }
+    },
     "indigenous_acknowledgment": { "type": "boolean", "default": true }
   }
 }
