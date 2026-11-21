@@ -214,6 +214,37 @@ class TestRenderers(unittest.TestCase):
             self.assertEqual(len(written), 2)
             self.assertTrue((tmp_path / "out" / "diagrams" / "c.html").is_file())
 
+    def test_convert_mmd_falls_back_to_npx_when_mmdc_fails(self):
+        import subprocess
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            mmd = tmp_path / "sample.mmd"
+            svg = tmp_path / "out" / "sample.svg"
+            mmd.write_text("flowchart LR\nA --> B\n", encoding="utf-8")
+
+            calls = []
+
+            def fake_run(cmd, check=True):
+                calls.append(cmd)
+                if cmd[0] == "/usr/local/bin/mmdc":
+                    raise subprocess.CalledProcessError(1, cmd)
+                svg.write_text("<svg></svg>", encoding="utf-8")
+                return subprocess.CompletedProcess(cmd, 0)
+
+            with (
+                mock.patch.object(render_html_brief.shutil, "which", side_effect=lambda name: f"/usr/local/bin/{name}"),
+                mock.patch.object(render_html_brief.subprocess, "run", side_effect=fake_run),
+            ):
+                result = render_html_brief.convert_mmd_to_svg(mmd, svg)
+
+            self.assertEqual(result, svg)
+            self.assertTrue(svg.is_file())
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(calls[0][0], "/usr/local/bin/mmdc")
+            self.assertEqual(calls[1][0], "/usr/local/bin/npx")
+
 
 if __name__ == "__main__":
     unittest.main()
