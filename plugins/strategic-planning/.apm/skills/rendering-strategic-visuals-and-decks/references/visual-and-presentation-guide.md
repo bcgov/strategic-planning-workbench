@@ -22,6 +22,7 @@ How would you like to visualize and share this material?
 | *"What is our roadmap and sequencing over the next 3 horizons or quarters?"* | **Mermaid horizon flowchart (`flowchart LR`)** + **High-level Mermaid Gantt chart (`gantt`)** with milestone gates. | Show `WORK-X` as active/committed bars and `IDEA-X` strictly as `milestone` decision gates. |
 | *"Where are our biggest capability maturity gaps?"* | **Mermaid XY chart (`xychart-beta`)** comparing Current vs. Target maturity (0–5) across `CAP-X`. | Pair with the 5-pillar narrative (People, Process, Data, Tech, Governance). |
 | *"How do we brief executive leadership, privacy reviewers, or partner branches in 10 minutes?"* | **Executive brief (`render_html_brief.py --type executive-brief`)**, **Logic model card (`--type logic-model`)**, or **Executive deck (`render_deck.py`)**. | End with concrete decisions and evidence gaps needing leadership resolution. |
+| *"How do we give architects and product leads a readable reference on core technologies and hosting profiles?"* | **JSON-driven Technology Profiles page** (`technology-profiles.json` → `technology-profiles.html` via `render_html_brief.py --type executive-brief`, wired as a tab in `site.json`). | Separate *how capabilities are built* from *where they are hosted*; embed rendered `.svg` deployment/sequence views and flag spike/unproven items clearly. |
 
 ## 3. Mermaid syntax safety rules
 

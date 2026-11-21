@@ -465,14 +465,17 @@ def convert_mmd_to_svg(mmd_path: Path, svg_path: Path) -> Path:
         return svg_path
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     mmdc = shutil.which("mmdc")
+    npx = shutil.which("npx")
     if mmdc:
-        cmd = [mmdc, "-i", str(mmd_path), "-o", str(svg_path)]
-    else:
-        npx = shutil.which("npx")
-        if not npx:
-            raise RuntimeError("Neither 'mmdc' nor 'npx' found on PATH to convert .mmd diagrams.")
-        cmd = [npx, "-y", "@mermaid-js/mermaid-cli", "-i", str(mmd_path), "-o", str(svg_path)]
-    subprocess.run(cmd, check=True)
+        try:
+            subprocess.run([mmdc, "-i", str(mmd_path), "-o", str(svg_path)], check=True)
+            return svg_path
+        except subprocess.CalledProcessError:
+            if not npx:
+                raise
+    if not npx:
+        raise RuntimeError("Neither 'mmdc' nor 'npx' found on PATH to convert .mmd diagrams.")
+    subprocess.run([npx, "-y", "@mermaid-js/mermaid-cli", "-i", str(mmd_path), "-o", str(svg_path)], check=True)
     return svg_path
 
 

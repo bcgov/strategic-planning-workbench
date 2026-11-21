@@ -25,6 +25,9 @@ On first run—or when the engagement scope is unclear—ask which path applies 
 
 Keep the **architecture model** (single source of truth) distinct from **views and audience deliverables**:
 - **Model:** `architecture/architecture-registry.json`, `contracts/`, `adrs/`, `work-packages/`, `architecture/quality-scenarios.md`, and `architecture/runtime-scenarios.md`.
+- **Optional `architecture/` subfolders (keep the root of `architecture/` clean for high-level TOGAF BDAT views):**
+  - `architecture/patterns/` — concrete implementation-level deployment topologies and runtime sequence patterns (with a `README.md` index).
+  - `architecture/technologies/` — concise, durable technology profiles distilled from date-stamped deep-dive notes in `research/` (explicitly separating *how an application/capability is built* from *where/how it is hosted*).
 - **Views & deliverables:** Editable Mermaid/PlantUML sources in `diagrams/` and audience-ready HTML/PPTX/PDF briefings in `deliverables/` (rendered via `rendering-strategic-visuals-and-decks`).
 
 ## 4. Informed by platform constraints (`bcgov-devops-platform-workbench`)
