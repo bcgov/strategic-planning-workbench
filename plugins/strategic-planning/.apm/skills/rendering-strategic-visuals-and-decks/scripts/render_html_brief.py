@@ -533,6 +533,29 @@ def render_image_figure(
     )
 
 
+_INLINE_LINK_RE = re.compile(r"\[([^\[\]]+)\]\(([^()\s]+)\)")
+_SAFE_HREF_RE = re.compile(r"^(?:https://[^\s\"'<>]+|[A-Za-z0-9_./#-]+)$")
+
+
+def slugify_id(text: str) -> str:
+    """Create a stable lowercase HTML anchor id from a heading."""
+    slug = re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
+    return slug or "section"
+
+
+def esc_links(text: str) -> str:
+    """HTML-escape text and convert safe Markdown [label](href) links to <a> elements."""
+    escaped = esc(text)
+
+    def _replace(match: re.Match[str]) -> str:
+        label, href = match.group(1), match.group(2)
+        if not _SAFE_HREF_RE.match(href) or href.lower().startswith(("javascript:", "data:", "vbscript:")):
+            return match.group(0)
+        return f'<a href="{href}" style="color: var(--color-brand-link); text-decoration: underline;">{label}</a>'
+
+    return _INLINE_LINK_RE.sub(_replace, escaped)
+
+
 def render_executive_brief(
     data: Dict[str, Any],
     base_dir: Optional[Path] = None,
@@ -547,7 +570,7 @@ def render_executive_brief(
         if not data.get(req):
             raise ValueError(f"executive-brief JSON missing required field: {req}")
 
-    parts: List[str] = [f'<div class="summary-box"><strong>Executive summary:</strong> {esc(data["summary"])}</div>']
+    parts: List[str] = [f'<div class="summary-box"><strong>Executive summary:</strong> {esc_links(data["summary"])}</div>']
 
     if data.get("hero_image"):
         parts.append(
@@ -564,19 +587,26 @@ def render_executive_brief(
                 if h.get("badge")
                 else ""
             )
+            href = h.get("href")
+            val_html = (
+                f'<a href="{esc(href)}" style="color: inherit; text-decoration: underline; text-decoration-color: var(--color-brand-link);">{esc(h["value"])}</a>'
+                if href and _SAFE_HREF_RE.match(href)
+                else esc(h["value"])
+            )
             cards.append(
                 f'<div class="card"><div class="metric-label">{esc(h["label"])}</div>'
-                f'<div class="metric-value">{esc(h["value"])}</div>'
+                f'<div class="metric-value">{val_html}</div>'
                 f'{badge_html}</div>'
             )
         parts.append(f'<section class="block"><div class="grid">{"".join(cards)}</div></section>')
 
     for sec in data["sections"]:
-        sec_html = [f'<section class="block"><h2 class="section-title">{esc(sec["heading"])}</h2>']
+        sec_id = esc(sec.get("id") or slugify_id(sec["heading"]))
+        sec_html = [f'<section class="block" id="{sec_id}"><h2 class="section-title">{esc(sec["heading"])}</h2>']
         if sec.get("body"):
-            sec_html.append(f'<p>{esc(sec["body"])}</p>')
+            sec_html.append(f'<p>{esc_links(sec["body"])}</p>')
         if sec.get("bullets"):
-            items = "".join(f"<li>{esc(b)}</li>" for b in sec["bullets"])
+            items = "".join(f"<li>{esc_links(b)}</li>" for b in sec["bullets"])
             sec_html.append(f"<ul>{items}</ul>")
         if sec.get("cards"):
             c_html = []
@@ -588,9 +618,13 @@ def render_executive_brief(
                     tag_text = f"{tag_text} ({c['missing_evidence']})"
                 cls = "card gate" if is_gate else "card"
                 title_prefix = f"{c['id']}: " if c.get("id") else ""
+                card_title = esc(title_prefix + c["title"])
+                href = c.get("href")
+                if href and _SAFE_HREF_RE.match(href):
+                    card_title = f'<a href="{esc(href)}" style="color: var(--color-brand-primary); text-decoration: underline; text-decoration-color: var(--color-brand-link);">{card_title}</a>'
                 c_html.append(
                     f'<div class="{cls}"><span class="tag tag-{esc(tone)}">{esc(tag_text)}</span>'
-                    f'<h3>{esc(title_prefix + c["title"])}</h3><p>{esc(c["description"])}</p></div>'
+                    f'<h3>{card_title}</h3><p>{esc_links(c["description"])}</p></div>'
                 )
             sec_html.append(f'<div class="grid">{"".join(c_html)}</div>')
         if sec.get("images"):
@@ -602,8 +636,8 @@ def render_executive_brief(
     decisions = data.get("decisions_needed") or []
     if decisions:
         rows = "".join(
-            f"<tr><td>{esc(d['decision'])}</td><td>{esc(d['owner'])}</td>"
-            f"<td>{esc(d.get('target_date', 'TBD'))}</td><td>{esc(d.get('impact', ''))}</td></tr>"
+            f"<tr><td>{esc_links(d['decision'])}</td><td>{esc(d['owner'])}</td>"
+            f"<td>{esc(d.get('target_date', 'TBD'))}</td><td>{esc_links(d.get('impact', ''))}</td></tr>"
             for d in decisions
         )
         parts.append(
@@ -834,15 +868,15 @@ def render_architecture_on_a_page(
 
     parts: List[str] = [
         '<div class="aoap-banner">'
-        f'<div class="aoap-banner-cell"><div class="aoap-label">Core hypothesis and flow</div><div>{esc(data["hypothesis"])}</div></div>'
-        f'<div class="aoap-banner-cell right"><div class="aoap-label">Non-negotiable invariants</div><div>{esc(data["invariants"])}</div></div>'
+        f'<div class="aoap-banner-cell"><div class="aoap-label">Core hypothesis and flow</div><div>{esc_links(data["hypothesis"])}</div></div>'
+        f'<div class="aoap-banner-cell right"><div class="aoap-label">Non-negotiable invariants</div><div>{esc_links(data["invariants"])}</div></div>'
         "</div>"
     ]
 
     plane_cards = []
     for p in data["planes"]:
         accent = p.get("color", "#013366")
-        bullets = "".join(f"<li>{esc(i)}</li>" for i in p.get("items", []))
+        bullets = "".join(f"<li>{esc_links(i)}</li>" for i in p.get("items", []))
         plane_cards.append(
             f'<div class="plane-card" style="border-top-color: {esc(accent)};">'
             f'<h3>{esc(p["title"])}</h3><ul>{bullets}</ul></div>'
@@ -885,22 +919,27 @@ def render_architecture_on_a_page(
 
     wps = data.get("work_packages") or []
     if wps:
-        wp_html = "".join(
-            f'<div class="wp-pill{" committed" if w.get("committed") else ""}">'
-            f'<strong>{esc(w["id"])}</strong>{esc(w["summary"])}</div>'
-            for w in wps
-        )
-        parts.append(f'<div class="wp-grid">{wp_html}</div>')
+        wp_pills = []
+        for w in wps:
+            label = esc(w["id"])
+            href = w.get("href")
+            if href and _SAFE_HREF_RE.match(href):
+                label = f'<a href="{esc(href)}" style="color: inherit; text-decoration: underline;">{label}</a>'
+            wp_pills.append(
+                f'<div class="wp-pill{" committed" if w.get("committed") else ""}">'
+                f'<strong>{label}</strong>{esc_links(w["summary"])}</div>'
+            )
+        parts.append(f'<div class="wp-grid">{"".join(wp_pills)}</div>')
 
     spikes = data.get("spikes") or []
     decisions = data.get("decisions") or []
     if spikes or decisions:
         b_cols = []
         if spikes:
-            s_li = "".join(f"<li>{esc(s)}</li>" for s in spikes)
+            s_li = "".join(f"<li>{esc_links(s)}</li>" for s in spikes)
             b_cols.append(f'<div class="card"><span class="tag tag-info">Compatibility spikes</span><ul>{s_li}</ul></div>')
         if decisions:
-            d_li = "".join(f"<li>{esc(d)}</li>" for d in decisions)
+            d_li = "".join(f"<li>{esc_links(d)}</li>" for d in decisions)
             b_cols.append(f'<div class="card"><span class="tag tag-warning">Decisions needed</span><ul>{d_li}</ul></div>')
         parts.append(f'<div class="grid">{"".join(b_cols)}</div>')
 

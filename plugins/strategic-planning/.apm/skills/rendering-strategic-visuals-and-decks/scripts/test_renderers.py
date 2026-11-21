@@ -245,6 +245,32 @@ class TestRenderers(unittest.TestCase):
             self.assertEqual(calls[0][0], "/usr/local/bin/mmdc")
             self.assertEqual(calls[1][0], "/usr/local/bin/npx")
 
+    def test_cross_page_links_anchors_and_xss_safety(self):
+        payload = {
+            "title": "Linked Brief",
+            "org_trail": "Government of British Columbia",
+            "summary": "See [MAF 1.0](technology-profiles.html#maf-1-0) and [bad](javascript:alert(1)).",
+            "highlights": [
+                {"label": "Runtime", "value": "ACA + MAF 1.0", "href": "technology-profiles.html#hosting-profiles", "tone": "success"}
+            ],
+            "sections": [
+                {
+                    "id": "maf-1-0",
+                    "heading": "MAF 1.0 Details",
+                    "body": "Uses [Decision 1.1](technology-profiles.html#decision-1-1).",
+                    "cards": [
+                        {"id": "TECH-004", "title": "ACA", "description": "Hosted on [ACA](technology-profiles.html#hosting-profiles).", "href": "technology-profiles.html#hosting-profiles"}
+                    ],
+                }
+            ],
+        }
+        html_out = render_html_brief.render_executive_brief(payload)
+        self.assertIn('id="maf-1-0"', html_out)
+        self.assertIn('href="technology-profiles.html#maf-1-0"', html_out)
+        self.assertIn('href="technology-profiles.html#hosting-profiles"', html_out)
+        self.assertIn('href="technology-profiles.html#decision-1-1"', html_out)
+        self.assertNotIn('href="javascript:', html_out)
+
 
 if __name__ == "__main__":
     unittest.main()
