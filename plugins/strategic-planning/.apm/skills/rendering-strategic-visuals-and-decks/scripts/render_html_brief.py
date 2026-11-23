@@ -14,6 +14,7 @@ import base64
 import html
 import json
 import mimetypes
+import os
 import re
 import shutil
 import subprocess
@@ -485,6 +486,7 @@ def resolve_image_src(
     embed: bool,
     convert_mmd: bool = False,
     svg_out_dir: Optional[Path] = None,
+    html_output_dir: Optional[Path] = None,
 ) -> str:
     """Resolve an image path (optionally converting .mmd -> .svg and/or embedding as base64)."""
     if src.startswith(("http://", "https://", "data:")):
@@ -492,17 +494,20 @@ def resolve_image_src(
     candidate = Path(src)
     if not candidate.is_absolute() and base_dir is not None:
         candidate = (base_dir / candidate).resolve()
+    else:
+        candidate = candidate.resolve()
     if candidate.suffix.lower() == ".mmd":
         if not convert_mmd:
             raise ValueError(f"Mermaid source '{src}' requires --convert-mmd to render to SVG.")
         target_dir = svg_out_dir or (candidate.parent / "rendered")
-        candidate = convert_mmd_to_svg(candidate, target_dir / f"{candidate.stem}.svg")
-        if not embed:
-            return str(candidate)
-    if not embed:
-        return src
+        candidate = convert_mmd_to_svg(candidate, target_dir / f"{candidate.stem}.svg").resolve()
     if not candidate.is_file():
-        raise FileNotFoundError(f"Image file not found for embedding: {src} (resolved: {candidate})")
+        raise FileNotFoundError(f"Image file not found: {src} (resolved: {candidate})")
+    if not embed:
+        rebase_dir = html_output_dir or base_dir
+        if rebase_dir is not None:
+            return Path(os.path.relpath(candidate, start=rebase_dir.resolve())).as_posix()
+        return str(candidate)
     mime, _ = mimetypes.guess_type(str(candidate))
     if candidate.suffix.lower() == ".svg":
         mime = "image/svg+xml"
@@ -518,12 +523,20 @@ def render_image_figure(
     embed_all: bool = False,
     convert_mmd: bool = False,
     svg_out_dir: Optional[Path] = None,
+    html_output_dir: Optional[Path] = None,
 ) -> str:
     """Render a BC Gov styled <figure> block for a diagram or image."""
     src = img["src"]
     alt = img["alt"]
     embed = embed_all or bool(img.get("embed", False))
-    resolved_src = resolve_image_src(src, base_dir, embed, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir)
+    resolved_src = resolve_image_src(
+        src,
+        base_dir,
+        embed,
+        convert_mmd=convert_mmd,
+        svg_out_dir=svg_out_dir,
+        html_output_dir=html_output_dir,
+    )
     style_attr = f' style="width: {esc(img["width"])};"' if img.get("width") else ""
     caption_html = f"<figcaption>{esc(img['caption'])}</figcaption>" if img.get("caption") else ""
     return (
@@ -564,6 +577,7 @@ def render_executive_brief(
     svg_out_dir: Optional[Path] = None,
     nav_items: Optional[List[Tuple[str, str]]] = None,
     active_href: Optional[str] = None,
+    html_output_dir: Optional[Path] = None,
 ) -> str:
     """Render an audience-tailored executive or architecture brief."""
     for req in ("title", "org_trail", "summary", "sections"):
@@ -574,7 +588,7 @@ def render_executive_brief(
 
     if data.get("hero_image"):
         parts.append(
-            f'<section class="block">{render_image_figure(data["hero_image"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir)}</section>'
+            f'<section class="block">{render_image_figure(data["hero_image"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir, html_output_dir=html_output_dir)}</section>'
         )
 
     highlights = data.get("highlights") or []
@@ -629,7 +643,16 @@ def render_executive_brief(
             sec_html.append(f'<div class="grid">{"".join(c_html)}</div>')
         if sec.get("images"):
             for img in sec["images"]:
-                sec_html.append(render_image_figure(img, base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir))
+                sec_html.append(
+                    render_image_figure(
+                        img,
+                        base_dir,
+                        embed_images,
+                        convert_mmd=convert_mmd,
+                        svg_out_dir=svg_out_dir,
+                        html_output_dir=html_output_dir,
+                    )
+                )
         sec_html.append("</section>")
         parts.append("".join(sec_html))
 
@@ -756,6 +779,7 @@ def render_dashboard(
     embed_images: bool = False,
     nav_items: Optional[List[Tuple[str, str]]] = None,
     active_href: Optional[str] = None,
+    html_output_dir: Optional[Path] = None,
 ) -> str:
     """Render a Strategy on a Page / Portfolio Dashboard with WORK vs IDEA gating."""
     for req in ("title", "org_trail", "objectives", "work_items"):
@@ -835,7 +859,7 @@ def render_dashboard(
         diag_blocks = []
         for d in diagrams:
             heading = f"<h3>{esc(d['title'])}</h3>" if d.get("title") else ""
-            diag_blocks.append(f"{heading}{render_image_figure(d, base_dir, embed_images)}")
+            diag_blocks.append(f"{heading}{render_image_figure(d, base_dir, embed_images, html_output_dir=html_output_dir)}")
         parts.append(
             f'<section class="block"><h2 class="section-title">Architecture and strategy diagrams</h2>{"".join(diag_blocks)}</section>'
         )
@@ -860,6 +884,7 @@ def render_architecture_on_a_page(
     svg_out_dir: Optional[Path] = None,
     nav_items: Optional[List[Tuple[str, str]]] = None,
     active_href: Optional[str] = None,
+    html_output_dir: Optional[Path] = None,
 ) -> str:
     """Render a single-screen BC Gov Architecture on a Page HTML summary."""
     for req in ("title", "org_trail", "hypothesis", "invariants", "planes"):
@@ -889,7 +914,12 @@ def render_architecture_on_a_page(
         left_panel = ""
         if diag:
             src = resolve_image_src(
-                diag["src"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_out_dir
+                diag["src"],
+                base_dir,
+                embed_images,
+                convert_mmd=convert_mmd,
+                svg_out_dir=svg_out_dir,
+                html_output_dir=html_output_dir,
             )
             gallery_link = (
                 f' &bull; <a href="{esc(diag["gallery_href"])}" style="color: var(--color-brand-link);">View full-size diagrams</a>'
@@ -990,13 +1020,26 @@ def render_diagram_gallery(
         cards: List[str] = []
         for item in dom["items"]:
             slug = item["slug"]
-            src_resolved = resolve_image_src(
-                item["src"], base_dir, embed_images, convert_mmd=convert_mmd, svg_out_dir=svg_cache
+            gallery_src = resolve_image_src(
+                item["src"],
+                base_dir,
+                embed_images,
+                convert_mmd=convert_mmd,
+                svg_out_dir=svg_cache,
+                html_output_dir=output_dir,
+            )
+            sub_src = resolve_image_src(
+                item["src"],
+                base_dir,
+                embed_images,
+                convert_mmd=convert_mmd,
+                svg_out_dir=svg_cache,
+                html_output_dir=sub_dir,
             )
             sub_rel = f"diagrams/{slug}.html"
             cards.append(
                 f'<div class="card"><div><h3>{esc(item["title"])}</h3>'
-                f'<div class="thumb"><img src="{esc(src_resolved)}" alt="{esc(item["title"])}"></div>'
+                f'<div class="thumb"><img src="{esc(gallery_src)}" alt="{esc(item["title"])}"></div>'
                 f'<p>{esc(item["intro"])}</p></div>'
                 f'<a class="btn-link" href="{esc(sub_rel)}">Open full diagram &amp; overview &rarr;</a></div>'
             )
@@ -1006,7 +1049,7 @@ def render_diagram_gallery(
             sub_body = (
                 f'<div class="breadcrumb"><a href="../{esc(gallery_filename)}">&larr; Back to all architecture diagrams</a></div>'
                 f'<div class="summary-box"><strong>Overview:</strong> {esc(item["intro"])}{pts_block}</div>'
-                f'<div class="card" style="text-align:center;"><img src="{esc(src_resolved)}" alt="{esc(item["title"])}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></div>'
+                f'<div class="card" style="text-align:center;"><img src="{esc(sub_src)}" alt="{esc(item["title"])}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></div>'
             )
             sub_path = sub_dir / f"{slug}.html"
             sub_path.write_text(
@@ -1115,11 +1158,15 @@ def render_site(
                 )
             )
             continue
-        elif ptype == "executive-brief":
+        dest = output_dir / page["filename"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        html_out_dir = dest.parent
+        if ptype == "executive-brief":
             html_out = render_executive_brief(
                 page_data, base_dir=in_path.parent, embed_images=embed_images,
                 convert_mmd=convert_mmd, svg_out_dir=output_dir / "images",
                 nav_items=nav_items, active_href=page["filename"],
+                html_output_dir=html_out_dir,
             )
         elif ptype == "logic-model":
             html_out = render_logic_model(
@@ -1130,14 +1177,14 @@ def render_site(
                 page_data, base_dir=in_path.parent, embed_images=embed_images,
                 convert_mmd=convert_mmd, svg_out_dir=output_dir / "images",
                 nav_items=nav_items, active_href=page["filename"],
+                html_output_dir=html_out_dir,
             )
         else:
             html_out = render_dashboard(
                 page_data, base_dir=in_path.parent, embed_images=embed_images,
                 nav_items=nav_items, active_href=page["filename"],
+                html_output_dir=html_out_dir,
             )
-        dest = output_dir / page["filename"]
-        dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(html_out, encoding="utf-8")
         written.append(dest)
 
@@ -1182,18 +1229,23 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(f"Wrote {p}")
         return 0
 
+    html_out_dir = args.output.resolve().parent if args.output else None
     if args.type == "executive-brief":
         rendered = render_executive_brief(
-            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd
+            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd,
+            html_output_dir=html_out_dir,
         )
     elif args.type == "logic-model":
         rendered = render_logic_model(data)
     elif args.type == "architecture-on-a-page":
         rendered = render_architecture_on_a_page(
-            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd
+            data, base_dir=base_dir, embed_images=args.embed_images, convert_mmd=args.convert_mmd,
+            html_output_dir=html_out_dir,
         )
     else:
-        rendered = render_dashboard(data, base_dir=base_dir, embed_images=args.embed_images)
+        rendered = render_dashboard(
+            data, base_dir=base_dir, embed_images=args.embed_images, html_output_dir=html_out_dir,
+        )
 
     if args.validate_only:
         print(f"OK: {args.input} passed {args.type} validation.")

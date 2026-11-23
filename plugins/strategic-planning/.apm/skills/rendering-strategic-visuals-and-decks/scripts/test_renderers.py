@@ -271,6 +271,108 @@ class TestRenderers(unittest.TestCase):
         self.assertIn('href="technology-profiles.html#decision-1-1"', html_out)
         self.assertNotIn('href="javascript:', html_out)
 
+    def test_non_embedded_image_paths_are_rebased_and_validated(self) -> None:
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            data_dir = tmp_path / "deliverables" / "data"
+            out_dir = tmp_path / "deliverables"
+            img_dir = out_dir / "images"
+            mmd_dir = tmp_path / "diagrams"
+            data_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
+            mmd_dir.mkdir(parents=True)
+
+            (img_dir / "conceptual.svg").write_text("<svg></svg>", encoding="utf-8")
+            (mmd_dir / "flow.mmd").write_text("flowchart LR\nA --> B\n", encoding="utf-8")
+
+            (data_dir / "brief.json").write_text(
+                json.dumps({
+                    "title": "Brief",
+                    "org_trail": "Government of British Columbia",
+                    "summary": "Summary",
+                    "sections": [
+                        {
+                            "heading": "View",
+                            "images": [{"src": "../images/conceptual.svg", "alt": "Conceptual"}],
+                        }
+                    ],
+                }),
+                encoding="utf-8",
+            )
+            (data_dir / "aoap.json").write_text(
+                json.dumps({
+                    "title": "AOAP",
+                    "org_trail": "Government of British Columbia",
+                    "hypothesis": "H",
+                    "invariants": "I",
+                    "planes": [{"title": "P", "items": ["X"]}],
+                    "diagram": {"src": "../../diagrams/flow.mmd", "alt": "Flow"},
+                }),
+                encoding="utf-8",
+            )
+            (data_dir / "gallery.json").write_text(
+                json.dumps({
+                    "title": "Gallery",
+                    "org_trail": "Government of British Columbia",
+                    "summary": "All",
+                    "domains": [
+                        {
+                            "name": "Core",
+                            "description": "Core",
+                            "items": [
+                                {"slug": "flow", "title": "Flow", "src": "../../diagrams/flow.mmd", "intro": "Intro"}
+                            ],
+                        }
+                    ],
+                }),
+                encoding="utf-8",
+            )
+            site_data = {
+                "title": "Portal",
+                "org_trail": "Government of British Columbia",
+                "summary": "Hub",
+                "pages": [
+                    {"label": "Brief", "filename": "executive-brief.html", "type": "executive-brief", "input": "brief.json"},
+                    {"label": "AOAP", "filename": "architecture-on-a-page.html", "type": "architecture-on-a-page", "input": "aoap.json"},
+                    {"label": "Diagrams", "filename": "architecture-diagrams.html", "type": "diagram-gallery", "input": "gallery.json"},
+                ],
+            }
+
+            def fake_convert(mmd_path: Path, svg_path: Path) -> Path:
+                svg_path.parent.mkdir(parents=True, exist_ok=True)
+                svg_path.write_text("<svg></svg>", encoding="utf-8")
+                return svg_path
+
+            with mock.patch.object(render_html_brief, "convert_mmd_to_svg", side_effect=fake_convert):
+                render_html_brief.render_site(
+                    site_data, site_dir=data_dir, output_dir=out_dir, embed_images=False, convert_mmd=True
+                )
+
+            brief_html = (out_dir / "executive-brief.html").read_text(encoding="utf-8")
+            aoap_html = (out_dir / "architecture-on-a-page.html").read_text(encoding="utf-8")
+            gal_html = (out_dir / "architecture-diagrams.html").read_text(encoding="utf-8")
+            sub_html = (out_dir / "diagrams" / "flow.html").read_text(encoding="utf-8")
+
+            self.assertIn('src="images/conceptual.svg"', brief_html)
+            self.assertIn('src="images/flow.svg"', aoap_html)
+            self.assertIn('src="images/flow.svg"', gal_html)
+            self.assertIn('src="../images/flow.svg"', sub_html)
+
+            missing_payload = {
+                "title": "Missing",
+                "org_trail": "Government of British Columbia",
+                "summary": "Summary",
+                "sections": [
+                    {"heading": "Broken", "images": [{"src": "../images/does-not-exist.svg", "alt": "Missing"}]}
+                ],
+            }
+            with self.assertRaises(FileNotFoundError):
+                render_html_brief.render_executive_brief(
+                    missing_payload, base_dir=data_dir, embed_images=False, html_output_dir=out_dir
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
