@@ -19,6 +19,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -460,24 +461,80 @@ def render_shell(
 """
 
 
+_MERMAID_IMG_CONFIG = {
+    "htmlLabels": False,
+    "flowchart": {"htmlLabels": False},
+    "class": {"htmlLabels": False},
+    "state": {"htmlLabels": False},
+}
+
+_EDGE_PATH_RE = re.compile(r"<path\b([^>]*?)(/?)>", flags=re.DOTALL)
+
+
+def _is_svg_img_compatible(svg_text: str) -> bool:
+    """Return True if an existing SVG avoids <foreignObject> and inlines fill='none' on edges."""
+    if "<foreignObject" in svg_text:
+        return False
+    if "flowchart-link" in svg_text and 'fill="none"' not in svg_text:
+        return False
+    return True
+
+
+def sanitize_mermaid_svg(svg_path: Path) -> Path:
+    """Inline critical edge fill/stroke attributes so Mermaid SVGs render cleanly inside <img> and SharePoint."""
+    svg_text = svg_path.read_text(encoding="utf-8")
+
+    def _patch_path(match: re.Match[str]) -> str:
+        attrs = match.group(1)
+        closing = match.group(2)
+        if not any(cls in attrs for cls in ("flowchart-link", "edge-thickness-", "transition", "relation")):
+            return match.group(0)
+        extra: List[str] = []
+        if "fill=" not in attrs and "fill:" not in attrs:
+            extra.append('fill="none"')
+        if "stroke=" not in attrs and "stroke:" not in attrs:
+            extra.append('stroke="#333333"')
+        if "edge-pattern-dotted" in attrs and "stroke-dasharray" not in attrs:
+            extra.append('stroke-dasharray="3 3"')
+        elif "edge-pattern-dashed" in attrs and "stroke-dasharray" not in attrs:
+            extra.append('stroke-dasharray="5 5"')
+        if not extra:
+            return match.group(0)
+        return f"<path{attrs} {' '.join(extra)}{closing}>"
+
+    updated = _EDGE_PATH_RE.sub(_patch_path, svg_text)
+    if updated != svg_text:
+        svg_path.write_text(updated, encoding="utf-8")
+    return svg_path
+
+
 def convert_mmd_to_svg(mmd_path: Path, svg_path: Path) -> Path:
     """Deterministically convert a .mmd Mermaid file to .svg using mmdc or npx @mermaid-js/mermaid-cli."""
     if svg_path.is_file() and svg_path.stat().st_mtime >= mmd_path.stat().st_mtime:
-        return svg_path
+        if _is_svg_img_compatible(svg_path.read_text(encoding="utf-8")):
+            return svg_path
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     mmdc = shutil.which("mmdc")
     npx = shutil.which("npx")
-    if mmdc:
-        try:
-            subprocess.run([mmdc, "-i", str(mmd_path), "-o", str(svg_path)], check=True)
-            return svg_path
-        except subprocess.CalledProcessError:
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8", delete=False) as cfg_file:
+        json.dump(_MERMAID_IMG_CONFIG, cfg_file)
+        cfg_path = Path(cfg_file.name)
+    try:
+        ran = False
+        if mmdc:
+            try:
+                subprocess.run([mmdc, "-c", str(cfg_path), "-i", str(mmd_path), "-o", str(svg_path)], check=True)
+                ran = True
+            except subprocess.CalledProcessError:
+                if not npx:
+                    raise
+        if not ran:
             if not npx:
-                raise
-    if not npx:
-        raise RuntimeError("Neither 'mmdc' nor 'npx' found on PATH to convert .mmd diagrams.")
-    subprocess.run([npx, "-y", "@mermaid-js/mermaid-cli", "-i", str(mmd_path), "-o", str(svg_path)], check=True)
-    return svg_path
+                raise RuntimeError("Neither 'mmdc' nor 'npx' found on PATH to convert .mmd diagrams.")
+            subprocess.run([npx, "-y", "@mermaid-js/mermaid-cli", "-c", str(cfg_path), "-i", str(mmd_path), "-o", str(svg_path)], check=True)
+    finally:
+        cfg_path.unlink(missing_ok=True)
+    return sanitize_mermaid_svg(svg_path)
 
 
 def resolve_image_src(

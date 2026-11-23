@@ -244,6 +244,40 @@ class TestRenderers(unittest.TestCase):
             self.assertEqual(len(calls), 2)
             self.assertEqual(calls[0][0], "/usr/local/bin/mmdc")
             self.assertEqual(calls[1][0], "/usr/local/bin/npx")
+            self.assertIn("-c", calls[0])
+
+    def test_sanitize_mermaid_svg_and_stale_foreignobject_regeneration(self) -> None:
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            mmd = tmp_path / "sample.mmd"
+            svg = tmp_path / "out" / "sample.svg"
+            mmd.write_text("flowchart LR\nA --> B\n", encoding="utf-8")
+            svg.parent.mkdir(parents=True, exist_ok=True)
+            # Pre-existing newer SVG with <foreignObject> should be treated as stale and regenerated
+            svg.write_text("<svg><foreignObject></foreignObject></svg>", encoding="utf-8")
+
+            calls = []
+
+            def fake_run(cmd, check=True):
+                calls.append(cmd)
+                svg.write_text(
+                    '<svg><path d="M0,0 L10,10" class="edge-thickness-normal edge-pattern-dotted flowchart-link" style=";"/></svg>',
+                    encoding="utf-8",
+                )
+
+            with (
+                mock.patch.object(render_html_brief.shutil, "which", side_effect=lambda name: f"/usr/local/bin/{name}" if name == "mmdc" else None),
+                mock.patch.object(render_html_brief.subprocess, "run", side_effect=fake_run),
+            ):
+                render_html_brief.convert_mmd_to_svg(mmd, svg)
+
+            self.assertEqual(len(calls), 1)
+            rendered_svg = svg.read_text(encoding="utf-8")
+            self.assertIn('fill="none"', rendered_svg)
+            self.assertIn('stroke="#333333"', rendered_svg)
+            self.assertIn('stroke-dasharray="3 3"', rendered_svg)
 
     def test_cross_page_links_anchors_and_xss_safety(self):
         payload = {
