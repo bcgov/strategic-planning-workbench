@@ -384,6 +384,24 @@ def esc(val: Any) -> str:
     return html.escape("" if val is None else str(val), quote=True)
 
 
+_TOKEN_RE = re.compile(r"\{\{\s*([a-z][a-z0-9_.]*)\s*\}\}")
+
+
+def expand_tokens(data: Any, facts: Dict[str, str], where: str = "") -> Any:
+    """Recursively replace ``{{token}}`` in every string; an unknown token raises ValueError."""
+    if isinstance(data, str):
+        def _sub(m: "re.Match[str]") -> str:
+            if m.group(1) not in facts:
+                raise ValueError(f"{where or 'JSON'}: unknown or unavailable token {{{{{m.group(1)}}}}}")
+            return facts[m.group(1)]
+        return _TOKEN_RE.sub(_sub, data)
+    if isinstance(data, list):
+        return [expand_tokens(v, facts, where) for v in data]
+    if isinstance(data, dict):
+        return {k: expand_tokens(v, facts, where) for k, v in data.items()}
+    return data
+
+
 def check_no_emoji(data: Any, path: str = "root") -> None:
     """Raise ValueError if any string field contains emoji."""
     if isinstance(data, str):
@@ -1153,8 +1171,14 @@ def render_site(
     output_dir: Path,
     embed_images: bool = False,
     convert_mmd: bool = False,
+    facts: Optional[Dict[str, str]] = None,
 ) -> List[Path]:
-    """Render an index.html hub and all linked subpages with shared BC Gov navigation."""
+    """Render an index.html hub and all linked subpages with shared BC Gov navigation.
+
+    ``facts`` expands ``{{token}}`` placeholders (see deliverable_lock.derive_facts) in site and page JSON.
+    """
+    if facts is not None:
+        site_data = expand_tokens(site_data, facts, "site.json")
     for req in ("title", "org_trail", "summary", "pages"):
         if not site_data.get(req):
             raise ValueError(f"deliverable-site JSON missing required field: {req}")
@@ -1199,6 +1223,8 @@ def render_site(
     for page in site_data["pages"]:
         in_path = (site_dir / page["input"]).resolve()
         page_data = json.loads(in_path.read_text(encoding="utf-8"))
+        if facts is not None:
+            page_data = expand_tokens(page_data, facts, in_path.name)
         check_no_emoji(page_data)
         ptype = page["type"]
         if ptype == "diagram-gallery":

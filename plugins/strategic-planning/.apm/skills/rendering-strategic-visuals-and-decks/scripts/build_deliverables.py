@@ -19,6 +19,7 @@ from typing import List, Optional
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import check_deliverable_sync  # noqa: E402
+import deliverable_lock  # noqa: E402
 import render_deck  # noqa: E402
 import render_html_brief  # noqa: E402
 
@@ -71,7 +72,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--workbench", type=Path, default=Path.cwd(), help="Workbench repo root (default: cwd).")
     ap.add_argument("--deliverables", type=Path, help="Deliverables dir (default: <workbench>/deliverables).")
-    ap.add_argument("--check", action="store_true", help="Drift report and validation only; write nothing.")
+    ap.add_argument("--check", action="store_true", help="Drift report and validation only; write nothing. Exit 1 if any page is stale.")
+    ap.add_argument("--allow-stale", action="store_true", help="Render even when pages are stale or unstamped (default: refuse).")
     ap.add_argument("--skip-mmd", action="store_true", help="Do not convert .mmd to .svg (reuse existing images).")
     ap.add_argument("--skip-deck", action="store_true", help="Do not render the executive deck.")
     args = ap.parse_args(argv)
@@ -83,7 +85,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     drift = check_deliverable_sync.run_checks(root, out) if data_dir.is_dir() else []
     for f in drift:
         print(f"[DRIFT] {f['category']}: {f['message']}")
-    print("none" if not drift else f"{len(drift)} finding(s) (informational: sync the JSON, then re-run)")
+    print("none" if not drift else f"{len(drift)} finding(s)")
+    stale = [d for d in drift if d["category"] == "source-newer"]
+    if stale and not args.check and not args.allow_stale:
+        print("[ERROR] Source files changed since pages were stamped. Update the page JSON "
+              "(see: deliverable_lock.py worklist --diff), stamp it, or pass --allow-stale.")
+        return 1
 
     print("== 2/4 Validate inputs")
     problems = validate_inputs(data_dir)
@@ -97,11 +104,12 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     print("== 3/4 Render")
     site = json.loads((data_dir / "site.json").read_text(encoding="utf-8"))
-    written = render_html_brief.render_site(site, site_dir=data_dir, output_dir=out, convert_mmd=not args.skip_mmd)
+    facts = deliverable_lock.derive_facts(root)
+    written = render_html_brief.render_site(site, site_dir=data_dir, output_dir=out, convert_mmd=not args.skip_mmd, facts=facts)
     print(f"Wrote {len(written)} HTML file(s)")
     deck = data_dir / "executive-deck.json"
     if deck.exists() and not args.skip_deck:
-        d = json.loads(deck.read_text(encoding="utf-8"))
+        d = render_html_brief.expand_tokens(json.loads(deck.read_text(encoding="utf-8")), facts, deck.name)
         (out / "executive-deck.marp.md").write_text(render_deck.render_marp(d), encoding="utf-8")
         (out / "executive-deck.pptx-spec.json").write_text(render_deck.render_pptx_spec(d), encoding="utf-8")
         print("Wrote executive-deck.marp.md and executive-deck.pptx-spec.json")

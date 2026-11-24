@@ -13,6 +13,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 import build_deliverables  # noqa: E402
+import deliverable_lock as lock  # noqa: E402
 import check_deliverable_sync as sync  # noqa: E402
 
 
@@ -66,15 +67,11 @@ class TestSyncChecker(unittest.TestCase):
             self.assertIn("flow.mmd has no images/flow.svg", msgs)
             self.assertIn("other.mmd is not in architecture-diagrams.json", msgs)
 
-    def test_reviewed_date_clears_source_newer(self) -> None:
+    def test_legacy_date_check_without_sources_json(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             dl = make_workbench(root, date="2000-01-01")
             self.assertIn("source-newer", [f["category"] for f in sync.run_checks(root, dl)])
-            doc = json.loads((dl / "data" / "page.json").read_text())
-            doc["reviewed"] = "2999-01-01"
-            (dl / "data" / "page.json").write_text(json.dumps(doc), encoding="utf-8")
-            self.assertNotIn("source-newer", [f["category"] for f in sync.run_checks(root, dl)])
 
     def test_registry_range_flagged(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -84,6 +81,86 @@ class TestSyncChecker(unittest.TestCase):
             (root / "architecture" / "architecture-registry.json").write_text('{"a":"TECH-001","b":"TECH-005"}', encoding="utf-8")
             (dl / "data" / "page.json").write_text(json.dumps({"summary": "TECH-001 to TECH-003 WP-01 WP-01C"}), encoding="utf-8")
             self.assertIn("registry", [f["category"] for f in sync.run_checks(root, dl)])
+
+
+class TestLockfile(unittest.TestCase):
+    def _setup(self, tmp: str):
+        root = Path(tmp)
+        dl = make_workbench(root, date="2026-01-01")
+        data = dl / "data"
+        (data / lock.SOURCES_FILE).write_text(json.dumps({"defaults": ["adrs/README.md", "diagrams/*.mmd"], "pages": {}}), encoding="utf-8")
+        return root, data
+
+    def test_unstamped_then_ok_then_stale_then_ok(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root, data = self._setup(tmp)
+            states = {r["page"]: r["state"] for r in lock.status(root, data)}
+            self.assertEqual(set(states.values()), {"unstamped"})
+            lock.stamp(root, data, lock.page_files(data))
+            self.assertEqual({r["state"] for r in lock.status(root, data)}, {"ok"})
+            (root / "adrs" / "README.md").write_text("## ADR-001: a\n## ADR-004: new\n", encoding="utf-8")
+            res = lock.status(root, data)
+            self.assertTrue(all(r["state"] == "stale" and r["changed"] == ["adrs/README.md"] for r in res))
+            lock.stamp(root, data, ["page.json"])
+            self.assertEqual({r["page"]: r["state"] for r in lock.status(root, data)}["page.json"], "ok")
+
+    def test_new_and_removed_source_files_detected_and_crlf_ignored(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root, data = self._setup(tmp)
+            lock.stamp(root, data, ["page.json"])
+            (root / "adrs" / "README.md").write_bytes((root / "adrs" / "README.md").read_bytes().replace(b"\n", b"\r\n"))
+            self.assertEqual(lock.status(root, data)[1]["state"], "ok")  # CRLF only
+            (root / "diagrams" / "new.mmd").write_text("flowchart LR\nA-->B\n", encoding="utf-8")
+            (root / "diagrams" / "flow.mmd").unlink()
+            r = [x for x in lock.status(root, data) if x["page"] == "page.json"][0]
+            self.assertEqual((r["added"], r["removed"]), (["diagrams/new.mmd"], ["diagrams/flow.mmd"]))
+
+    def test_page_specific_sources_and_defaults_extension(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root, data = self._setup(tmp)
+            cfg = {"defaults": ["adrs/README.md"], "pages": {"page.json": ["$defaults", "work-packages/README.md"]}}
+            (data / lock.SOURCES_FILE).write_text(json.dumps(cfg), encoding="utf-8")
+            self.assertEqual(lock.declared_sources(data, "page.json"), ["adrs/README.md", "work-packages/README.md"])
+            self.assertEqual(lock.declared_sources(data, "other.json"), ["adrs/README.md"])
+
+    def test_worklist_names_changed_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root, data = self._setup(tmp)
+            lock.stamp(root, data, lock.page_files(data))
+            (root / "work-packages" / "README.md").write_text("## WP-09: z\n", encoding="utf-8")
+            (data / lock.SOURCES_FILE).write_text(json.dumps({"defaults": ["work-packages/README.md"], "pages": {}}), encoding="utf-8")
+            self.assertIn("work-packages/README.md", lock.worklist(root, data))
+
+    def test_facts_and_token_expansion(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            make_workbench(root)
+            facts = lock.derive_facts(root)
+            self.assertEqual(facts["adr.range"], "ADR-001 to ADR-003")
+            self.assertEqual(facts["wp.count"], "2")
+            self.assertEqual(facts["diagram.count"], "1")
+            out = lock.expand_tokens({"a": ["{{ adr.latest }} of {{adr.count}}"]}, facts)
+            self.assertEqual(out, {"a": ["003 of 3"]})
+            with self.assertRaises(ValueError):
+                lock.expand_tokens("{{nope.nothing}}", facts, "x.json")
+
+    def test_build_refuses_stale_pages_unless_allowed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dl = make_workbench(root)
+            data = dl / "data"
+            (data / "site.json").write_text(json.dumps({
+                "title": "T", "org_trail": "O", "summary": "S",
+                "pages": [{"label": "P", "filename": "p.html", "type": "executive-brief", "input": "page.json"}]}), encoding="utf-8")
+            (data / "page.json").write_text(json.dumps({
+                "title": "B", "org_trail": "O", "audience": "A", "summary": "{{adr.range}} WP-01 WP-01C",
+                "sections": [{"heading": "H", "body": "text"}]}), encoding="utf-8")
+            (data / "architecture-diagrams.json").unlink()
+            (data / lock.SOURCES_FILE).write_text(json.dumps({"defaults": ["adrs/README.md"], "pages": {}}), encoding="utf-8")
+            self.assertEqual(build_deliverables.main(["--workbench", str(root), "--skip-mmd"]), 1)  # unstamped
+            lock.stamp(root, data, lock.page_files(data))
+            self.assertEqual(build_deliverables.main(["--workbench", str(root), "--skip-mmd"]), 0)
+            self.assertIn("ADR-001 to ADR-003", (dl / "p.html").read_text(encoding="utf-8"))
 
 
 class TestBuildDeliverables(unittest.TestCase):

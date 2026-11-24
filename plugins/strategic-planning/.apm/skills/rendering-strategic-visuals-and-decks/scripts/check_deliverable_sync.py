@@ -11,7 +11,7 @@ Checks (all deterministic, standard library only):
   work-package    WP-NN headings in work-packages/README.md that no JSON mentions
   diagram         diagrams/*.mmd with a missing or older images/*.svg, or no gallery entry
   registry        TECH-NNN upper bound in the JSON vs architecture/architecture-registry.json
-  source-newer    JSON whose date is older than the newest change to its source documents
+  source-newer    page JSON whose source files changed since it was last stamped (hash-based)
 """
 
 from __future__ import annotations
@@ -24,6 +24,9 @@ import sys
 from datetime import date, datetime
 from pathlib import Path
 from typing import Dict, List, Optional
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import deliverable_lock  # noqa: E402
 
 SOURCE_GLOBS = [
     "02-architecture.md", "04-open-questions.md", "05-mvp-three-domains.md",
@@ -68,7 +71,7 @@ def check_adr_range(root: Path, data_text: Dict[str, str]) -> List[Dict[str, str
             if int(m.group(1)) < latest:
                 findings.append(_finding(
                     "adr-range", f"{name}: '{m.group(0)}' but latest ADR is ADR-{latest:03d}",
-                    f"Update the range to ADR-001 to ADR-{latest:03d} and summarise new ADRs"))
+                    "Replace the hardcoded range with the {{adr.range}} token (or ADR-001 to ADR-{{adr.latest}}) and summarise new ADRs"))
     return findings
 
 
@@ -112,11 +115,21 @@ def check_registry(root: Path, data_text: Dict[str, str]) -> List[Dict[str, str]
         for m in re.finditer(r"TECH-001 to TECH-(\d{3})", text):
             if int(m.group(1)) < latest:
                 findings.append(_finding("registry", f"{name}: '{m.group(0)}' but registry reaches TECH-{latest:03d}",
-                                         "Update the inventory range, service count and Private Endpoint figures"))
+                                         "Use {{tech.range}} / {{tech.count}} tokens and re-check Private Endpoint figures"))
     return findings
 
 
 def check_source_newer(root: Path, data_dir: Path) -> List[Dict[str, str]]:
+    """Hash-based staleness when sources.json exists; otherwise a coarse date comparison."""
+    if (data_dir / deliverable_lock.SOURCES_FILE).exists() or (data_dir / deliverable_lock.LOCK_FILE).exists():
+        out = []
+        for r in deliverable_lock.status(root, data_dir):
+            if r["state"] == "ok":
+                continue
+            what = ", ".join(r["changed"] + r["added"] + r["removed"]) or "no stamp recorded"
+            out.append(_finding("source-newer", f"{r['page']} is {r['state']} against its sources: {what}",
+                                "Run deliverable_lock.py worklist --diff, update or confirm the JSON, then stamp the page"))
+        return out
     sources = [p for pat in SOURCE_GLOBS for p in root.glob(pat)]
     if not sources:
         return []
@@ -125,15 +138,13 @@ def check_source_newer(root: Path, data_dir: Path) -> List[Dict[str, str]]:
     findings = []
     for f in sorted(data_dir.glob("*.json")):
         try:
-            doc = json.loads(f.read_text(encoding="utf-8"))
-            stamps = [date.fromisoformat(s) for s in (doc.get("date"), doc.get("reviewed")) if s]
-            json_day = max(stamps) if stamps else None
+            d = json.loads(f.read_text(encoding="utf-8")).get("date")
+            json_day = date.fromisoformat(d) if d else None
         except (ValueError, AttributeError, TypeError):
             continue
         if json_day and json_day < newest_day:
-            findings.append(_finding(
-                "source-newer", f"{f.name} is dated {json_day} but {newest.relative_to(root)} changed {newest_day}",
-                "Update the page, or if it is still accurate set \"reviewed\": \"YYYY-MM-DD\" in its JSON"))
+            findings.append(_finding("source-newer", f"{f.name} is dated {json_day} but {newest.relative_to(root)} changed {newest_day}",
+                                     "Run deliverable_lock.py init and stamp so staleness is tracked by content hash"))
     return findings
 
 
