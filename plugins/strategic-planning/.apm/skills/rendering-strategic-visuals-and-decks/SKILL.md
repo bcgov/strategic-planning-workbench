@@ -28,6 +28,7 @@ Guides users interactively to choose the right audience and format, then transfo
 1. Read [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) and [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md).
 2. Ask the user to select their audience and output format from the numbered menu.
 3. Structure the extracted content as JSON matching the appropriate schema in `assets/schemas/` (`executive-brief.schema.json`, `logic-model.schema.json`, `strategy-dashboard.schema.json`, or `executive-deck.schema.json`).
+3a. **Keeping `deliverables/` in sync with an architecture workbench:** follow [deliverables-sync-workflow.md](references/deliverables-sync-workflow.md): `scripts/deliverable_lock.py status|worklist --diff|stamp` detects stale pages by source hash, `{{adr.range}}`-style tokens keep mechanical facts from drifting, then `scripts/build_deliverables.py` validates, renders and checks links in one command.
 4. Render the output using the Python scripts in `scripts/` (`render_html_brief.py`, `render_mermaid_package.py`, `render_deck.py`) or the static templates in `assets/templates/` (and delegate `.pptx` binary generation to `bc-gov-design-system` using the `--format pptx-spec` output).
 
 ## Workflow
@@ -67,5 +68,6 @@ Check outputs against [acceptance-criteria.md](references/acceptance-criteria.md
 - Methodology & brand rules: [visual-and-presentation-guide.md](references/visual-and-presentation-guide.md) • [bc-gov-visual-and-brand-style.md](references/bc-gov-visual-and-brand-style.md)
 - JSON schemas: `assets/schemas/executive-brief.schema.json` • `assets/schemas/logic-model.schema.json` • `assets/schemas/strategy-dashboard.schema.json` • `assets/schemas/executive-deck.schema.json` • `assets/schemas/architecture-on-a-page.schema.json` • `assets/schemas/diagram-gallery.schema.json` • `assets/schemas/deliverable-site.schema.json`
 - Renderers: `scripts/render_html_brief.py` • `scripts/render_mermaid_package.py` • `scripts/render_deck.py` • `scripts/test_renderers.py`
+- Workbench sync: `scripts/deliverable_lock.py` • `scripts/check_deliverable_sync.py` • `scripts/build_deliverables.py` • `scripts/test_deliverables_tools.py` • [deliverables-sync-workflow.md](references/deliverables-sync-workflow.md)
 - Templates: [mermaid-strategy-visuals.md](assets/templates/mermaid-strategy-visuals.md) • [executive-strategy-deck.md](assets/templates/executive-strategy-deck.md) • `assets/templates/bc-gov-strategy-dashboard.html`
 - Quality gate: [acceptance-criteria.md](references/acceptance-criteria.md)
